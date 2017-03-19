@@ -33,14 +33,8 @@ public class MainActivity extends Activity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final String responseString = response.body().string();
-
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(MainActivity.this, responseString, Toast.LENGTH_SHORT).show();
-                    }
-                });
+                String responseString = response.body().string();
+                mHandler.post(() -> Toast.makeText(MainActivity.this, responseString, Toast.LENGTH_SHORT).show());
             }
         });
     }
