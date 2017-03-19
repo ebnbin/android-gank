@@ -1,9 +1,11 @@
 package com.ebnbin.gank;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.widget.Toast;
+
+import com.ebnbin.eb.base.EBActivity;
 
 import java.io.IOException;
 
@@ -13,14 +15,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends Activity {
-    private Handler mHandler;
+public final class MainActivity extends EBActivity {
+    // TODO: Move to library.
+    private final Handler mHandler = new Handler();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mHandler = new Handler();
 
         String url = "http://gank.io/api/day/2015/05/18";
         Request request = new Request.Builder().url(url).build();
