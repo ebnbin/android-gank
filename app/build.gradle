@@ -9,3 +9,7 @@ android {
         targetSdkVersion 25
     }
 }
+
+dependencies {
+    compile 'com.ebnbin:eb:0.0.1'
+}
