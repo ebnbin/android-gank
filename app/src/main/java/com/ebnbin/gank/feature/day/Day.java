@@ -1,5 +1,7 @@
 package com.ebnbin.gank.feature.day;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Arrays;
@@ -43,21 +45,21 @@ final class Day {
      * Results model.
      */
     static final class Results {
-        @SerializedName("Android")
+        @SerializedName(Data.ANDROID)
         private Data[] mAndroid;
-        @SerializedName("App")
+        @SerializedName(Data.APP)
         private Data[] mApp;
-        @SerializedName("iOS")
+        @SerializedName(Data.IOS)
         private Data[] mIOS;
-        @SerializedName("休息视频")
+        @SerializedName(Data.XIUXISHIPIN)
         private Data[] mXiuxishipin;
-        @SerializedName("前端")
+        @SerializedName(Data.QIANDUAN)
         private Data[] mQianduan;
-        @SerializedName("拓展资源")
+        @SerializedName(Data.TUOZHANZIYUAN)
         private Data[] mTuozhanziyuan;
-        @SerializedName("瞎推荐")
+        @SerializedName(Data.XIATUIJIAN)
         private Data[] mXiatuijian;
-        @SerializedName("福利")
+        @SerializedName(Data.FULI)
         private Data[] mFuli;
 
         private Results() {
@@ -113,6 +115,15 @@ final class Day {
          * Data model.
          */
         static final class Data {
+            public static final String FULI = "福利";
+            public static final String IOS = "iOS";
+            public static final String ANDROID = "Android";
+            public static final String QIANDUAN = "前端";
+            public static final String XIATUIJIAN = "瞎推荐";
+            public static final String TUOZHANZIYUAN = "拓展资源";
+            public static final String APP = "App";
+            public static final String XIUXISHIPIN = "休息视频";
+
             @SerializedName("_id")
             private String mId;
             @SerializedName("createdAt")
@@ -191,6 +202,14 @@ final class Day {
                         ", mUsed=" + mUsed +
                         ", mWho='" + mWho + '\'' +
                         '}';
+            }
+
+            //*********************************************************************************************************
+            // Valid.
+
+            @NonNull
+            public String getValidDesc() {
+                return mDesc == null ? "" : mDesc;
             }
         }
     }
