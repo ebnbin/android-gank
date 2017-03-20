@@ -2,49 +2,35 @@ package com.ebnbin.gank.feature.day;
 
 import android.support.annotation.NonNull;
 
+import com.ebnbin.gank.base.BaseModel;
+import com.ebnbin.gank.base.BaseResponseModel;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.Arrays;
 
 /**
  * Day model.
  */
-final class Day {
-    @SerializedName("category")
-    private String[] mCategory;
-    @SerializedName("error")
-    private boolean mError;
+final class Day extends BaseResponseModel {
     @SerializedName("results")
     private Results mResults;
+    @SerializedName("category")
+    private String[] mCategory;
 
     private Day() {
+    }
+
+    @Override
+    public Results getResults() {
+        return mResults;
     }
 
     public String[] getCategory() {
         return mCategory;
     }
 
-    public boolean isError() {
-        return mError;
-    }
-
-    public Results getResults() {
-        return mResults;
-    }
-
-    @Override
-    public String toString() {
-        return "Day{" +
-                "mCategory=" + Arrays.toString(mCategory) +
-                ", mError=" + mError +
-                ", mResults=" + mResults +
-                '}';
-    }
-
     /**
      * Results model.
      */
-    static final class Results {
+    static final class Results extends BaseModel {
         @SerializedName(Data.ANDROID)
         private Data[] mAndroid;
         @SerializedName(Data.APP)
@@ -97,24 +83,10 @@ final class Day {
             return mFuli;
         }
 
-        @Override
-        public String toString() {
-            return "Results{" +
-                    "mAndroid=" + Arrays.toString(mAndroid) +
-                    ", mApp=" + Arrays.toString(mApp) +
-                    ", mIOS=" + Arrays.toString(mIOS) +
-                    ", mXiuxishipin=" + Arrays.toString(mXiuxishipin) +
-                    ", mQianduan=" + Arrays.toString(mQianduan) +
-                    ", mTuozhanziyuan=" + Arrays.toString(mTuozhanziyuan) +
-                    ", mXiatuijian=" + Arrays.toString(mXiatuijian) +
-                    ", mFuli=" + Arrays.toString(mFuli) +
-                    '}';
-        }
-
         /**
          * Data model.
          */
-        static final class Data {
+        static final class Data extends BaseModel {
             public static final String FULI = "福利";
             public static final String IOS = "iOS";
             public static final String ANDROID = "Android";
@@ -186,22 +158,6 @@ final class Day {
 
             public String getWho() {
                 return mWho;
-            }
-
-            @Override
-            public String toString() {
-                return "Data{" +
-                        "mId='" + mId + '\'' +
-                        ", mCreatedAt='" + mCreatedAt + '\'' +
-                        ", mDesc='" + mDesc + '\'' +
-                        ", mImages=" + Arrays.toString(mImages) +
-                        ", mPublishedAt='" + mPublishedAt + '\'' +
-                        ", mSource='" + mSource + '\'' +
-                        ", mType='" + mType + '\'' +
-                        ", mUrl='" + mUrl + '\'' +
-                        ", mUsed=" + mUsed +
-                        ", mWho='" + mWho + '\'' +
-                        '}';
             }
 
             //*********************************************************************************************************
