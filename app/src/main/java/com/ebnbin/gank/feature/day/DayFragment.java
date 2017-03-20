@@ -45,6 +45,7 @@ public final class DayFragment extends EBFragment {
 
     private LinearLayoutManager mDayLayoutManager;
     private DayAdapter mDayAdapter;
+    private DayItemDecoration mDayItemDecoration;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -55,6 +56,9 @@ public final class DayFragment extends EBFragment {
 
         mDayAdapter = new DayAdapter();
         mDayRecyclerView.setAdapter(mDayAdapter);
+
+        mDayItemDecoration = new DayItemDecoration(getContext());
+        mDayRecyclerView.addItemDecoration(mDayItemDecoration);
 
         getDay();
     }
