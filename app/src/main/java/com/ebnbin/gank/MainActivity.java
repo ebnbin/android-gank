@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 
 import com.ebnbin.eb.base.EBActivity;
-import com.ebnbin.gank.feature.day.DayFragment;
+import com.ebnbin.gank.feature.days.DaysFragment;
 
 public final class MainActivity extends EBActivity {
     @Override
@@ -13,11 +13,11 @@ public final class MainActivity extends EBActivity {
         super.onCreate(savedInstanceState);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        DayFragment dayFragment = (DayFragment) fragmentManager.findFragmentByTag(DayFragment.TAG);
-        if (dayFragment == null) {
-            dayFragment = new DayFragment();
-            getSupportFragmentManager().beginTransaction().replace(android.R.id.content, dayFragment, DayFragment.TAG)
-                    .commit();
+        DaysFragment daysFragment = (DaysFragment) fragmentManager.findFragmentByTag(DaysFragment.TAG);
+        if (daysFragment == null) {
+            daysFragment = new DaysFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(android.R.id.content, daysFragment, DaysFragment.TAG).commit();
         }
     }
 }
