@@ -17,11 +17,6 @@ import com.ebnbin.gank.R;
  * Day fragment.
  */
 public final class DayFragment extends EBFragment {
-    /**
-     * Tag for finding fragment.
-     */
-    public static final String TAG = DayFragment.class.getName();
-
     private RecyclerView mDayRecyclerView;
 
     @Nullable
@@ -59,7 +54,7 @@ public final class DayFragment extends EBFragment {
      * Gets {@link Day} model and sets data.
      */
     private void netGetDay() {
-        String url = "http://gank.io/api/day/2015/05/18";
+        String url = "http://gank.io/api/day/2017/03/13";
         netGet(url, new NetCallback<Day>() {
             @Override
             public void onSuccess(@NonNull Day day) {

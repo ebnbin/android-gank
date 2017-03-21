@@ -2,8 +2,6 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ebnbin.gank">
-    <uses-permission
-        android:name="android.permission.INTERNET"/>
     <application
         android:name=".GankApplication"
         android:label="Gank">

@@ -100,9 +100,18 @@ abstract class DayEntity implements MultiItemEntity {
     static final class Data extends DayEntity {
         @NonNull
         public final String desc;
+        @NonNull
+        public final String imageA;
+        @NonNull
+        public final String imageB;
+        @NonNull
+        public final String imageC;
 
         private Data(@NonNull Day.Results.Data data) {
             desc = data.getValidDesc();
+            imageA = data.getValidImageA();
+            imageB = data.getValidImageB();
+            imageC = data.getValidImageC();
         }
 
         @Override

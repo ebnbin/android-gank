@@ -231,6 +231,21 @@ final class Day extends EBModel {
             public String getValidDesc() {
                 return mDesc == null ? "" : mDesc;
             }
+
+            @NonNull
+            public String getValidImageA() {
+                return mImages == null || mImages.length <= 0 ? "" : mImages[0];
+            }
+
+            @NonNull
+            public String getValidImageB() {
+                return mImages == null || mImages.length <= 1 ? "" : mImages[1];
+            }
+
+            @NonNull
+            public String getValidImageC() {
+                return mImages == null || mImages.length <= 2 ? "" : mImages[2];
+            }
         }
     }
 }

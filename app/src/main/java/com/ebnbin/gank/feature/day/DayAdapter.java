@@ -1,11 +1,15 @@
 package com.ebnbin.gank.feature.day;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.ebnbin.gank.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -22,6 +26,8 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
 
     @Override
     protected void convert(BaseViewHolder helper, DayEntity item) {
+        Context context = helper.convertView.getContext();
+
         switch (helper.getItemViewType()) {
             case DayEntity.CATEGORY: {
                 DayEntity.Category category = (DayEntity.Category) item;
@@ -34,6 +40,27 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
                 DayEntity.Data data = (DayEntity.Data) item;
 
                 helper.setText(R.id.desc, data.desc);
+
+                String imageA = data.imageA;
+                boolean hasImageA = !TextUtils.isEmpty(imageA);
+                helper.setVisible(R.id.imageA, hasImageA);
+                if (hasImageA) {
+                    Picasso.with(context).load(imageA).into((ImageView) helper.getView(R.id.imageA));
+                }
+
+                String imageB = data.imageB;
+                boolean hasImageB = !TextUtils.isEmpty(imageB);
+                helper.setVisible(R.id.imageB, hasImageB);
+                if (hasImageB) {
+                    Picasso.with(context).load(imageB).into((ImageView) helper.getView(R.id.imageB));
+                }
+
+                String imageC = data.imageC;
+                boolean hasImageC = !TextUtils.isEmpty(imageC);
+                helper.setVisible(R.id.imageC, hasImageC);
+                if (hasImageC) {
+                    Picasso.with(context).load(imageC).into((ImageView) helper.getView(R.id.imageC));
+                }
 
                 break;
             }
