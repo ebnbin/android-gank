@@ -47,8 +47,51 @@ public final class DayFragment extends EBFragment {
         mDayItemDecoration = new DayItemDecoration(getContext());
         mDayRecyclerView.addItemDecoration(mDayItemDecoration);
 
-        netGetDay();
+        if (!onRestoreDay(savedInstanceState)) {
+            netGetDay();
+        }
     }
+
+    //*****************************************************************************************************************
+    // Instance state.
+
+    private static final String KEY_DAY = "day";
+
+    /**
+     * 恢复 mDay.
+     *
+     * @return 如果成功恢复则返回 {@code null}.
+     */
+    private boolean onRestoreDay(@Nullable Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            return false;
+        }
+
+        mDay = (Day) savedInstanceState.getSerializable(KEY_DAY);
+        if (mDay == null) {
+            return false;
+        }
+
+        mDayAdapter.setDay(mDay);
+
+        return true;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        if (outState == null) {
+            return;
+        }
+
+        outState.putSerializable(KEY_DAY, mDay);
+    }
+
+    //*****************************************************************************************************************
+    // Net.
+
+    private Day mDay;
 
     /**
      * Gets {@link Day} model and sets data.
@@ -60,7 +103,8 @@ public final class DayFragment extends EBFragment {
             public void onSuccess(@NonNull Day day) {
                 super.onSuccess(day);
 
-                mDayAdapter.setDay(day);
+                mDay = day;
+                mDayAdapter.setDay(mDay);
             }
         });
     }
