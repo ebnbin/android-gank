@@ -1,10 +1,13 @@
 package com.ebnbin.gank.feature.day;
 
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.ebnbin.gank.R;
+
+import java.util.List;
 
 /**
  * Day {@link RecyclerView.Adapter}.
@@ -35,5 +38,16 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
                 break;
             }
         }
+    }
+
+    /**
+     * Sets {@link Day} data.
+     *
+     * @param day
+     *         {@link Day} model.
+     */
+    public void setDay(@Nullable Day day) {
+        List<DayEntity> dayEntities = DayEntity.newDayEntities(day);
+        setNewData(dayEntities);
     }
 }
