@@ -5,6 +5,7 @@
     <uses-permission
         android:name="android.permission.INTERNET"/>
     <application
+        android:name=".GankApplication"
         android:label="Gank">
         <activity
             android:name=".MainActivity">
