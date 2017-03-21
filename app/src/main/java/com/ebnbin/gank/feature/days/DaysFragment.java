@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ebnbin.eb.base.EBFragment;
+import com.ebnbin.ebapplication.base.EBFragment;
 import com.ebnbin.gank.R;
 import com.ebnbin.gank.feature.day.DayFragment;
 

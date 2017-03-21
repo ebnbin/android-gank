@@ -2,7 +2,7 @@ package com.ebnbin.gank;
 
 import android.app.Application;
 
-import com.ebnbin.eb.base.EBApplication;
+import com.ebnbin.ebapplication.base.EBApplication;
 
 /**
  * {@link Application} class.

@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ebnbin.eb.base.EBFragment;
-import com.ebnbin.eb.net.NetCallback;
+import com.ebnbin.ebapplication.base.EBFragment;
+import com.ebnbin.ebapplication.net.NetCallback;
 import com.ebnbin.gank.R;
 
 /**

@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 
-import com.ebnbin.eb.base.EBActivity;
+import com.ebnbin.ebapplication.base.EBActivity;
 import com.ebnbin.gank.feature.days.DaysFragment;
 
 public final class MainActivity extends EBActivity {
