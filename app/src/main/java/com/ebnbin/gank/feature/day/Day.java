@@ -246,6 +246,11 @@ final class Day extends EBModel {
             public String getValidImageC() {
                 return mImages == null || mImages.length <= 2 ? "" : mImages[2];
             }
+
+            @NonNull
+            public String getValidUrl() {
+                return mUrl == null ? "" : mUrl;
+            }
         }
     }
 }

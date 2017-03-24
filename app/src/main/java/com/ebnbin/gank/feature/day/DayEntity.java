@@ -106,12 +106,15 @@ abstract class DayEntity implements MultiItemEntity {
         public final String imageB;
         @NonNull
         public final String imageC;
+        @NonNull
+        public final String url;
 
         private Data(@NonNull Day.Results.Data data) {
             desc = data.getValidDesc();
             imageA = data.getValidImageA();
             imageB = data.getValidImageB();
             imageC = data.getValidImageC();
+            url = data.getValidUrl();
         }
 
         @Override

@@ -1,6 +1,7 @@
 package com.ebnbin.gank.feature.day;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -11,6 +12,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.ebnbin.gank.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,6 +40,12 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
             }
             case DayEntity.DATA: {
                 DayEntity.Data data = (DayEntity.Data) item;
+
+                helper.convertView.setOnClickListener(v -> {
+                    for (Listener listener : listeners) {
+                        listener.onConvertViewClick(data);
+                    }
+                });
 
                 helper.setText(R.id.desc, data.desc);
 
@@ -76,5 +84,15 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
     public void setDay(@Nullable Day day) {
         List<DayEntity> dayEntities = DayEntity.newDayEntities(day);
         setNewData(dayEntities);
+    }
+
+    //*****************************************************************************************************************
+    // Listeners.
+
+    public final List<Listener> listeners = new ArrayList<>();
+
+    static abstract class Listener {
+        void onConvertViewClick(@NonNull DayEntity.Data data) {
+        }
     }
 }
