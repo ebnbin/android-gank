@@ -14,7 +14,7 @@ final class DaysPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return new DayFragment();
+        return DayFragment.newInstance(new int[]{2017, 2, 28});
     }
 
     @Override

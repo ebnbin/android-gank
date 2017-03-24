@@ -1,5 +1,6 @@
 package com.ebnbin.gank.feature.day;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,10 +14,53 @@ import com.ebnbin.ebapplication.base.EBFragment;
 import com.ebnbin.ebapplication.net.NetCallback;
 import com.ebnbin.gank.R;
 
+import java.util.Locale;
+
 /**
- * Day fragment.
+ * 用 {@link RecyclerView} 展示某日期的数据.
  */
 public final class DayFragment extends EBFragment {
+    private static final String ARG_DATE = "date";
+
+    /**
+     * @param date
+     *         日期.
+     */
+    @NonNull
+    public static DayFragment newInstance(@NonNull int[] date) {
+        Bundle args = new Bundle();
+        args.putIntArray(ARG_DATE, date);
+
+        DayFragment dayFragment = new DayFragment();
+        dayFragment.setArguments(args);
+
+        return dayFragment;
+    }
+
+    /**
+     * Date.
+     */
+    private int[] mDate;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // TODO: Moves to library.
+        initArguments();
+    }
+
+    private void initArguments() {
+        Bundle args = getArguments();
+        if (args == null) {
+            return;
+        }
+
+        mDate = args.getIntArray(ARG_DATE);
+    }
+
+    //*****************************************************************************************************************
+
     private RecyclerView mDayRecyclerView;
 
     @Nullable
@@ -47,6 +91,11 @@ public final class DayFragment extends EBFragment {
         mDayItemDecoration = new DayItemDecoration(getContext());
         mDayRecyclerView.addItemDecoration(mDayItemDecoration);
 
+        if (mDate == null) {
+            // TODO: Sets empty view.
+            return;
+        }
+
         if (!onRestoreDay(savedInstanceState)) {
             netGetDay();
         }
@@ -55,7 +104,7 @@ public final class DayFragment extends EBFragment {
     //*****************************************************************************************************************
     // Instance state.
 
-    private static final String KEY_DAY = "day";
+    private static final String STATE_DAY = "day";
 
     /**
      * 恢复 mDay.
@@ -67,7 +116,7 @@ public final class DayFragment extends EBFragment {
             return false;
         }
 
-        mDay = (Day) savedInstanceState.getSerializable(KEY_DAY);
+        mDay = (Day) savedInstanceState.getSerializable(STATE_DAY);
         if (mDay == null) {
             return false;
         }
@@ -85,7 +134,7 @@ public final class DayFragment extends EBFragment {
             return;
         }
 
-        outState.putSerializable(KEY_DAY, mDay);
+        outState.putSerializable(STATE_DAY, mDay);
     }
 
     //*****************************************************************************************************************
@@ -97,7 +146,7 @@ public final class DayFragment extends EBFragment {
      * Gets {@link Day} model and sets data.
      */
     private void netGetDay() {
-        String url = "http://gank.io/api/day/2017/03/13";
+        String url = getDayUrl();
         netGet(url, new NetCallback<Day>() {
             @Override
             public void onSuccess(@NonNull Day day) {
@@ -107,5 +156,15 @@ public final class DayFragment extends EBFragment {
                 mDayAdapter.setDay(mDay);
             }
         });
+    }
+
+    /**
+     * Gets url of getting {@link Day}.
+     */
+    private String getDayUrl() {
+        assert mDate != null;
+
+        String dayFormat = "http://gank.io/api/day/%04d/%02d/%02d";
+        return String.format(Locale.getDefault(), dayFormat, mDate[0], mDate[1], mDate[2]);
     }
 }
