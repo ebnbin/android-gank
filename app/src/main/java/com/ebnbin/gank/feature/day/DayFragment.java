@@ -107,7 +107,7 @@ public final class DayFragment extends EBFragment {
             return;
         }
 
-        if (!onRestoreDay(savedInstanceState)) {
+        if (!restoreDay(savedInstanceState)) {
             netGetDay();
         }
     }
@@ -118,11 +118,11 @@ public final class DayFragment extends EBFragment {
     private static final String STATE_DAY = "day";
 
     /**
-     * 恢复 mDay.
+     * 恢复 {@link #mDay}.
      *
-     * @return 如果成功恢复则返回 {@code null}.
+     * @return 是否成功恢复.
      */
-    private boolean onRestoreDay(@Nullable Bundle savedInstanceState) {
+    private boolean restoreDay(@Nullable Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             return false;
         }

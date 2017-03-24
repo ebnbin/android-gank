@@ -43,8 +43,60 @@ public final class DaysFragment extends EBFragment {
 
         mDaysViewPager.setOffscreenPageLimit(3);
 
-        netGetHistory();
+        if (!restoreHistory(savedInstanceState)) {
+            netGetHistory();
+        }
     }
+
+    //*****************************************************************************************************************
+    // Instance state.
+
+    private static final String STATE_HISTORY = "history";
+    private static final String STATE_CURRENT_ITEM = "current_item";
+
+    /**
+     * 恢复 {@link #mHistory}.
+     *
+     * @return 是否成功恢复.
+     */
+    public boolean restoreHistory(@Nullable Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            return false;
+        }
+
+        mHistory = (History) savedInstanceState.getSerializable(STATE_HISTORY);
+        if (mHistory == null) {
+            return false;
+        }
+
+        List<int[]> daysHistoryList = DaysUtil.getDaysHistoryList(mHistory);
+        mDaysPagerAdapter.setDaysHistoryList(daysHistoryList);
+
+        int defaultCurrentItem = mDaysPagerAdapter.getCount() - 1;
+        int currentItem = savedInstanceState.getInt(STATE_CURRENT_ITEM, defaultCurrentItem);
+        if (currentItem >= 0 && currentItem < mDaysPagerAdapter.getCount()) {
+            mDaysViewPager.setCurrentItem(currentItem, false);
+        }
+
+        return true;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        if (outState == null) {
+            return;
+        }
+
+        outState.putSerializable(STATE_HISTORY, mHistory);
+        outState.putInt(STATE_CURRENT_ITEM, mDaysViewPager.getCurrentItem());
+    }
+
+    //*****************************************************************************************************************
+    // Net.
+
+    private History mHistory;
 
     /**
      * Gets history and sets data to {@link DaysPagerAdapter}.
@@ -56,12 +108,14 @@ public final class DaysFragment extends EBFragment {
             public void onSuccess(@NonNull History history) {
                 super.onSuccess(history);
 
-                List<int[]> daysHistoryList = DaysUtil.getDaysHistoryList(history);
+                mHistory = history;
+
+                List<int[]> daysHistoryList = DaysUtil.getDaysHistoryList(mHistory);
                 mDaysPagerAdapter.setDaysHistoryList(daysHistoryList);
 
-                int count = mDaysPagerAdapter.getCount();
-                if (count > 0) {
-                    mDaysViewPager.setCurrentItem(count - 1, false);
+                int item = mDaysPagerAdapter.getCount() - 1;
+                if (item >= 0 && item < mDaysPagerAdapter.getCount()) {
+                    mDaysViewPager.setCurrentItem(item, false);
                 }
             }
         });
