@@ -53,21 +53,39 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
                 boolean hasImageA = !TextUtils.isEmpty(imageA);
                 helper.setVisible(R.id.imageA, hasImageA);
                 if (hasImageA) {
-                    Picasso.with(context).load(imageA).into((ImageView) helper.getView(R.id.imageA));
+                    Picasso
+                            .with(context)
+                            .load(imageA)
+                            .stableKey(imageA)
+                            .placeholder(R.drawable.day_placeholder)
+                            .error(R.drawable.day_error)
+                            .into((ImageView) helper.getView(R.id.imageA));
                 }
 
                 String imageB = data.imageB;
                 boolean hasImageB = !TextUtils.isEmpty(imageB);
                 helper.setVisible(R.id.imageB, hasImageB);
                 if (hasImageB) {
-                    Picasso.with(context).load(imageB).into((ImageView) helper.getView(R.id.imageB));
+                    Picasso
+                            .with(context)
+                            .load(imageB)
+                            .stableKey(imageB)
+                            .placeholder(R.drawable.day_placeholder)
+                            .error(R.drawable.day_error)
+                            .into((ImageView) helper.getView(R.id.imageB));
                 }
 
                 String imageC = data.imageC;
                 boolean hasImageC = !TextUtils.isEmpty(imageC);
                 helper.setVisible(R.id.imageC, hasImageC);
                 if (hasImageC) {
-                    Picasso.with(context).load(imageC).into((ImageView) helper.getView(R.id.imageC));
+                    Picasso
+                            .with(context)
+                            .load(imageC)
+                            .stableKey(imageC)
+                            .placeholder(R.drawable.day_placeholder)
+                            .error(R.drawable.day_error)
+                            .into((ImageView) helper.getView(R.id.imageC));
                 }
 
                 break;
