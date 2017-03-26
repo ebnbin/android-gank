@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ebnbin.eb.util.Date;
 import com.ebnbin.ebapplication.base.EBFragment;
 import com.ebnbin.ebapplication.net.NetCallback;
 import com.ebnbin.gank.R;
@@ -39,7 +42,45 @@ public final class DaysFragment extends EBFragment {
         mDaysPagerAdapter = new DaysPagerAdapter(getChildFragmentManager());
         mDaysViewPager.setAdapter(mDaysPagerAdapter);
 
-        mDaysViewPager.setOffscreenPageLimit(3);
+        mDaysViewPager.setOffscreenPageLimit(2);
+
+        mDaysViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setTitle(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+    }
+
+    /**
+     * Sets title of {@link ActionBar}.
+     */
+    private void setTitle(int position) {
+        AppCompatActivity appCompatActivity = getAppCompatActivity();
+        if (appCompatActivity == null) {
+            return;
+        }
+
+        ActionBar actionBar = appCompatActivity.getSupportActionBar();
+        if (actionBar == null) {
+            return;
+        }
+
+        Date date = mDaysPagerAdapter.dates.get(position);
+        if (date == null) {
+            return;
+        }
+
+        String title = getString(R.string.days_title, date.year, date.month, date.day);
+        actionBar.setTitle(title);
     }
 
     //*****************************************************************************************************************

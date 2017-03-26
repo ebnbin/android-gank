@@ -17,7 +17,7 @@ import java.util.List;
  * Days {@link PagerAdapter}.
  */
 final class DaysPagerAdapter extends FragmentPagerAdapter {
-    public final List<Date> mDaysHistoryList = new ArrayList<>();
+    public final List<Date> dates = new ArrayList<>();
 
     DaysPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
@@ -27,17 +27,17 @@ final class DaysPagerAdapter extends FragmentPagerAdapter {
      * Sets new data.
      */
     public void setHistoryModel(@NonNull HistoryModel historyModel) {
-        setDaysHistoryList(DaysUtil.getDaysHistoryList(historyModel));
+        setDates(DaysUtil.getDaysHistoryList(historyModel));
     }
 
     /**
      * Sets new data.
      */
-    private void setDaysHistoryList(@Nullable List<Date> daysHistoryList) {
-        mDaysHistoryList.clear();
+    private void setDates(@Nullable List<Date> dates) {
+        this.dates.clear();
 
-        if (daysHistoryList != null) {
-            mDaysHistoryList.addAll(daysHistoryList);
+        if (dates != null) {
+            this.dates.addAll(dates);
         }
 
         notifyDataSetChanged();
@@ -45,12 +45,12 @@ final class DaysPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Date date = mDaysHistoryList.get(position);
+        Date date = dates.get(position);
         return DayFragment.newInstance(date);
     }
 
     @Override
     public int getCount() {
-        return mDaysHistoryList.size();
+        return dates.size();
     }
 }

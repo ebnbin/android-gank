@@ -48,6 +48,7 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
                     }
                 });
 
+                // TODO: OOM.
                 String fuli = data.fuli;
                 boolean hasFuli = !TextUtils.isEmpty(fuli);
                 helper.setVisible(R.id.fuli, hasFuli);
