@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 
 import com.ebnbin.eb.util.Date;
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Days {@link PagerAdapter}.
  */
-final class DaysPagerAdapter extends FragmentPagerAdapter {
+final class DaysPagerAdapter extends FragmentStatePagerAdapter {
     public final List<Date> dates = new ArrayList<>();
 
     DaysPagerAdapter(@NonNull FragmentManager fm) {
@@ -53,4 +53,9 @@ final class DaysPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return dates.size();
     }
+// TODO: Whether to use POSITION_NONE.
+//    @Override
+//    public int getItemPosition(Object object) {
+//        return POSITION_NONE;
+//    }
 }

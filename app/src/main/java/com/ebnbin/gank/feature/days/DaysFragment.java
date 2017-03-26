@@ -42,7 +42,7 @@ public final class DaysFragment extends EBFragment {
         mDaysPagerAdapter = new DaysPagerAdapter(getChildFragmentManager());
         mDaysViewPager.setAdapter(mDaysPagerAdapter);
 
-        mDaysViewPager.setOffscreenPageLimit(2);
+        mDaysViewPager.setOffscreenPageLimit(3);
 
         mDaysViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

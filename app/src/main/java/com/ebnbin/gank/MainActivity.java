@@ -13,11 +13,11 @@ public final class MainActivity extends EBActivity {
         super.onCreate(savedInstanceState);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        DaysFragment daysFragment = (DaysFragment) fragmentManager.findFragmentByTag(DaysFragment.TAG);
+        DaysFragment daysFragment = (DaysFragment) fragmentManager.findFragmentByTag(DaysFragment.class.getName());
         if (daysFragment == null) {
             daysFragment = new DaysFragment();
             getSupportFragmentManager().beginTransaction()
-                    .replace(android.R.id.content, daysFragment, DaysFragment.TAG).commit();
+                    .replace(android.R.id.content, daysFragment, DaysFragment.class.getName()).commit();
         }
     }
 }
