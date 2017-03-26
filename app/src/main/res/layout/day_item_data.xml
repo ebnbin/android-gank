@@ -10,13 +10,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingStart="18dp"
-        android:paddingEnd="18dp"
-        android:paddingTop="8dp"
         android:paddingBottom="8dp">
+        <ImageView
+            android:id="@+id/fuli"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-2dp"
+            android:layout_marginEnd="-2dp"
+            android:layout_marginBottom="-4dp"
+            android:scaleType="centerCrop"/>
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="8dp"
             android:minHeight="64dp">
             <TextView
                 android:id="@+id/desc"
@@ -31,6 +39,8 @@
             android:id="@+id/imageA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
             android:layout_marginTop="4dp"
             android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"/>
@@ -38,6 +48,8 @@
             android:id="@+id/imageB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
             android:layout_marginTop="4dp"
             android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"/>
@@ -45,6 +57,8 @@
             android:id="@+id/imageC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
             android:layout_marginTop="4dp"
             android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"/>

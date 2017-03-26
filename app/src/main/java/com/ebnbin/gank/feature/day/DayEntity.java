@@ -96,6 +96,8 @@ abstract class DayEntity implements MultiItemEntity {
      */
     static final class Data extends DayEntity {
         @NonNull
+        public final String fuli;
+        @NonNull
         public final String desc;
         @NonNull
         public final String imageA;
@@ -107,6 +109,7 @@ abstract class DayEntity implements MultiItemEntity {
         public final String url;
 
         private Data(@NonNull DayModel.ResultsModel.DataModel dataModel) {
+            fuli = dataModel.getValidFuli();
             desc = dataModel.getValidDesc();
             imageA = dataModel.getValidImageA();
             imageB = dataModel.getValidImageB();

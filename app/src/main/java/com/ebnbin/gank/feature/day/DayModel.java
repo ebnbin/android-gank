@@ -228,6 +228,11 @@ final class DayModel extends EBModel {
             }
 
             @NonNull
+            public String getValidFuli() {
+                return !FULI.equals(mType) || mUrl == null ? "" : mUrl;
+            }
+
+            @NonNull
             public String getValidDesc() {
                 return mDesc == null ? "" : mDesc;
             }

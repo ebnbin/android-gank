@@ -11,6 +11,7 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.ebnbin.gank.R;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,29 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
                         listener.onConvertViewClick(data);
                     }
                 });
+
+                String fuli = data.fuli;
+                boolean hasFuli = !TextUtils.isEmpty(fuli);
+                helper.setVisible(R.id.fuli, hasFuli);
+                if (hasFuli) {
+                    ImageView fuliImageView = helper.getView(R.id.fuli);
+                    fuliImageView.post(() -> {
+                        RequestCreator requestCreator = Picasso
+                                .with(context)
+                                .load(fuli)
+                                .stableKey(fuli);
+
+                        int width = fuliImageView.getWidth();
+                        if (width > 0) {
+                            requestCreator = requestCreator.resize(width, 0);
+                        }
+
+                        requestCreator
+                                .placeholder(R.drawable.day_placeholder)
+                                .error(R.drawable.day_error)
+                                .into(fuliImageView);
+                    });
+                }
 
                 helper.setText(R.id.desc, data.desc);
 
