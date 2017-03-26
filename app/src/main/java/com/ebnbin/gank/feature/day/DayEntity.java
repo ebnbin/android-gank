@@ -23,31 +23,28 @@ abstract class DayEntity implements MultiItemEntity {
 
     /**
      * Creates new data for {@link DayAdapter}.
-     *
-     * @param day
-     *         Day model.
      */
     @NonNull
-    public static List<DayEntity> newDayEntities(@Nullable Day day) {
+    public static List<DayEntity> newDayEntities(@Nullable DayModel dayModel) {
         List<DayEntity> dayEntities = new ArrayList<>();
 
-        if (day == null || day.isError()) {
+        if (dayModel == null || dayModel.isError()) {
             return dayEntities;
         }
 
-        Day.Results results = day.getResults();
-        if (results == null) {
+        DayModel.ResultsModel resultsModel = dayModel.getResults();
+        if (resultsModel == null) {
             return dayEntities;
         }
 
-        addTypeEntities(dayEntities, Day.Results.Data.FULI, results.getFuli());
-        addTypeEntities(dayEntities, Day.Results.Data.IOS, results.getIOS());
-        addTypeEntities(dayEntities, Day.Results.Data.ANDROID, results.getAndroid());
-        addTypeEntities(dayEntities, Day.Results.Data.QIANDUAN, results.getQianduan());
-        addTypeEntities(dayEntities, Day.Results.Data.XIATUIJIAN, results.getXiatuijian());
-        addTypeEntities(dayEntities, Day.Results.Data.TUOZHANZIYUAN, results.getTuozhanziyuan());
-        addTypeEntities(dayEntities, Day.Results.Data.APP, results.getApp());
-        addTypeEntities(dayEntities, Day.Results.Data.XIUXISHIPIN, results.getXiuxishipin());
+        addTypeEntities(dayEntities, DayModel.ResultsModel.DataModel.FULI, resultsModel.getFuli());
+        addTypeEntities(dayEntities, DayModel.ResultsModel.DataModel.IOS, resultsModel.getIOS());
+        addTypeEntities(dayEntities, DayModel.ResultsModel.DataModel.ANDROID, resultsModel.getAndroid());
+        addTypeEntities(dayEntities, DayModel.ResultsModel.DataModel.QIANDUAN, resultsModel.getQianduan());
+        addTypeEntities(dayEntities, DayModel.ResultsModel.DataModel.XIATUIJIAN, resultsModel.getXiatuijian());
+        addTypeEntities(dayEntities, DayModel.ResultsModel.DataModel.TUOZHANZIYUAN, resultsModel.getTuozhanziyuan());
+        addTypeEntities(dayEntities, DayModel.ResultsModel.DataModel.APP, resultsModel.getApp());
+        addTypeEntities(dayEntities, DayModel.ResultsModel.DataModel.XIUXISHIPIN, resultsModel.getXiuxishipin());
 
         return dayEntities;
     }
@@ -59,20 +56,20 @@ abstract class DayEntity implements MultiItemEntity {
      *         要添加到的 List.
      * @param category
      *         类型.
-     * @param datas
+     * @param dataModels
      *         该类型的数据.
      */
     private static void addTypeEntities(@NonNull List<DayEntity> dayEntities, @NonNull String category,
-            @Nullable Day.Results.Data[] datas) {
-        if (datas == null || datas.length <= 0) {
+            @Nullable DayModel.ResultsModel.DataModel[] dataModels) {
+        if (dataModels == null || dataModels.length <= 0) {
             return;
         }
 
         Category categoryEntity = new Category(category);
         dayEntities.add(categoryEntity);
 
-        for (Day.Results.Data data : datas) {
-            Data dataEntity = new Data(data);
+        for (DayModel.ResultsModel.DataModel dataModel : dataModels) {
+            Data dataEntity = new Data(dataModel);
             dayEntities.add(dataEntity);
         }
     }
@@ -95,7 +92,7 @@ abstract class DayEntity implements MultiItemEntity {
     }
 
     /**
-     * Data 类型实体.
+     * DataModel 类型实体.
      */
     static final class Data extends DayEntity {
         @NonNull
@@ -109,12 +106,12 @@ abstract class DayEntity implements MultiItemEntity {
         @NonNull
         public final String url;
 
-        private Data(@NonNull Day.Results.Data data) {
-            desc = data.getValidDesc();
-            imageA = data.getValidImageA();
-            imageB = data.getValidImageB();
-            imageC = data.getValidImageC();
-            url = data.getValidUrl();
+        private Data(@NonNull DayModel.ResultsModel.DataModel dataModel) {
+            desc = dataModel.getValidDesc();
+            imageA = dataModel.getValidImageA();
+            imageB = dataModel.getValidImageB();
+            imageC = dataModel.getValidImageC();
+            url = dataModel.getValidUrl();
         }
 
         @Override

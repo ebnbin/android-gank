@@ -19,18 +19,15 @@ final class DaysUtil {
     private static final String DATE_SPLIT = "-";
 
     /**
-     * 根据 {@link History} 返回一个用于 {@link DaysPagerAdapter} 的日期 {@link List}.
-     *
-     * @param history
-     *         {@link History} model.
+     * 根据 {@link HistoryModel} 返回一个用于 {@link DaysPagerAdapter} 的日期 {@link List}.
      *
      * @return 从小到大排序的日期 {@link List}.
      */
     @NonNull
-    public static List<int[]> getDaysHistoryList(@NonNull History history) {
+    public static List<int[]> getDaysHistoryList(@NonNull HistoryModel historyModel) {
         List<int[]> historyList = new ArrayList<>();
 
-        String[] results = history.getResults();
+        String[] results = historyModel.getResults();
         Arrays.sort(results, String::compareTo);
 
         for (String result : results) {

@@ -6,13 +6,13 @@ import com.google.gson.annotations.SerializedName;
 /**
  * History model.
  */
-final class History extends EBModel {
+final class HistoryModel extends EBModel {
     @SerializedName("error")
     private boolean mError;
     @SerializedName("results")
     private String[] mResults;
 
-    private History() {
+    private HistoryModel() {
     }
 
     public boolean isError() {

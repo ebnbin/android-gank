@@ -118,7 +118,7 @@ public final class DayFragment extends EBFragment {
     private static final String STATE_DAY = "day";
 
     /**
-     * 恢复 {@link #mDay}.
+     * 恢复 {@link #mDayModel}.
      *
      * @return 是否成功恢复.
      */
@@ -127,12 +127,12 @@ public final class DayFragment extends EBFragment {
             return false;
         }
 
-        mDay = (Day) savedInstanceState.getSerializable(STATE_DAY);
-        if (mDay == null) {
+        mDayModel = (DayModel) savedInstanceState.getSerializable(STATE_DAY);
+        if (mDayModel == null) {
             return false;
         }
 
-        mDayAdapter.setDay(mDay);
+        mDayAdapter.setDay(mDayModel);
 
         return true;
     }
@@ -145,32 +145,32 @@ public final class DayFragment extends EBFragment {
             return;
         }
 
-        outState.putSerializable(STATE_DAY, mDay);
+        outState.putSerializable(STATE_DAY, mDayModel);
     }
 
     //*****************************************************************************************************************
     // Net.
 
-    private Day mDay;
+    private DayModel mDayModel;
 
     /**
-     * Gets {@link Day} model and sets data.
+     * Gets {@link DayModel} model and sets data.
      */
     private void netGetDay() {
         String url = getDayUrl();
-        netGet(url, new NetCallback<Day>() {
+        netGet(url, new NetCallback<DayModel>() {
             @Override
-            public void onSuccess(@NonNull Day day) {
-                super.onSuccess(day);
+            public void onSuccess(@NonNull DayModel dayModel) {
+                super.onSuccess(dayModel);
 
-                mDay = day;
-                mDayAdapter.setDay(mDay);
+                mDayModel = dayModel;
+                mDayAdapter.setDay(mDayModel);
             }
         });
     }
 
     /**
-     * Gets url of getting {@link Day}.
+     * Gets url of getting {@link DayModel}.
      */
     private String getDayUrl() {
         assert mDate != null;

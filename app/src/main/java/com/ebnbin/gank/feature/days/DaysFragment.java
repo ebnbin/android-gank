@@ -55,7 +55,7 @@ public final class DaysFragment extends EBFragment {
     private static final String STATE_CURRENT_ITEM = "current_item";
 
     /**
-     * 恢复 {@link #mHistory}.
+     * 恢复 {@link #mHistoryModel}.
      *
      * @return 是否成功恢复.
      */
@@ -64,12 +64,12 @@ public final class DaysFragment extends EBFragment {
             return false;
         }
 
-        mHistory = (History) savedInstanceState.getSerializable(STATE_HISTORY);
-        if (mHistory == null) {
+        mHistoryModel = (HistoryModel) savedInstanceState.getSerializable(STATE_HISTORY);
+        if (mHistoryModel == null) {
             return false;
         }
 
-        List<int[]> daysHistoryList = DaysUtil.getDaysHistoryList(mHistory);
+        List<int[]> daysHistoryList = DaysUtil.getDaysHistoryList(mHistoryModel);
         mDaysPagerAdapter.setDaysHistoryList(daysHistoryList);
 
         int defaultCurrentItem = mDaysPagerAdapter.getCount() - 1;
@@ -89,28 +89,28 @@ public final class DaysFragment extends EBFragment {
             return;
         }
 
-        outState.putSerializable(STATE_HISTORY, mHistory);
+        outState.putSerializable(STATE_HISTORY, mHistoryModel);
         outState.putInt(STATE_CURRENT_ITEM, mDaysViewPager.getCurrentItem());
     }
 
     //*****************************************************************************************************************
     // Net.
 
-    private History mHistory;
+    private HistoryModel mHistoryModel;
 
     /**
      * Gets history and sets data to {@link DaysPagerAdapter}.
      */
     private void netGetHistory() {
         String url = "http://gank.io/api/day/history";
-        netGet(url, new NetCallback<History>() {
+        netGet(url, new NetCallback<HistoryModel>() {
             @Override
-            public void onSuccess(@NonNull History history) {
-                super.onSuccess(history);
+            public void onSuccess(@NonNull HistoryModel historyModel) {
+                super.onSuccess(historyModel);
 
-                mHistory = history;
+                mHistoryModel = historyModel;
 
-                List<int[]> daysHistoryList = DaysUtil.getDaysHistoryList(mHistory);
+                List<int[]> daysHistoryList = DaysUtil.getDaysHistoryList(mHistoryModel);
                 mDaysPagerAdapter.setDaysHistoryList(daysHistoryList);
 
                 int item = mDaysPagerAdapter.getCount() - 1;

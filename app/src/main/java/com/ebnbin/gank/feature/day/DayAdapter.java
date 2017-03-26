@@ -94,13 +94,10 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
     }
 
     /**
-     * Sets {@link Day} data.
-     *
-     * @param day
-     *         {@link Day} model.
+     * Sets {@link DayModel} data.
      */
-    public void setDay(@Nullable Day day) {
-        List<DayEntity> dayEntities = DayEntity.newDayEntities(day);
+    public void setDay(@Nullable DayModel dayModel) {
+        List<DayEntity> dayEntities = DayEntity.newDayEntities(dayModel);
         setNewData(dayEntities);
     }
 

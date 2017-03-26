@@ -10,15 +10,15 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Day model.
  */
-final class Day extends EBModel {
+final class DayModel extends EBModel {
     @SerializedName("category")
     private String[] mCategory;
     @SerializedName("error")
     private boolean mError;
     @SerializedName("results")
-    private Results mResults;
+    private ResultsModel mResults;
 
-    private Day() {
+    private DayModel() {
     }
 
     public String[] getCategory() {
@@ -29,7 +29,7 @@ final class Day extends EBModel {
         return mError;
     }
 
-    public Results getResults() {
+    public ResultsModel getResults() {
         return mResults;
     }
 
@@ -49,56 +49,56 @@ final class Day extends EBModel {
     /**
      * Results model.
      */
-    static final class Results extends EBModel {
-        @SerializedName(Data.ANDROID)
-        private Data[] mAndroid;
-        @SerializedName(Data.APP)
-        private Data[] mApp;
-        @SerializedName(Data.IOS)
-        private Data[] mIOS;
-        @SerializedName(Data.XIUXISHIPIN)
-        private Data[] mXiuxishipin;
-        @SerializedName(Data.QIANDUAN)
-        private Data[] mQianduan;
-        @SerializedName(Data.TUOZHANZIYUAN)
-        private Data[] mTuozhanziyuan;
-        @SerializedName(Data.XIATUIJIAN)
-        private Data[] mXiatuijian;
-        @SerializedName(Data.FULI)
-        private Data[] mFuli;
+    static final class ResultsModel extends EBModel {
+        @SerializedName(DataModel.ANDROID)
+        private DataModel[] mAndroid;
+        @SerializedName(DataModel.APP)
+        private DataModel[] mApp;
+        @SerializedName(DataModel.IOS)
+        private DataModel[] mIOS;
+        @SerializedName(DataModel.XIUXISHIPIN)
+        private DataModel[] mXiuxishipin;
+        @SerializedName(DataModel.QIANDUAN)
+        private DataModel[] mQianduan;
+        @SerializedName(DataModel.TUOZHANZIYUAN)
+        private DataModel[] mTuozhanziyuan;
+        @SerializedName(DataModel.XIATUIJIAN)
+        private DataModel[] mXiatuijian;
+        @SerializedName(DataModel.FULI)
+        private DataModel[] mFuli;
 
-        private Results() {
+        private ResultsModel() {
         }
 
-        public Data[] getAndroid() {
+        public DataModel[] getAndroid() {
             return mAndroid;
         }
 
-        public Data[] getApp() {
+        public DataModel[] getApp() {
             return mApp;
         }
 
-        public Data[] getIOS() {
+        public DataModel[] getIOS() {
             return mIOS;
         }
 
-        public Data[] getXiuxishipin() {
+        public DataModel[] getXiuxishipin() {
             return mXiuxishipin;
         }
 
-        public Data[] getQianduan() {
+        public DataModel[] getQianduan() {
             return mQianduan;
         }
 
-        public Data[] getTuozhanziyuan() {
+        public DataModel[] getTuozhanziyuan() {
             return mTuozhanziyuan;
         }
 
-        public Data[] getXiatuijian() {
+        public DataModel[] getXiatuijian() {
             return mXiatuijian;
         }
 
-        public Data[] getFuli() {
+        public DataModel[] getFuli() {
             return mFuli;
         }
 
@@ -123,13 +123,13 @@ final class Day extends EBModel {
         /**
          * 如果不为空且所有数据有效则有效.
          */
-        private boolean isDatasValid(@Nullable Data[] datas) {
-            if (datas == null || datas.length <= 0) {
+        private boolean isDatasValid(@Nullable DataModel[] dataModels) {
+            if (dataModels == null || dataModels.length <= 0) {
                 return false;
             }
 
-            for (Data data : datas) {
-                if (!data.isValid()) {
+            for (DataModel dataModel : dataModels) {
+                if (!dataModel.isValid()) {
                     return false;
                 }
             }
@@ -142,7 +142,7 @@ final class Day extends EBModel {
         /**
          * Data model.
          */
-        static final class Data extends EBModel {
+        static final class DataModel extends EBModel {
             public static final String FULI = "福利";
             public static final String IOS = "iOS";
             public static final String ANDROID = "Android";
@@ -173,7 +173,7 @@ final class Day extends EBModel {
             @SerializedName("who")
             private String mWho;
 
-            private Data() {
+            private DataModel() {
             }
 
             public String getId() {
