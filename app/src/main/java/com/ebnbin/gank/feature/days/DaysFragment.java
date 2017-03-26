@@ -13,8 +13,6 @@ import com.ebnbin.ebapplication.net.NetCallback;
 import com.ebnbin.gank.R;
 import com.ebnbin.gank.feature.day.DayFragment;
 
-import java.util.List;
-
 /**
  * 用 {@link ViewPager} 展示多个 {@link DayFragment}.
  */
@@ -42,17 +40,22 @@ public final class DaysFragment extends EBFragment {
         mDaysViewPager.setAdapter(mDaysPagerAdapter);
 
         mDaysViewPager.setOffscreenPageLimit(3);
-
-        if (!restoreHistory(savedInstanceState)) {
-            netGetHistory();
-        }
     }
 
     //*****************************************************************************************************************
     // Instance state.
 
-    private static final String STATE_HISTORY = "history";
+    private static final String STATE_HISTORY_MODEL = "history_model";
     private static final String STATE_CURRENT_ITEM = "current_item";
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if (!restoreHistory(savedInstanceState)) {
+            netGetHistory();
+        }
+    }
 
     /**
      * 恢复 {@link #mHistoryModel}.
@@ -64,13 +67,12 @@ public final class DaysFragment extends EBFragment {
             return false;
         }
 
-        mHistoryModel = (HistoryModel) savedInstanceState.getSerializable(STATE_HISTORY);
+        mHistoryModel = (HistoryModel) savedInstanceState.getSerializable(STATE_HISTORY_MODEL);
         if (mHistoryModel == null) {
             return false;
         }
 
-        List<int[]> daysHistoryList = DaysUtil.getDaysHistoryList(mHistoryModel);
-        mDaysPagerAdapter.setDaysHistoryList(daysHistoryList);
+        mDaysPagerAdapter.setHistoryModel(mHistoryModel);
 
         int defaultCurrentItem = mDaysPagerAdapter.getCount() - 1;
         int currentItem = savedInstanceState.getInt(STATE_CURRENT_ITEM, defaultCurrentItem);
@@ -89,7 +91,7 @@ public final class DaysFragment extends EBFragment {
             return;
         }
 
-        outState.putSerializable(STATE_HISTORY, mHistoryModel);
+        outState.putSerializable(STATE_HISTORY_MODEL, mHistoryModel);
         outState.putInt(STATE_CURRENT_ITEM, mDaysViewPager.getCurrentItem());
     }
 
@@ -109,9 +111,7 @@ public final class DaysFragment extends EBFragment {
                 super.onSuccess(historyModel);
 
                 mHistoryModel = historyModel;
-
-                List<int[]> daysHistoryList = DaysUtil.getDaysHistoryList(mHistoryModel);
-                mDaysPagerAdapter.setDaysHistoryList(daysHistoryList);
+                mDaysPagerAdapter.setHistoryModel(mHistoryModel);
 
                 int item = mDaysPagerAdapter.getCount() - 1;
                 if (item >= 0 && item < mDaysPagerAdapter.getCount()) {

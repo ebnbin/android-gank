@@ -5,6 +5,9 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 
+import com.ebnbin.eb.base.EBRuntimeException;
+import com.ebnbin.eb.util.Date;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,19 +22,19 @@ final class DaysUtil {
     private static final String DATE_SPLIT = "-";
 
     /**
-     * 根据 {@link HistoryModel} 返回一个用于 {@link DaysPagerAdapter} 的日期 {@link List}.
+     * 根据 {@link HistoryModel} 返回一个用于 {@link DaysPagerAdapter} 的 {@link Date} {@link List}.
      *
      * @return 从小到大排序的日期 {@link List}.
      */
     @NonNull
-    public static List<int[]> getDaysHistoryList(@NonNull HistoryModel historyModel) {
-        List<int[]> historyList = new ArrayList<>();
+    public static List<Date> getDaysHistoryList(@NonNull HistoryModel historyModel) {
+        List<Date> historyList = new ArrayList<>();
 
         String[] results = historyModel.getResults();
         Arrays.sort(results, String::compareTo);
 
         for (String result : results) {
-            int[] date = getDate(result);
+            Date date = getDate(result);
             if (date == null) {
                 continue;
             }
@@ -43,16 +46,16 @@ final class DaysUtil {
     }
 
     /**
-     * 根据日期字符串解析日期数组.
+     * 根据日期字符串解析日期.
      * TODO: {@link DateFormat}.
      *
      * @param dateString
      *         日期字符串, 1970-01-01 格式.
      *
-     * @return 如果数据异常则返回 {@code null}, 否则返回日期数据.
+     * @return 如果数据异常则返回 {@code null}, 否则返回日期.
      */
     @Nullable
-    private static int[] getDate(@Nullable String dateString) {
+    private static Date getDate(@Nullable String dateString) {
         if (TextUtils.isEmpty(dateString)) {
             return null;
         }
@@ -62,17 +65,13 @@ final class DaysUtil {
             return null;
         }
 
-        int[] date = new int[3];
         try {
-            date[0] = Integer.parseInt(dateStringSplit[0]);
-            date[1] = Integer.parseInt(dateStringSplit[1]);
-            date[2] = Integer.parseInt(dateStringSplit[2]);
-        } catch (NumberFormatException e) {
+            int year = Integer.parseInt(dateStringSplit[0]);
+            int month = Integer.parseInt(dateStringSplit[1]);
+            int day = Integer.parseInt(dateStringSplit[2]);
+            return new Date(year, month, day);
+        } catch (NumberFormatException | EBRuntimeException e) {
             return null;
         }
-
-        // TODO: Checks the validity of date.
-
-        return date;
     }
 }

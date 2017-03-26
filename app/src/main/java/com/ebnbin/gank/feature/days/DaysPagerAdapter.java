@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 
+import com.ebnbin.eb.util.Date;
 import com.ebnbin.gank.feature.day.DayFragment;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.List;
  * Days {@link PagerAdapter}.
  */
 final class DaysPagerAdapter extends FragmentPagerAdapter {
-    public final List<int[]> mDaysHistoryList = new ArrayList<>();
+    public final List<Date> mDaysHistoryList = new ArrayList<>();
 
     DaysPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
@@ -25,7 +26,14 @@ final class DaysPagerAdapter extends FragmentPagerAdapter {
     /**
      * Sets new data.
      */
-    public void setDaysHistoryList(@Nullable List<int[]> daysHistoryList) {
+    public void setHistoryModel(@NonNull HistoryModel historyModel) {
+        setDaysHistoryList(DaysUtil.getDaysHistoryList(historyModel));
+    }
+
+    /**
+     * Sets new data.
+     */
+    private void setDaysHistoryList(@Nullable List<Date> daysHistoryList) {
         mDaysHistoryList.clear();
 
         if (daysHistoryList != null) {
@@ -37,7 +45,7 @@ final class DaysPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        int[] date = mDaysHistoryList.get(position);
+        Date date = mDaysHistoryList.get(position);
         return DayFragment.newInstance(date);
     }
 

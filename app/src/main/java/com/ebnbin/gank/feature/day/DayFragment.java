@@ -1,17 +1,16 @@
 package com.ebnbin.gank.feature.day;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ebnbin.eb.util.Date;
 import com.ebnbin.ebapplication.base.EBFragment;
 import com.ebnbin.ebapplication.net.NetCallback;
 import com.ebnbin.gank.R;
@@ -22,6 +21,9 @@ import java.util.Locale;
  * 用 {@link RecyclerView} 展示某日期的数据.
  */
 public final class DayFragment extends EBFragment {
+    //*****************************************************************************************************************
+    // Arguments.
+
     private static final String ARG_DATE = "date";
 
     /**
@@ -29,9 +31,9 @@ public final class DayFragment extends EBFragment {
      *         日期.
      */
     @NonNull
-    public static DayFragment newInstance(@NonNull int[] date) {
+    public static DayFragment newInstance(@NonNull Date date) {
         Bundle args = new Bundle();
-        args.putIntArray(ARG_DATE, date);
+        args.putSerializable(ARG_DATE, date);
 
         DayFragment dayFragment = new DayFragment();
         dayFragment.setArguments(args);
@@ -42,23 +44,13 @@ public final class DayFragment extends EBFragment {
     /**
      * Date.
      */
-    private int[] mDate;
+    private Date mDate;
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    protected void onInitArguments(@NonNull Bundle args) {
+        super.onInitArguments(args);
 
-        // TODO: Moves to library.
-        initArguments();
-    }
-
-    private void initArguments() {
-        Bundle args = getArguments();
-        if (args == null) {
-            return;
-        }
-
-        mDate = args.getIntArray(ARG_DATE);
+        mDate = (Date) args.getSerializable(ARG_DATE);
     }
 
     //*****************************************************************************************************************
@@ -76,19 +68,19 @@ public final class DayFragment extends EBFragment {
         return rootView;
     }
 
-    private LinearLayoutManager mDayLayoutManager;
-    private DayAdapter mDayAdapter;
-    private DayItemDecoration mDayItemDecoration;
+    private DayLayoutManager mLayoutManager;
+    private DayAdapter mAdapter;
+    private DayItemDecoration mItemDecoration;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mDayLayoutManager = new LinearLayoutManager(getContext());
-        mDayRecyclerView.setLayoutManager(mDayLayoutManager);
+        mLayoutManager = new DayLayoutManager(getContext());
+        mDayRecyclerView.setLayoutManager(mLayoutManager);
 
-        mDayAdapter = new DayAdapter();
-        mDayAdapter.listeners.add(new DayAdapter.Listener() {
+        mAdapter = new DayAdapter();
+        mAdapter.listeners.add(new DayAdapter.Listener() {
             @Override
             void onConvertViewClick(@NonNull DayEntity.Data data) {
                 super.onConvertViewClick(data);
@@ -97,10 +89,20 @@ public final class DayFragment extends EBFragment {
                 startActivity(intent);
             }
         });
-        mDayRecyclerView.setAdapter(mDayAdapter);
+        mDayRecyclerView.setAdapter(mAdapter);
 
-        mDayItemDecoration = new DayItemDecoration(getContext());
-        mDayRecyclerView.addItemDecoration(mDayItemDecoration);
+        mItemDecoration = new DayItemDecoration(getContext());
+        mDayRecyclerView.addItemDecoration(mItemDecoration);
+    }
+
+    //*****************************************************************************************************************
+    // Instance state.
+
+    private static final String STATE_DAY_MODEL = "day_model";
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
 
         if (mDate == null) {
             // TODO: Sets empty view.
@@ -112,11 +114,6 @@ public final class DayFragment extends EBFragment {
         }
     }
 
-    //*****************************************************************************************************************
-    // Instance state.
-
-    private static final String STATE_DAY = "day";
-
     /**
      * 恢复 {@link #mDayModel}.
      *
@@ -127,12 +124,12 @@ public final class DayFragment extends EBFragment {
             return false;
         }
 
-        mDayModel = (DayModel) savedInstanceState.getSerializable(STATE_DAY);
+        mDayModel = (DayModel) savedInstanceState.getSerializable(STATE_DAY_MODEL);
         if (mDayModel == null) {
             return false;
         }
 
-        mDayAdapter.setDay(mDayModel);
+        mAdapter.setDay(mDayModel);
 
         return true;
     }
@@ -145,7 +142,7 @@ public final class DayFragment extends EBFragment {
             return;
         }
 
-        outState.putSerializable(STATE_DAY, mDayModel);
+        outState.putSerializable(STATE_DAY_MODEL, mDayModel);
     }
 
     //*****************************************************************************************************************
@@ -164,7 +161,7 @@ public final class DayFragment extends EBFragment {
                 super.onSuccess(dayModel);
 
                 mDayModel = dayModel;
-                mDayAdapter.setDay(mDayModel);
+                mAdapter.setDay(mDayModel);
             }
         });
     }
@@ -176,6 +173,6 @@ public final class DayFragment extends EBFragment {
         assert mDate != null;
 
         String dayFormat = "http://gank.io/api/day/%04d/%02d/%02d";
-        return String.format(Locale.getDefault(), dayFormat, mDate[0], mDate[1], mDate[2]);
+        return String.format(Locale.getDefault(), dayFormat, mDate.year, mDate.month, mDate.day);
     }
 }
