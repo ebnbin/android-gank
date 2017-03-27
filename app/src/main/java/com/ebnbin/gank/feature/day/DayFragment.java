@@ -81,8 +81,8 @@ public final class DayFragment extends EBFragment {
         mAdapter = new DayAdapter();
         mAdapter.listeners.add(new DayAdapter.Listener() {
             @Override
-            void onConvertViewClick(@NonNull DayEntity.Data data) {
-                super.onConvertViewClick(data);
+            void onDataClick(@NonNull DayEntity.Data data) {
+                super.onDataClick(data);
 
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(data.url));
                 startActivity(intent);

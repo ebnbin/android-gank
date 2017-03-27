@@ -44,9 +44,9 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
             case DayEntity.DATA: {
                 DayEntity.Data data = (DayEntity.Data) item;
 
-                helper.convertView.setOnClickListener(v -> {
+                helper.getView(R.id.data).setOnClickListener(v -> {
                     for (Listener listener : listeners) {
-                        listener.onConvertViewClick(data);
+                        listener.onDataClick(data);
                     }
                 });
 
@@ -136,7 +136,7 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
     public final List<Listener> listeners = new ArrayList<>();
 
     static abstract class Listener {
-        void onConvertViewClick(@NonNull DayEntity.Data data) {
+        void onDataClick(@NonNull DayEntity.Data data) {
         }
     }
 }
