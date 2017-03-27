@@ -7,6 +7,9 @@ android {
     defaultConfig {
         minSdkVersion 23
         targetSdkVersion 25
+        applicationId 'com.ebnbin.gank'
+        versionCode 1
+        versionName '0.1.0'
 
         jackOptions {
             enabled true
