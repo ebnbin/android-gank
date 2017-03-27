@@ -53,9 +53,9 @@ final class DaysPagerAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         return dates.size();
     }
-// TODO: Whether to use POSITION_NONE.
-//    @Override
-//    public int getItemPosition(Object object) {
-//        return POSITION_NONE;
-//    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
 }
