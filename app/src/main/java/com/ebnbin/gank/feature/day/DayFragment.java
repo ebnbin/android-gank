@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.ebnbin.eb.util.Date;
 import com.ebnbin.ebapplication.base.EBFragment;
@@ -57,15 +55,16 @@ public final class DayFragment extends EBFragment {
 
     private RecyclerView mDayRecyclerView;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.day_fragment, container, false);
+    protected int overrideContentViewLayout() {
+        return R.layout.day_fragment;
+    }
 
-        mDayRecyclerView = (RecyclerView) rootView.findViewById(R.id.day);
+    @Override
+    protected void onInitContentView(@NonNull View contentView) {
+        super.onInitContentView(contentView);
 
-        return rootView;
+        mDayRecyclerView = (RecyclerView) contentView.findViewById(R.id.day);
     }
 
     private DayLayoutManager mLayoutManager;

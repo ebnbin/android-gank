@@ -6,9 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.ebnbin.eb.util.Date;
 import com.ebnbin.ebapplication.base.EBFragment;
@@ -22,15 +20,16 @@ import com.ebnbin.gank.feature.day.DayFragment;
 public final class DaysFragment extends EBFragment {
     private ViewPager mDaysViewPager;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.days_fragment, container, false);
+    protected int overrideContentViewLayout() {
+        return R.layout.days_fragment;
+    }
 
-        mDaysViewPager = (ViewPager) rootView.findViewById(R.id.days);
+    @Override
+    protected void onInitContentView(@NonNull View contentView) {
+        super.onInitContentView(contentView);
 
-        return rootView;
+        mDaysViewPager = (ViewPager) contentView.findViewById(R.id.days);
     }
 
     private DaysPagerAdapter mDaysPagerAdapter;
