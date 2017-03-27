@@ -1,14 +1,17 @@
 package com.ebnbin.gank.feature.day;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.ebnbin.eb.util.Util;
 import com.ebnbin.gank.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
@@ -29,8 +32,6 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
 
     @Override
     protected void convert(BaseViewHolder helper, DayEntity item) {
-        Context context = helper.convertView.getContext();
-
         switch (helper.getItemViewType()) {
             case DayEntity.CATEGORY: {
                 DayEntity.Category category = (DayEntity.Category) item;
@@ -48,73 +49,65 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
                     }
                 });
 
-                String fuli = data.fuli;
-                boolean hasFuli = !TextUtils.isEmpty(fuli);
-                helper.setVisible(R.id.fuli, hasFuli);
-                if (hasFuli) {
-                    ImageView fuliImageView = helper.getView(R.id.fuli);
-                    fuliImageView.post(() -> {
-                        RequestCreator requestCreator = Picasso
-                                .with(context)
-                                .load(fuli)
-                                .stableKey(fuli);
-
-                        int width = fuliImageView.getWidth();
-                        if (width > 0) {
-                            requestCreator = requestCreator.resize(width, 0);
-                        }
-
-                        requestCreator
-                                .placeholder(R.drawable.day_placeholder)
-                                .error(R.drawable.day_error)
-                                .into(fuliImageView);
-                    });
-                }
+                loadImage(helper.getView(R.id.fuli), data.fuli, true);
 
                 helper.setText(R.id.desc, data.desc);
 
-                String imageA = data.imageA;
-                boolean hasImageA = !TextUtils.isEmpty(imageA);
-                helper.setVisible(R.id.imageA, hasImageA);
-                if (hasImageA) {
-                    Picasso
-                            .with(context)
-                            .load(imageA)
-                            .stableKey(imageA)
-                            .placeholder(R.drawable.day_placeholder)
-                            .error(R.drawable.day_error)
-                            .into((ImageView) helper.getView(R.id.imageA));
-                }
+                loadImage(helper.getView(R.id.imageA), data.imageA, false);
 
-                String imageB = data.imageB;
-                boolean hasImageB = !TextUtils.isEmpty(imageB);
-                helper.setVisible(R.id.imageB, hasImageB);
-                if (hasImageB) {
-                    Picasso
-                            .with(context)
-                            .load(imageB)
-                            .stableKey(imageB)
-                            .placeholder(R.drawable.day_placeholder)
-                            .error(R.drawable.day_error)
-                            .into((ImageView) helper.getView(R.id.imageB));
-                }
+                loadImage(helper.getView(R.id.imageB), data.imageB, false);
 
-                String imageC = data.imageC;
-                boolean hasImageC = !TextUtils.isEmpty(imageC);
-                helper.setVisible(R.id.imageC, hasImageC);
-                if (hasImageC) {
-                    Picasso
-                            .with(context)
-                            .load(imageC)
-                            .stableKey(imageC)
-                            .placeholder(R.drawable.day_placeholder)
-                            .error(R.drawable.day_error)
-                            .into((ImageView) helper.getView(R.id.imageC));
-                }
+                loadImage(helper.getView(R.id.imageC), data.imageC, false);
 
                 break;
             }
         }
+    }
+
+    /**
+     * Loads an images.
+     */
+    private void loadImage(@NonNull ImageView imageView, @Nullable String path, boolean resize) {
+        boolean hasPath = !Util.isEmpty(path);
+        imageView.setVisibility(hasPath ? View.VISIBLE : View.GONE);
+        if (!hasPath) {
+            return;
+        }
+
+        imageView.post(() -> {
+            Context context = imageView.getContext();
+
+            RequestCreator requestCreator = Picasso
+                    .with(context)
+                    .load(path)
+                    .stableKey(path);
+
+            if (resize) {
+                int targetWidth = imageView.getWidth();
+                if (targetWidth > 0) {
+                    requestCreator = requestCreator.resize(targetWidth, 0);
+                }
+            }
+
+            int tintColor = context.getColor(R.color.eb_hint);
+
+            Drawable placeholderDrawable = VectorDrawableCompat.create(context.getResources(),
+                    R.drawable.day_placeholder, null);
+            if (placeholderDrawable != null) {
+                placeholderDrawable.setTint(tintColor);
+
+                requestCreator = requestCreator.placeholder(placeholderDrawable);
+            }
+
+            Drawable errorDrawable = VectorDrawableCompat.create(context.getResources(), R.drawable.day_error, null);
+            if (errorDrawable != null) {
+                errorDrawable.setTint(tintColor);
+
+                requestCreator = requestCreator.error(errorDrawable);
+            }
+
+            requestCreator.into(imageView);
+        });
     }
 
     /**

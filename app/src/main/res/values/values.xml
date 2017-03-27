@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="day_item_offset">8dp</dimen>
+    <dimen name="days_page_margin">16dp</dimen>
 
     <string name="days_title">%1$04d-%2$02d-%3$02d</string>
 </resources>

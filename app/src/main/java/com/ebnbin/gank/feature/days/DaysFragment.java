@@ -1,5 +1,7 @@
 package com.ebnbin.gank.feature.days;
 
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -42,6 +44,12 @@ public final class DaysFragment extends EBFragment {
         mDaysViewPager.setAdapter(mDaysPagerAdapter);
 
         mDaysViewPager.setOffscreenPageLimit(3);
+
+        int marginPixels = getResources().getDimensionPixelSize(R.dimen.days_page_margin);
+        mDaysViewPager.setPageMargin(marginPixels);
+
+        Drawable d = new ColorDrawable(getContext().getColor(R.color.eb_hint));
+        mDaysViewPager.setPageMarginDrawable(d);
 
         mDaysViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
