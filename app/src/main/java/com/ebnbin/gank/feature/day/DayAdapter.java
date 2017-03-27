@@ -13,6 +13,7 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.ebnbin.eb.util.Util;
 import com.ebnbin.gank.R;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
@@ -74,6 +75,8 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
             return;
         }
 
+        imageView.setOnClickListener(null);
+
         imageView.post(() -> {
             Context context = imageView.getContext();
 
@@ -106,7 +109,16 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
                 requestCreator = requestCreator.error(errorDrawable);
             }
 
-            requestCreator.into(imageView);
+            requestCreator.into(imageView, new Callback() {
+                @Override
+                public void onSuccess() {
+                }
+
+                @Override
+                public void onError() {
+                    imageView.setOnClickListener(v -> loadImage(imageView, path, resize));
+                }
+            });
         });
     }
 
