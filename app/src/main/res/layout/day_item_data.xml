@@ -1,66 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="-2dp"
-    android:layout_marginEnd="-2dp"
-    android:foreground="?android:attr/selectableItemBackground">
-    <LinearLayout
-        android:layout_width="match_parent"
+    android:paddingStart="@dimen/day_item_padding_horizontal"
+    android:paddingEnd="@dimen/day_item_padding_horizontal">
+    <android.support.v7.widget.CardView
+        style="@style/DayItem"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="8dp">
-        <ImageView
-            android:id="@+id/fuli"
+        android:layout_marginStart="@dimen/day_item_data_margin_horizontal"
+        android:layout_marginEnd="@dimen/day_item_data_margin_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardUseCompatPadding="true">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="-2dp"
-            android:layout_marginEnd="-2dp"
-            android:layout_marginBottom="-4dp"
-            android:scaleType="centerInside"/>
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginTop="8dp"
-            android:minHeight="64dp">
-            <TextView
-                android:id="@+id/desc"
+            android:orientation="vertical"
+            android:paddingBottom="8dp">
+            <ImageView
+                android:id="@+id/fuli"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/day_item_data_fuli_margin_horizontal"
+                android:layout_marginEnd="@dimen/day_item_data_fuli_margin_horizontal"
+                android:layout_marginBottom="-4dp"
+                android:scaleType="centerInside"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/day_item_data_content_margin_horizontal"
+                android:layout_marginEnd="@dimen/day_item_data_content_margin_horizontal"
+                android:layout_marginTop="8dp"
+                android:minHeight="64dp">
+                <TextView
+                    android:id="@+id/desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </FrameLayout>
+            <ImageView
+                android:id="@+id/imageA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
-        </FrameLayout>
-        <ImageView
-            android:id="@+id/imageA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginTop="4dp"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop"/>
-        <ImageView
-            android:id="@+id/imageB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginTop="4dp"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop"/>
-        <ImageView
-            android:id="@+id/imageC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginTop="4dp"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop"/>
-    </LinearLayout>
-</android.support.v7.widget.CardView>
+                android:layout_marginStart="@dimen/day_item_data_content_margin_horizontal"
+                android:layout_marginEnd="@dimen/day_item_data_content_margin_horizontal"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"/>
+            <ImageView
+                android:id="@+id/imageB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/day_item_data_content_margin_horizontal"
+                android:layout_marginEnd="@dimen/day_item_data_content_margin_horizontal"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"/>
+            <ImageView
+                android:id="@+id/imageC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/day_item_data_content_margin_horizontal"
+                android:layout_marginEnd="@dimen/day_item_data_content_margin_horizontal"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</FrameLayout>

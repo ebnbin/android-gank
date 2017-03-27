@@ -2,6 +2,17 @@
 <resources>
     <dimen name="day_item_offset">8dp</dimen>
     <dimen name="days_page_margin">16dp</dimen>
+    <dimen name="day_item_padding_horizontal">0dp</dimen>
+    <!-- 2 default_elevation + 1 compat_inset_shadow + 2 default_radius. -->
+    <dimen name="day_item_data_margin_horizontal">-5dp</dimen>
+    <!-- 2 default_radius. -->
+    <dimen name="day_item_data_fuli_margin_horizontal">2dp</dimen>
+    <!-- 2 default_radius + 16 padding. -->
+    <dimen name="day_item_data_content_margin_horizontal">18dp</dimen>
 
     <string name="days_title">%1$04d-%2$02d-%3$02d</string>
+
+    <style name="DayItem">
+        <item name="android:layout_width">match_parent</item>
+    </style>
 </resources>

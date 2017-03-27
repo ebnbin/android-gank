@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="day_item_padding_horizontal">0dp</dimen>
+
+    <style name="DayItem">
+        <item name="android:layout_width">720dp</item>
+    </style>
+</resources>
