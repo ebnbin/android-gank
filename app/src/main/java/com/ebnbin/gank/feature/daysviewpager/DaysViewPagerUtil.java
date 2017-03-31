@@ -1,4 +1,4 @@
-package com.ebnbin.gank.feature.days;
+package com.ebnbin.gank.feature.daysviewpager;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,14 +15,14 @@ import java.util.List;
 /**
  * Utility class.
  */
-final class DaysUtil {
+final class DaysViewPagerUtil {
     /**
      * 日期字符串分隔符.
      */
     private static final String DATE_SPLIT = "-";
 
     /**
-     * 根据 {@link HistoryModel} 返回一个用于 {@link DaysPagerAdapter} 的 {@link Date} {@link List}.
+     * 根据 {@link HistoryModel} 返回一个用于 {@link DaysViewPagerPagerAdapter} 的 {@link Date} {@link List}.
      *
      * @return 从小到大排序的日期 {@link List}.
      */

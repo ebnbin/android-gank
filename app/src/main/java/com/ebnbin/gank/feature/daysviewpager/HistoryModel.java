@@ -1,4 +1,4 @@
-package com.ebnbin.gank.feature.days;
+package com.ebnbin.gank.feature.daysviewpager;
 
 import com.ebnbin.ebapplication.base.EBModel;
 import com.google.gson.annotations.SerializedName;

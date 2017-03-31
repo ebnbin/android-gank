@@ -1,4 +1,4 @@
-package com.ebnbin.gank.feature.days;
+package com.ebnbin.gank.feature.daysviewpager;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,10 +16,10 @@ import java.util.List;
 /**
  * Days {@link PagerAdapter}.
  */
-final class DaysPagerAdapter extends FragmentStatePagerAdapter {
+final class DaysViewPagerPagerAdapter extends FragmentStatePagerAdapter {
     public final List<Date> dates = new ArrayList<>();
 
-    DaysPagerAdapter(@NonNull FragmentManager fm) {
+    DaysViewPagerPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
 
@@ -27,7 +27,7 @@ final class DaysPagerAdapter extends FragmentStatePagerAdapter {
      * Sets new data.
      */
     public void setHistoryModel(@NonNull HistoryModel historyModel) {
-        setDates(DaysUtil.getDaysHistoryList(historyModel));
+        setDates(DaysViewPagerUtil.getDaysHistoryList(historyModel));
     }
 
     /**

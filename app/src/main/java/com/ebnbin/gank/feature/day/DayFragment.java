@@ -1,7 +1,5 @@
 package com.ebnbin.gank.feature.day;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -84,8 +82,7 @@ public final class DayFragment extends EBFragment {
             void onDataClick(@NonNull DayEntity.Data data) {
                 super.onDataClick(data);
 
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(data.url));
-                startActivity(intent);
+                webViewLoadUrl(data.url);
             }
         });
         mDayRecyclerView.setAdapter(mAdapter);

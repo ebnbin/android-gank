@@ -1,4 +1,4 @@
-package com.ebnbin.gank.feature.days;
+package com.ebnbin.gank.feature.daysviewpager;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -19,7 +19,7 @@ import com.ebnbin.gank.feature.day.DayFragment;
 /**
  * 用 {@link ViewPager} 展示多个 {@link DayFragment}.
  */
-public final class DaysFragment extends EBFragment {
+public final class DaysViewPagerFragment extends EBFragment {
     private ViewPager mDaysViewPager;
 
     @Override
@@ -34,14 +34,14 @@ public final class DaysFragment extends EBFragment {
         mDaysViewPager = (ViewPager) contentView.findViewById(R.id.days);
     }
 
-    private DaysPagerAdapter mDaysPagerAdapter;
+    private DaysViewPagerPagerAdapter mDaysViewPagerPagerAdapter;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mDaysPagerAdapter = new DaysPagerAdapter(getChildFragmentManager());
-        mDaysViewPager.setAdapter(mDaysPagerAdapter);
+        mDaysViewPagerPagerAdapter = new DaysViewPagerPagerAdapter(getChildFragmentManager());
+        mDaysViewPager.setAdapter(mDaysViewPagerPagerAdapter);
 
         mDaysViewPager.setOffscreenPageLimit(3);
 
@@ -81,7 +81,7 @@ public final class DaysFragment extends EBFragment {
             return;
         }
 
-        Date date = mDaysPagerAdapter.dates.get(position);
+        Date date = mDaysViewPagerPagerAdapter.dates.get(position);
         if (date == null) {
             return;
         }
@@ -120,11 +120,11 @@ public final class DaysFragment extends EBFragment {
             return false;
         }
 
-        mDaysPagerAdapter.setHistoryModel(mHistoryModel);
+        mDaysViewPagerPagerAdapter.setHistoryModel(mHistoryModel);
 
-        int defaultCurrentItem = mDaysPagerAdapter.getCount() - 1;
+        int defaultCurrentItem = mDaysViewPagerPagerAdapter.getCount() - 1;
         int currentItem = savedInstanceState.getInt(STATE_CURRENT_ITEM, defaultCurrentItem);
-        if (currentItem >= 0 && currentItem < mDaysPagerAdapter.getCount()) {
+        if (currentItem >= 0 && currentItem < mDaysViewPagerPagerAdapter.getCount()) {
             mDaysViewPager.setCurrentItem(currentItem, false);
         }
 
@@ -149,7 +149,7 @@ public final class DaysFragment extends EBFragment {
     private HistoryModel mHistoryModel;
 
     /**
-     * Gets history and sets data to {@link DaysPagerAdapter}.
+     * Gets history and sets data to {@link DaysViewPagerPagerAdapter}.
      */
     private void netGetHistory() {
         String url = "http://gank.io/api/day/history";
@@ -159,10 +159,10 @@ public final class DaysFragment extends EBFragment {
                 super.onSuccess(historyModel);
 
                 mHistoryModel = historyModel;
-                mDaysPagerAdapter.setHistoryModel(mHistoryModel);
+                mDaysViewPagerPagerAdapter.setHistoryModel(mHistoryModel);
 
-                int item = mDaysPagerAdapter.getCount() - 1;
-                if (item >= 0 && item < mDaysPagerAdapter.getCount()) {
+                int item = mDaysViewPagerPagerAdapter.getCount() - 1;
+                if (item >= 0 && item < mDaysViewPagerPagerAdapter.getCount()) {
                     mDaysViewPager.setCurrentItem(item, false);
                 }
             }
