@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.ebnbin.eb.util.Date;
+import com.ebnbin.eb.util.EBUtil;
 import com.ebnbin.ebapplication.base.EBFragment;
 import com.ebnbin.ebapplication.net.NetCallback;
 import com.ebnbin.gank.R;
@@ -48,7 +49,7 @@ public final class DaysViewPagerFragment extends EBFragment {
         int marginPixels = getResources().getDimensionPixelSize(R.dimen.days_page_margin);
         mDaysViewPager.setPageMargin(marginPixels);
 
-        Drawable d = new ColorDrawable(getContext().getColor(R.color.eb_hint));
+        Drawable d = new ColorDrawable(EBUtil.getColor(getContext(), R.attr.ebColorPlaceholder));
         mDaysViewPager.setPageMarginDrawable(d);
 
         mDaysViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
