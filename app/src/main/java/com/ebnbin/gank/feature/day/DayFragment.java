@@ -7,11 +7,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.ebnbin.eb.util.Date;
-import com.ebnbin.ebapplication.base.EBFragment;
-import com.ebnbin.ebapplication.net.NetCallback;
+import com.ebnbin.ebapplication.context.ui.EBFragment;
+import com.ebnbin.ebapplication.net.NetModelCallback;
 import com.ebnbin.gank.R;
 
 import java.util.Locale;
+
+import okhttp3.Call;
 
 /**
  * 用 {@link RecyclerView} 展示某日期的数据.
@@ -151,12 +153,12 @@ public final class DayFragment extends EBFragment {
      */
     private void netGetDay() {
         String url = getDayUrl();
-        netGet(url, new NetCallback<DayModel>() {
+        netGet(url, new NetModelCallback<DayModel>() {
             @Override
-            public void onSuccess(@NonNull DayModel dayModel) {
-                super.onSuccess(dayModel);
+            public void onSuccess(@NonNull Call call, @NonNull DayModel model) {
+                super.onSuccess(call, model);
 
-                mDayModel = dayModel;
+                mDayModel = model;
                 mAdapter.setDay(mDayModel);
             }
         });

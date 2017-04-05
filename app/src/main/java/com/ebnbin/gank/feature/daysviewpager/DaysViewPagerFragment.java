@@ -12,10 +12,12 @@ import android.view.View;
 
 import com.ebnbin.eb.util.Date;
 import com.ebnbin.eb.util.EBUtil;
-import com.ebnbin.ebapplication.base.EBFragment;
-import com.ebnbin.ebapplication.net.NetCallback;
+import com.ebnbin.ebapplication.context.ui.EBFragment;
+import com.ebnbin.ebapplication.net.NetModelCallback;
 import com.ebnbin.gank.R;
 import com.ebnbin.gank.feature.day.DayFragment;
+
+import okhttp3.Call;
 
 /**
  * 用 {@link ViewPager} 展示多个 {@link DayFragment}.
@@ -49,7 +51,7 @@ public final class DaysViewPagerFragment extends EBFragment {
         int marginPixels = getResources().getDimensionPixelSize(R.dimen.days_page_margin);
         mDaysViewPager.setPageMargin(marginPixels);
 
-        Drawable d = new ColorDrawable(EBUtil.getColor(getContext(), R.attr.ebColorPlaceholder));
+        Drawable d = new ColorDrawable(EBUtil.getColorAttr(getContext(), R.attr.ebColorPlaceholder));
         mDaysViewPager.setPageMarginDrawable(d);
 
         mDaysViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -154,12 +156,12 @@ public final class DaysViewPagerFragment extends EBFragment {
      */
     private void netGetHistory() {
         String url = "http://gank.io/api/day/history";
-        netGet(url, new NetCallback<HistoryModel>() {
+        netGet(url, new NetModelCallback<HistoryModel>() {
             @Override
-            public void onSuccess(@NonNull HistoryModel historyModel) {
-                super.onSuccess(historyModel);
+            public void onSuccess(@NonNull Call call, @NonNull HistoryModel model) {
+                super.onSuccess(call, model);
 
-                mHistoryModel = historyModel;
+                mHistoryModel = model;
                 mDaysViewPagerPagerAdapter.setHistoryModel(mHistoryModel);
 
                 int item = mDaysViewPagerPagerAdapter.getCount() - 1;

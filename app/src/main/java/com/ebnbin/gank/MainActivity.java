@@ -1,12 +1,13 @@
 package com.ebnbin.gank;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.ebnbin.ebapplication.base.EBActivity;
+import com.ebnbin.ebapplication.context.ui.EBActivity;
 import com.ebnbin.gank.feature.daysviewpager.DaysViewPagerFragment;
 
 public final class MainActivity extends EBActivity {
@@ -15,7 +16,17 @@ public final class MainActivity extends EBActivity {
         super.onCreate(savedInstanceState);
 
         DaysViewPagerFragment daysViewPagerFragment = new DaysViewPagerFragment();
-        getFragmentManagerHelper().add(daysViewPagerFragment, null, true, false);
+
+        String tag = getFragmentManagerHelper().validTag(daysViewPagerFragment);
+        if (getFragmentManagerHelper().canAdd(tag)) {
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            getFragmentManagerHelper().beginTransaction(ft);
+
+            getFragmentManagerHelper().add(tag, daysViewPagerFragment);
+
+            getFragmentManagerHelper().endTransaction();
+            ft.commit();
+        }
     }
 
     @Override

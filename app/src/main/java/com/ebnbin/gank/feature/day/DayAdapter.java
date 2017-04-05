@@ -93,7 +93,7 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
                 }
             }
 
-            int tintColor = EBUtil.getColor(context, R.attr.ebColorPlaceholder);
+            int tintColor = EBUtil.getColorAttr(context, R.attr.ebColorPlaceholder);
 
             Drawable placeholderDrawable = VectorDrawableCompat.create(context.getResources(),
                     R.drawable.day_placeholder, null);
