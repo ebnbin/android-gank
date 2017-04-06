@@ -20,11 +20,10 @@ public final class MainActivity extends EBActivity {
         String tag = getFragmentManagerHelper().validTag(daysViewPagerFragment);
         if (getFragmentManagerHelper().canAdd(tag)) {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            getFragmentManagerHelper().beginTransaction(ft);
-
-            getFragmentManagerHelper().add(tag, daysViewPagerFragment);
-
-            getFragmentManagerHelper().endTransaction();
+            getFragmentManagerHelper()
+                    .beginTransaction(ft)
+                    .add(tag, daysViewPagerFragment)
+                    .endTransaction();
             ft.commit();
         }
     }

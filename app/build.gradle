@@ -23,6 +23,6 @@ android {
 }
 
 dependencies {
-    compile 'com.ebnbin:eb-application:0.1.8'
+    compile 'com.ebnbin:eb-application:0.1.9'
     compile 'com.android.support:support-v13:25.3.1'
 }
