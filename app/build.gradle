@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 
+def localPropertiesFile = rootProject.file('local.properties')
+def localProperties = new Properties()
+
+localProperties.load(new FileInputStream(localPropertiesFile))
+
 android {
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
@@ -19,6 +24,25 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(localProperties['storeFile'])
+            storePassword localProperties['storePassword']
+            keyAlias localProperties['keyAlias']
+            keyPassword localProperties['keyPassword']
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.release
+        }
+
+        release {
+            signingConfig signingConfigs.release
+        }
     }
 }
 
