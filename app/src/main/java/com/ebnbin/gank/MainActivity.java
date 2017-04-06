@@ -16,13 +16,11 @@ public final class MainActivity extends EBActivity {
         super.onCreate(savedInstanceState);
 
         DaysViewPagerFragment daysViewPagerFragment = new DaysViewPagerFragment();
-
-        String tag = getFragmentManagerHelper().validTag(daysViewPagerFragment);
-        if (getFragmentManagerHelper().canAdd(tag)) {
+        if (getFragmentHelper().canAdd(daysViewPagerFragment)) {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            getFragmentManagerHelper()
+            getFragmentHelper()
                     .beginTransaction(ft)
-                    .add(tag, daysViewPagerFragment)
+                    .add(daysViewPagerFragment)
                     .endTransaction();
             ft.commit();
         }
