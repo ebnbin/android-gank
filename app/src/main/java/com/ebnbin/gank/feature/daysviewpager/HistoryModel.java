@@ -7,6 +7,8 @@ import com.google.gson.annotations.SerializedName;
  * History model.
  */
 final class HistoryModel extends EBModel {
+    private static final long serialVersionUID = 1L;
+
     @SerializedName("error")
     private boolean mError;
     @SerializedName("results")

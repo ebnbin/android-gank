@@ -11,6 +11,8 @@ import com.google.gson.annotations.SerializedName;
  * Day model.
  */
 final class DayModel extends EBModel {
+    private static final long serialVersionUID = 1L;
+
     @SerializedName("category")
     private String[] mCategory;
     @SerializedName("error")
