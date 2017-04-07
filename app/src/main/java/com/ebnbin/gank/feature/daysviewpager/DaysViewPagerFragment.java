@@ -15,12 +15,11 @@ import com.ebnbin.eb.util.EBUtil;
 import com.ebnbin.ebapplication.context.ui.EBFragment;
 import com.ebnbin.ebapplication.net.NetModelCallback;
 import com.ebnbin.gank.R;
-import com.ebnbin.gank.feature.day.DayFragment;
 
 import okhttp3.Call;
 
 /**
- * 用 {@link ViewPager} 展示多个 {@link DayFragment}.
+ * 用 {@link ViewPager} 展示多个 {@link com.ebnbin.gank.feature.day.DayFragment}.
  */
 public final class DaysViewPagerFragment extends EBFragment {
     private ViewPager mDaysViewPager;

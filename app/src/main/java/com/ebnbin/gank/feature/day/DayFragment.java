@@ -24,10 +24,6 @@ public final class DayFragment extends EBFragment {
 
     private static final String ARG_DATE = "date";
 
-    /**
-     * @param date
-     *         日期.
-     */
     @NonNull
     public static DayFragment newInstance(@NonNull Date date) {
         Bundle args = new Bundle();
@@ -39,9 +35,6 @@ public final class DayFragment extends EBFragment {
         return dayFragment;
     }
 
-    /**
-     * Date.
-     */
     private Date mDate;
 
     @Override

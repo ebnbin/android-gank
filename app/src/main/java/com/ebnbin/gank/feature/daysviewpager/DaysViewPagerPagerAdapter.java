@@ -1,23 +1,21 @@
 package com.ebnbin.gank.feature.daysviewpager;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v13.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
 
 import com.ebnbin.eb.util.Date;
 import com.ebnbin.gank.feature.day.DayFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Days {@link PagerAdapter}.
+ * Days {@link android.support.v4.view.PagerAdapter}.
  */
 final class DaysViewPagerPagerAdapter extends FragmentStatePagerAdapter {
-    public final List<Date> dates = new ArrayList<>();
+    public final ArrayList<Date> dates = new ArrayList<>();
 
     DaysViewPagerPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
@@ -33,7 +31,7 @@ final class DaysViewPagerPagerAdapter extends FragmentStatePagerAdapter {
     /**
      * Sets new data.
      */
-    private void setDates(@Nullable List<Date> dates) {
+    private void setDates(@Nullable ArrayList<Date> dates) {
         this.dates.clear();
 
         if (dates != null) {

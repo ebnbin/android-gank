@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Day entity.
@@ -25,8 +24,8 @@ abstract class DayEntity implements MultiItemEntity {
      * Creates new data for {@link DayAdapter}.
      */
     @NonNull
-    public static List<DayEntity> newDayEntities(@Nullable DayModel dayModel) {
-        List<DayEntity> dayEntities = new ArrayList<>();
+    public static ArrayList<DayEntity> newDayEntities(@Nullable DayModel dayModel) {
+        ArrayList<DayEntity> dayEntities = new ArrayList<>();
 
         if (dayModel == null || dayModel.isError()) {
             return dayEntities;
@@ -53,13 +52,13 @@ abstract class DayEntity implements MultiItemEntity {
      * 添加某类型的数据.
      *
      * @param dayEntities
-     *         要添加到的 List.
+     *         要添加到的 ArrayList.
      * @param category
      *         类型.
      * @param dataModels
      *         该类型的数据.
      */
-    private static void addTypeEntities(@NonNull List<DayEntity> dayEntities, @NonNull String category,
+    private static void addTypeEntities(@NonNull ArrayList<DayEntity> dayEntities, @NonNull String category,
             @Nullable DayModel.ResultsModel.DataModel[] dataModels) {
         if (dataModels == null || dataModels.length <= 0) {
             return;

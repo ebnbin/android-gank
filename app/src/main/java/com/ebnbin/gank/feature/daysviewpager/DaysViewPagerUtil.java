@@ -10,7 +10,6 @@ import com.ebnbin.eb.util.Date;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Utility class.
@@ -22,13 +21,13 @@ final class DaysViewPagerUtil {
     private static final String DATE_SPLIT = "-";
 
     /**
-     * 根据 {@link HistoryModel} 返回一个用于 {@link DaysViewPagerPagerAdapter} 的 {@link Date} {@link List}.
+     * 根据 {@link HistoryModel} 返回一个用于 {@link DaysViewPagerPagerAdapter} 的 {@link Date} {@link ArrayList}.
      *
-     * @return 从小到大排序的日期 {@link List}.
+     * @return 从小到大排序的日期 {@link ArrayList}.
      */
     @NonNull
-    public static List<Date> getDaysHistoryList(@NonNull HistoryModel historyModel) {
-        List<Date> historyList = new ArrayList<>();
+    public static ArrayList<Date> getDaysHistoryList(@NonNull HistoryModel historyModel) {
+        ArrayList<Date> historyList = new ArrayList<>();
 
         String[] results = historyModel.getResults();
         Arrays.sort(results, String::compareTo);
@@ -49,8 +48,7 @@ final class DaysViewPagerUtil {
      * 根据日期字符串解析日期.
      * TODO: {@link DateFormat}.
      *
-     * @param dateString
-     *         日期字符串, 1970-01-01 格式.
+     * @param dateString 日期字符串, 1970-01-01 格式.
      *
      * @return 如果数据异常则返回 {@code null}, 否则返回日期.
      */

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,10 +16,9 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Day {@link RecyclerView.Adapter}.
+ * Day {@link android.support.v7.widget.RecyclerView.Adapter}.
  */
 final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHolder> {
     DayAdapter() {
@@ -54,9 +52,7 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
                 helper.setText(R.id.desc, data.desc);
 
                 loadImage(helper.getView(R.id.imageA), data.imageA, false);
-
                 loadImage(helper.getView(R.id.imageB), data.imageB, false);
-
                 loadImage(helper.getView(R.id.imageC), data.imageC, false);
 
                 break;
@@ -119,14 +115,14 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
      * Sets {@link DayModel} data.
      */
     public void setDay(@Nullable DayModel dayModel) {
-        List<DayEntity> dayEntities = DayEntity.newDayEntities(dayModel);
+        ArrayList<DayEntity> dayEntities = DayEntity.newDayEntities(dayModel);
         setNewData(dayEntities);
     }
 
     //*****************************************************************************************************************
     // Listeners.
 
-    public final List<Listener> listeners = new ArrayList<>();
+    public final ArrayList<Listener> listeners = new ArrayList<>();
 
     static abstract class Listener {
         void onDataClick(@NonNull DayEntity.Data data) {
