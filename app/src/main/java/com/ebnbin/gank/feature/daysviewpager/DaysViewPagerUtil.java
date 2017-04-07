@@ -3,7 +3,6 @@ package com.ebnbin.gank.feature.daysviewpager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.text.format.DateFormat;
 
 import com.ebnbin.eb.base.EBRuntimeException;
 import com.ebnbin.eb.util.Date;
@@ -46,7 +45,7 @@ final class DaysViewPagerUtil {
 
     /**
      * 根据日期字符串解析日期.
-     * TODO: {@link DateFormat}.
+     * TODO: {@link android.text.format.DateFormat}.
      *
      * @param dateString 日期字符串, 1970-01-01 格式.
      *

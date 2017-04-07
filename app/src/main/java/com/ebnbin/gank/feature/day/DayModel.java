@@ -52,6 +52,8 @@ final class DayModel extends EBModel {
      * Results model.
      */
     static final class ResultsModel extends EBModel {
+        private static final long serialVersionUID = 1L;
+
         @SerializedName(DataModel.ANDROID)
         private DataModel[] mAndroid;
         @SerializedName(DataModel.APP)
@@ -145,6 +147,8 @@ final class DayModel extends EBModel {
          * Data model.
          */
         static final class DataModel extends EBModel {
+            private static final long serialVersionUID = 1L;
+
             public static final String FULI = "福利";
             public static final String IOS = "iOS";
             public static final String ANDROID = "Android";
