@@ -91,6 +91,8 @@ public final class DayFragment extends EBFragment {
 
         mItemDecoration = new DayItemDecoration(getContext());
         mDayRecyclerView.addItemDecoration(mItemDecoration);
+
+        mDayRecyclerView.setItemViewCacheSize(32);
     }
 
     //*****************************************************************************************************************

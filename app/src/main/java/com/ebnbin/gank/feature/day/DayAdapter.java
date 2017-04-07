@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.ebnbin.eb.util.EBUtil;
 import com.ebnbin.gank.R;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -84,30 +82,24 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
             RequestCreator requestCreator = Picasso
                     .with(context)
                     .load(path)
+                    .tag(path)
                     .stableKey(path);
 
             if (resize) {
                 int targetWidth = imageView.getWidth();
                 if (targetWidth > 0) {
-                    requestCreator = requestCreator.resize(targetWidth, 0);
+                    requestCreator.resize(targetWidth, 0);
                 }
             }
 
-            int tintColor = EBUtil.getColorAttr(context, R.attr.ebColorPlaceholder);
-
-            Drawable placeholderDrawable = VectorDrawableCompat.create(context.getResources(),
-                    R.drawable.day_placeholder, null);
+            Drawable placeholderDrawable = context.getDrawable(R.drawable.day_placeholder);
             if (placeholderDrawable != null) {
-                placeholderDrawable.setTint(tintColor);
-
-                requestCreator = requestCreator.placeholder(placeholderDrawable);
+                requestCreator.placeholder(placeholderDrawable);
             }
 
-            Drawable errorDrawable = VectorDrawableCompat.create(context.getResources(), R.drawable.day_error, null);
+            Drawable errorDrawable = context.getDrawable(R.drawable.day_error);
             if (errorDrawable != null) {
-                errorDrawable.setTint(tintColor);
-
-                requestCreator = requestCreator.error(errorDrawable);
+                requestCreator.error(errorDrawable);
             }
 
             requestCreator.into(imageView, new Callback() {
