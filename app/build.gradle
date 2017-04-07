@@ -1,3 +1,17 @@
+buildscript {
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.1'
+    }
+}
+
+repositories {
+    jcenter()
+
+    maven {
+        url 'https://jitpack.io'
+    }
+}
+
 apply plugin: 'com.android.application'
 
 def localPropertiesFile = rootProject.file('local.properties')
