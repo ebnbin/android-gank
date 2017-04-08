@@ -8,19 +8,19 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.ebnbin.ebapplication.context.ui.EBActivity;
-import com.ebnbin.gank.feature.daysviewpager.DaysViewPagerFragment;
+import com.ebnbin.gank.feature.days.DaysFragment;
 
 public final class MainActivity extends EBActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        DaysViewPagerFragment daysViewPagerFragment = new DaysViewPagerFragment();
-        if (getFragmentHelper().canAdd(daysViewPagerFragment)) {
+        DaysFragment daysFragment = new DaysFragment();
+        if (getFragmentHelper().canAdd(daysFragment)) {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             getFragmentHelper()
                     .beginTransaction(ft)
-                    .add(daysViewPagerFragment)
+                    .add(daysFragment)
                     .endTransaction();
             ft.commit();
         }

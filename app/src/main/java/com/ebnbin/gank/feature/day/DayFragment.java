@@ -85,6 +85,9 @@ public final class DayFragment extends EBFragment {
         mItemDecoration = new DayItemDecoration(getContext());
         mDayRecyclerView.addItemDecoration(mItemDecoration);
 
+        // TODO: Makes AppBarLayout un-scrollable.
+        mDayRecyclerView.setNestedScrollingEnabled(false);
+
         mDayRecyclerView.setItemViewCacheSize(32);
     }
 
