@@ -1,13 +1,12 @@
 package com.ebnbin.gank.feature.daysviewpager;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 
 import com.ebnbin.eb.util.Date;
@@ -73,12 +72,7 @@ public final class DaysViewPagerFragment extends EBFragment {
      * Sets title of {@link ActionBar}.
      */
     private void setTitle(int position) {
-        Activity activity = getActivity();
-        if (activity == null) {
-            return;
-        }
-
-        ActionBar actionBar = activity.getActionBar();
+        ActionBar actionBar = getActionBar();
         if (actionBar == null) {
             return;
         }
