@@ -88,10 +88,14 @@ public final class DayFragment extends EBFragment {
 
         mDayRecyclerView.setItemViewCacheSize(32);
 
-        EBActionBarFragment actionBarFragment = getTParent(EBActionBarFragment.class);
-        if (actionBarFragment != null) {
-            actionBarFragment.setUpNestedScrollingChild(mDayRecyclerView);
-        }
+        EBActionBarFragment.addNestedScrollingChild(this, mDayRecyclerView);
+    }
+
+    @Override
+    public void onDestroyView() {
+        EBActionBarFragment.removeNestedScrollingChild(this, mDayRecyclerView);
+
+        super.onDestroyView();
     }
 
     //*****************************************************************************************************************
