@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.ebnbin.eb.util.Date;
+import com.ebnbin.ebapplication.context.ui.EBActionBarFragment;
 import com.ebnbin.ebapplication.context.ui.EBFragment;
 import com.ebnbin.ebapplication.net.NetModelCallback;
 import com.ebnbin.gank.R;
@@ -85,10 +86,12 @@ public final class DayFragment extends EBFragment {
         mItemDecoration = new DayItemDecoration(getContext());
         mDayRecyclerView.addItemDecoration(mItemDecoration);
 
-        // TODO: Makes AppBarLayout un-scrollable.
-        mDayRecyclerView.setNestedScrollingEnabled(false);
-
         mDayRecyclerView.setItemViewCacheSize(32);
+
+        EBActionBarFragment actionBarFragment = getTParent(EBActionBarFragment.class);
+        if (actionBarFragment != null) {
+            actionBarFragment.setUpNestedScrollingChild(mDayRecyclerView);
+        }
     }
 
     //*****************************************************************************************************************
