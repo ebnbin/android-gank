@@ -163,10 +163,29 @@ public final class DayFragment extends EBFragment {
             public void onSuccess(@NonNull Call call, @NonNull DayModel model) {
                 super.onSuccess(call, model);
 
+                if (getUserVisibleHint()) {
+                    EBActionBarFragment actionBarFragment = getActionBarParentFragment();
+                    if (actionBarFragment != null) {
+                        actionBarFragment.setActionBarMode(EBActionBarFragment.ACTION_BAR_MODE_STANDARD_SCROLL_ALWAYS,
+                                true);
+                    }
+                }
+
                 mDayModel = model;
                 mAdapter.setDay(mDayModel);
             }
         });
+    }
+
+    @Override
+    protected void onChangeShared() {
+        super.onChangeShared();
+
+        EBActionBarFragment actionBarFragment = getActionBarParentFragment();
+        if (actionBarFragment != null) {
+            actionBarFragment.setActionBarMode(EBActionBarFragment.ACTION_BAR_MODE_STANDARD_SCROLL_ALWAYS,
+                    false);
+        }
     }
 
     /**
