@@ -10,8 +10,8 @@
     <!-- 2 default_radius + 16 padding. -->
     <dimen name="day_item_data_content_margin_horizontal">18dp</dimen>
 
-    <string name="main_about">关于</string>
-    <string name="main_about_content">http://gank.io\nhttps://github.com/ebnbin</string>
+    <string name="days_about">关于</string>
+    <string name="days_about_content">http://gank.io\nhttps://github.com/ebnbin</string>
     <string name="days_title">%1$04d-%2$02d-%3$02d</string>
 
     <style name="DayItem">
