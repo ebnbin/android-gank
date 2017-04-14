@@ -11,7 +11,6 @@ import android.view.View;
 
 import com.ebnbin.ebapplication.context.ui.EBActionBarFragment;
 import com.ebnbin.ebapplication.fragment.about.AboutDialogFragment;
-import com.ebnbin.gank.BuildConfig;
 import com.ebnbin.gank.R;
 import com.ebnbin.gank.feature.daysviewpager.DaysViewPagerFragment;
 
@@ -48,8 +47,7 @@ public final class DaysFragment extends EBActionBarFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.about: {
-                AboutDialogFragment.show(getChildFragmentManager(), BuildConfig.VERSION_NAME,
-                        BuildConfig.VERSION_CODE);
+                AboutDialogFragment.showDialog(getChildFragmentManager());
 
                 return true;
             }

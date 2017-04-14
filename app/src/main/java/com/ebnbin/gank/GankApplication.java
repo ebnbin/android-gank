@@ -1,17 +1,17 @@
 package com.ebnbin.gank;
 
-import com.ebnbin.eb.util.EBUtil;
 import com.ebnbin.ebapplication.context.EBApplication;
+import com.ebnbin.ebapplication.util.EBAppUtil;
 
 public final class GankApplication extends EBApplication {
     @Override
     public void onCreate() {
         super.onCreate();
 
-        initEBUtil();
+        initEBAppUtil();
     }
 
-    private void initEBUtil() {
-        EBUtil.debug = BuildConfig.DEBUG;
+    private void initEBAppUtil() {
+        EBAppUtil.init(BuildConfig.APPLICATION_ID);
     }
 }
