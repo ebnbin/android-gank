@@ -4,7 +4,7 @@
     package="com.ebnbin.gank">
     <application
         android:name=".GankApplication"
-        android:label="Gank">
+        android:label="@string/app_label">
         <activity
             android:name=".MainActivity">
             <intent-filter>

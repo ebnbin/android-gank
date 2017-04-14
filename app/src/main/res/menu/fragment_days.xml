@@ -4,6 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/about"
-        android:title="@string/days_about"
+        android:title="@string/eb_about"
         app:showAsAction="never"/>
 </menu>

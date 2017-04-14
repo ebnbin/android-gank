@@ -10,8 +10,9 @@
     <!-- 2 default_radius + 16 padding. -->
     <dimen name="day_item_data_content_margin_horizontal">18dp</dimen>
 
-    <string name="days_about">关于</string>
-    <string name="days_about_content">http://gank.io\nhttps://github.com/ebnbin</string>
+    <string name="app_label">干货集中营</string>
+    <string name="app_slogan">每日分享妹子图 和 技术干货，还有供大家中午休息的休闲视频</string>
+    <string name="app_link_gank">http://gank.io</string>
     <string name="days_title">%1$04d-%2$02d-%3$02d</string>
 
     <style name="DayItem">

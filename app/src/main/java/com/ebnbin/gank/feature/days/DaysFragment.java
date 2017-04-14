@@ -8,9 +8,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.ebnbin.ebapplication.context.ui.EBActionBarFragment;
+import com.ebnbin.ebapplication.fragment.about.AboutDialogFragment;
+import com.ebnbin.gank.BuildConfig;
 import com.ebnbin.gank.R;
 import com.ebnbin.gank.feature.daysviewpager.DaysViewPagerFragment;
 
@@ -47,7 +48,9 @@ public final class DaysFragment extends EBActionBarFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.about: {
-                Toast.makeText(getContext(), R.string.days_about_content, Toast.LENGTH_LONG).show();
+                AboutDialogFragment.show(getChildFragmentManager(), R.drawable.eb_icon_256dp, R.string.app_label,
+                        R.string.app_slogan, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE,
+                        R.string.app_link_gank, 0, 0);
 
                 return true;
             }
