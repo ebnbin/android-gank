@@ -48,9 +48,8 @@ public final class DaysFragment extends EBActionBarFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.about: {
-                AboutDialogFragment.show(getChildFragmentManager(), R.drawable.eb_icon_256dp, R.string.app_label,
-                        R.string.app_slogan, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE,
-                        R.string.app_link_gank, 0, 0);
+                AboutDialogFragment.show(getChildFragmentManager(), BuildConfig.VERSION_NAME,
+                        BuildConfig.VERSION_CODE);
 
                 return true;
             }
