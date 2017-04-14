@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.ebnbin.eb.util.Date;
 import com.ebnbin.eb.util.EBUtil;
+import com.ebnbin.ebapplication.context.ui.EBActionBarFragment;
 import com.ebnbin.ebapplication.context.ui.EBFragment;
 import com.ebnbin.ebapplication.net.NetModelCallback;
 import com.ebnbin.gank.R;
@@ -60,6 +61,11 @@ public final class DaysViewPagerFragment extends EBFragment {
             @Override
             public void onPageSelected(int position) {
                 setTitle(position);
+
+                EBActionBarFragment actionBarFragment = getActionBarParentFragment();
+                if (actionBarFragment != null) {
+                    actionBarFragment.getAppBarLayout().setExpanded(true, true);
+                }
             }
 
             @Override
