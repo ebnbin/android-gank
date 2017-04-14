@@ -12,19 +12,19 @@ import android.view.View;
 import com.ebnbin.ebapplication.context.ui.EBActionBarFragment;
 import com.ebnbin.ebapplication.fragment.about.AboutDialogFragment;
 import com.ebnbin.gank.R;
-import com.ebnbin.gank.feature.daysviewpager.DaysViewPagerFragment;
+import com.ebnbin.gank.feature.days.dayviewpager.DayViewPagerFragment;
 
 public final class DaysFragment extends EBActionBarFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        DaysViewPagerFragment daysViewPagerFragment = new DaysViewPagerFragment();
-        if (getFragmentHelper().canAdd(daysViewPagerFragment)) {
+        DayViewPagerFragment dayViewPagerFragment = new DayViewPagerFragment();
+        if (getFragmentHelper().canAdd(dayViewPagerFragment)) {
             FragmentTransaction ft = getChildFragmentManager().beginTransaction();
             getFragmentHelper()
                     .beginTransaction(ft)
-                    .add(COORDINATOR_LAYOUT_CONTENT_CONTAINER_ID, daysViewPagerFragment);
+                    .add(COORDINATOR_LAYOUT_CONTENT_CONTAINER_ID, dayViewPagerFragment);
             ft.commit();
         }
     }

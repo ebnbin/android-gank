@@ -1,4 +1,4 @@
-package com.ebnbin.gank.feature.day;
+package com.ebnbin.gank.feature.days.day;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

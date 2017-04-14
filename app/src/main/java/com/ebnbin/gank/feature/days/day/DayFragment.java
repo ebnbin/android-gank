@@ -1,4 +1,4 @@
-package com.ebnbin.gank.feature.day;
+package com.ebnbin.gank.feature.days.day;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -51,7 +51,7 @@ public final class DayFragment extends EBFragment {
 
     @Override
     protected int overrideContentViewLayout() {
-        return R.layout.day_fragment;
+        return R.layout.days_day_fragment;
     }
 
     @Override

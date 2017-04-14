@@ -1,4 +1,4 @@
-package com.ebnbin.gank.feature.day;
+package com.ebnbin.gank.feature.days.day;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -24,8 +24,8 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
     DayAdapter() {
         super(null);
 
-        addItemType(DayEntity.CATEGORY, R.layout.day_item_category);
-        addItemType(DayEntity.DATA, R.layout.day_item_data);
+        addItemType(DayEntity.CATEGORY, R.layout.days_day_item_category);
+        addItemType(DayEntity.DATA, R.layout.days_day_item_data);
     }
 
     @Override
