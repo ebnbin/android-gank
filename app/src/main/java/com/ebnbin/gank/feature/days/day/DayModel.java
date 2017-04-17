@@ -141,6 +141,11 @@ final class DayModel extends EBModel {
             return true;
         }
 
+        @NonNull
+        public String getValidFuliUrl() {
+            return isDatasValid(mFuli) ? mFuli[0].mUrl : "";
+        }
+
         //*************************************************************************************************************
 
         /**

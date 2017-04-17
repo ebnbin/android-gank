@@ -11,6 +11,7 @@ import com.ebnbin.ebapplication.context.ui.EBActionBarFragment;
 import com.ebnbin.ebapplication.context.ui.EBFragment;
 import com.ebnbin.ebapplication.net.NetModelCallback;
 import com.ebnbin.gank.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 
@@ -173,6 +174,12 @@ public final class DayFragment extends EBFragment {
 
                 mDayModel = model;
                 mAdapter.setDay(mDayModel);
+
+                // Preload 福利 image.
+                Picasso
+                        .with(getContext())
+                        .load(mDayModel.getResults().getValidFuliUrl())
+                        .fetch();
             }
         });
     }
