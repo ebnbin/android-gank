@@ -13,6 +13,7 @@ import com.ebnbin.ebapplication.net.NetModelCallback;
 import com.ebnbin.gank.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import okhttp3.Call;
@@ -154,6 +155,21 @@ public final class DayFragment extends EBFragment {
 
     private DayModel mDayModel;
 
+    public void getDayModel(@NonNull DayModelCallback callback) {
+        if (mDayModel == null) {
+            mDayModelCallbackArrayList.add(callback);
+        } else {
+            callback.onGetDayModel(mDayModel);
+        }
+    }
+
+    private final ArrayList<DayModelCallback> mDayModelCallbackArrayList = new ArrayList<>();
+
+    public static abstract class DayModelCallback {
+        public void onGetDayModel(@NonNull DayModel dayModel) {
+        }
+    }
+
     /**
      * Gets {@link DayModel} model and sets data.
      */
@@ -173,6 +189,13 @@ public final class DayFragment extends EBFragment {
                 }
 
                 mDayModel = model;
+
+                for (DayModelCallback dayModelCallback : mDayModelCallbackArrayList) {
+                    dayModelCallback.onGetDayModel(mDayModel);
+
+                    mDayModelCallbackArrayList.remove(dayModelCallback);
+                }
+
                 mAdapter.setDay(mDayModel);
 
                 // Preload 福利 image.

@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Day model.
  */
-final class DayModel extends EBModel {
+public final class DayModel extends EBModel {
     private static final long serialVersionUID = 1L;
 
     @SerializedName("category")
@@ -51,7 +51,7 @@ final class DayModel extends EBModel {
     /**
      * Results model.
      */
-    static final class ResultsModel extends EBModel {
+    public static final class ResultsModel extends EBModel {
         private static final long serialVersionUID = 1L;
 
         @SerializedName(DataModel.ANDROID)

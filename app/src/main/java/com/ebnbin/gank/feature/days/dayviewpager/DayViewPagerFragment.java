@@ -66,6 +66,15 @@ public final class DayViewPagerFragment extends EBFragment {
                 if (actionBarFragment != null) {
                     actionBarFragment.getAppBarLayout().setExpanded(true, true);
                 }
+
+                mDayViewPagerPagerAdapter.getFuliUrl(position, new DayViewPagerPagerAdapter.FuliUrlCallback() {
+                    @Override
+                    public void onGetFuliUrl(@Nullable String fuliUrl) {
+                        super.onGetFuliUrl(fuliUrl);
+
+                        // TODO: 福利 image.
+                    }
+                });
             }
 
             @Override
