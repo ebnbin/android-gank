@@ -90,12 +90,22 @@ public final class DayFragment extends EBFragment {
 
         mDayRecyclerView.setItemViewCacheSize(32);
 
-        EBActionBarFragment.addNestedScrollingChild(this, mDayRecyclerView);
+        EBActionBarFragment actionBarFragment = getActionBarParentFragment();
+        if (actionBarFragment != null) {
+            actionBarFragment.addNestedScrollingView(mDayRecyclerView);
+        }
+    }
+
+    public RecyclerView getDayRecyclerView() {
+        return mDayRecyclerView;
     }
 
     @Override
     public void onDestroyView() {
-        EBActionBarFragment.removeNestedScrollingChild(this, mDayRecyclerView);
+        EBActionBarFragment actionBarFragment = getActionBarParentFragment();
+        if (actionBarFragment != null) {
+            actionBarFragment.removeNestedScrollingView(mDayRecyclerView);
+        }
 
         super.onDestroyView();
     }
@@ -183,8 +193,8 @@ public final class DayFragment extends EBFragment {
                 if (getUserVisibleHint()) {
                     EBActionBarFragment actionBarFragment = getActionBarParentFragment();
                     if (actionBarFragment != null) {
-                        actionBarFragment.setActionBarMode(EBActionBarFragment.ACTION_BAR_MODE_STANDARD_SCROLL_ALWAYS,
-                                true);
+                        actionBarFragment.setActionBarMode(EBActionBarFragment.ACTION_BAR_MODE_SCROLL,
+                                true, true, true);
                     }
                 }
 
@@ -213,8 +223,8 @@ public final class DayFragment extends EBFragment {
 
         EBActionBarFragment actionBarFragment = getActionBarParentFragment();
         if (actionBarFragment != null) {
-            actionBarFragment.setActionBarMode(EBActionBarFragment.ACTION_BAR_MODE_STANDARD_SCROLL_ALWAYS,
-                    false);
+            actionBarFragment.setActionBarMode(EBActionBarFragment.ACTION_BAR_MODE_SCROLL,
+                    false, null, false);
         }
     }
 

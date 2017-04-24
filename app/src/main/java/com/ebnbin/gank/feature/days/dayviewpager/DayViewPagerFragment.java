@@ -15,6 +15,7 @@ import com.ebnbin.ebapplication.context.ui.EBActionBarFragment;
 import com.ebnbin.ebapplication.context.ui.EBFragment;
 import com.ebnbin.ebapplication.net.NetModelCallback;
 import com.ebnbin.gank.R;
+import com.ebnbin.gank.feature.days.day.DayFragment;
 
 import okhttp3.Call;
 
@@ -54,16 +55,37 @@ public final class DayViewPagerFragment extends EBFragment {
         mDaysViewPager.setPageMarginDrawable(d);
 
         mDaysViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            private boolean mDragged = false;
+
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
 
             @Override
             public void onPageSelected(int position) {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        DayFragment dayFragment = mDayViewPagerPagerAdapter.getDayFragment(position);
+                        if (dayFragment == null) {
+                            handler.postDelayed(this, 16L);
+
+                            return;
+                        }
+
+                        EBActionBarFragment actionBarFragment = getActionBarParentFragment();
+                        if (actionBarFragment != null) {
+                            actionBarFragment.addNestedScrollingView(dayFragment.getDayRecyclerView());
+                        }
+                    }
+                });
+
                 setTitle(position);
 
                 EBActionBarFragment actionBarFragment = getActionBarParentFragment();
-                if (actionBarFragment != null) {
+                if (actionBarFragment != null && mDragged) {
+                    mDragged = false;
+
                     actionBarFragment.getAppBarLayout().setExpanded(true, true);
                 }
 
@@ -79,6 +101,9 @@ public final class DayViewPagerFragment extends EBFragment {
 
             @Override
             public void onPageScrollStateChanged(int state) {
+                if (state == ViewPager.SCROLL_STATE_DRAGGING) {
+                    mDragged = true;
+                }
             }
         });
     }
