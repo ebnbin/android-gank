@@ -30,7 +30,7 @@ public final class DayFragment extends EBFragment {
     @NonNull
     public static DayFragment newInstance(@NonNull Date date) {
         Bundle args = new Bundle();
-        args.putSerializable(ARG_DATE, date);
+        args.putParcelable(ARG_DATE, date);
 
         DayFragment dayFragment = new DayFragment();
         dayFragment.setArguments(args);
@@ -44,7 +44,7 @@ public final class DayFragment extends EBFragment {
     protected void onInitArguments(@NonNull Bundle args) {
         super.onInitArguments(args);
 
-        mDate = (Date) args.getSerializable(ARG_DATE);
+        mDate = args.getParcelable(ARG_DATE);
     }
 
     //*****************************************************************************************************************
