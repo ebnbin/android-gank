@@ -2,23 +2,20 @@ package com.ebnbin.gank.feature.days.dayviewpager;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 
 import com.ebnbin.eb.base.EBRuntimeException;
 import com.ebnbin.eb.util.Date;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
 /**
  * Utility class.
  */
 final class DayViewPagerUtil {
-    /**
-     * 日期字符串分隔符.
-     */
-    private static final String DATE_SPLIT = "-";
-
     /**
      * 根据 {@link HistoryModel} 返回一个用于 {@link DayViewPagerPagerAdapter} 的 {@link Date} {@link ArrayList}.
      *
@@ -45,7 +42,6 @@ final class DayViewPagerUtil {
 
     /**
      * 根据日期字符串解析日期.
-     * TODO: {@link android.text.format.DateFormat}.
      *
      * @param dateString 日期字符串, 1970-01-01 格式.
      *
@@ -53,21 +49,15 @@ final class DayViewPagerUtil {
      */
     @Nullable
     private static Date getDate(@Nullable String dateString) {
-        if (TextUtils.isEmpty(dateString)) {
-            return null;
-        }
-
-        String[] dateStringSplit = dateString.split(DATE_SPLIT);
-        if (dateStringSplit.length != 3) {
-            return null;
-        }
-
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         try {
-            int year = Integer.parseInt(dateStringSplit[0]);
-            int month = Integer.parseInt(dateStringSplit[1]);
-            int day = Integer.parseInt(dateStringSplit[2]);
-            return new Date(year, month, day);
-        } catch (NumberFormatException | EBRuntimeException e) {
+            java.util.Date date = simpleDateFormat.parse(dateString);
+            try {
+                return new Date(date);
+            } catch (EBRuntimeException e) {
+                return null;
+            }
+        } catch (ParseException e) {
             return null;
         }
     }
