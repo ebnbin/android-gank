@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.ebnbin.eb.util.Date;
+import com.ebnbin.eb.util.Timestamp;
 import com.ebnbin.ebapplication.context.ui.EBActionBarFragment;
 import com.ebnbin.ebapplication.context.ui.EBFragment;
 import com.ebnbin.ebapplication.net.NetModelCallback;
@@ -25,12 +25,12 @@ public final class DayFragment extends EBFragment {
     //*****************************************************************************************************************
     // Arguments.
 
-    private static final String ARG_DATE = "date";
+    private static final String ARG_TIMESTAMP = "timestamp";
 
     @NonNull
-    public static DayFragment newInstance(@NonNull Date date) {
+    public static DayFragment newInstance(@NonNull Timestamp timestamp) {
         Bundle args = new Bundle();
-        args.putParcelable(ARG_DATE, date);
+        args.putParcelable(ARG_TIMESTAMP, timestamp);
 
         DayFragment dayFragment = new DayFragment();
         dayFragment.setArguments(args);
@@ -38,13 +38,13 @@ public final class DayFragment extends EBFragment {
         return dayFragment;
     }
 
-    private Date mDate;
+    private Timestamp mTimestamp;
 
     @Override
     protected void onInitArguments(@NonNull Bundle args) {
         super.onInitArguments(args);
 
-        mDate = args.getParcelable(ARG_DATE);
+        mTimestamp = args.getParcelable(ARG_TIMESTAMP);
     }
 
     //*****************************************************************************************************************
@@ -119,7 +119,7 @@ public final class DayFragment extends EBFragment {
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
 
-        if (mDate == null) {
+        if (mTimestamp == null) {
             // TODO: Sets empty view.
             return;
         }
@@ -232,9 +232,9 @@ public final class DayFragment extends EBFragment {
      * Gets url of getting {@link DayModel}.
      */
     private String getDayUrl() {
-        assert mDate != null;
+        assert mTimestamp != null;
 
         String dayFormat = "http://gank.io/api/day/%04d/%02d/%02d";
-        return String.format(Locale.getDefault(), dayFormat, mDate.year, mDate.month, mDate.day);
+        return String.format(Locale.getDefault(), dayFormat, mTimestamp.year, mTimestamp.month, mTimestamp.day);
     }
 }

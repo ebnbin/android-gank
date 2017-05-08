@@ -10,7 +10,7 @@ import android.support.v13.app.FragmentStatePagerAdapter;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
-import com.ebnbin.eb.util.Date;
+import com.ebnbin.eb.util.Timestamp;
 import com.ebnbin.gank.feature.days.day.DayFragment;
 import com.ebnbin.gank.feature.days.day.DayModel;
 
@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * Days {@link android.support.v4.view.PagerAdapter}.
  */
 final class DayViewPagerPagerAdapter extends FragmentStatePagerAdapter {
-    public final ArrayList<Date> dates = new ArrayList<>();
+    public final ArrayList<Timestamp> timestamps = new ArrayList<>();
 
     private final SparseArray<DayFragment> mDayFragmentSparseArray = new SparseArray<>();
 
@@ -32,17 +32,17 @@ final class DayViewPagerPagerAdapter extends FragmentStatePagerAdapter {
      * Sets new data.
      */
     public void setHistoryModel(@NonNull HistoryModel historyModel) {
-        setDates(DayViewPagerUtil.getDaysHistoryList(historyModel));
+        setTimestamps(DayViewPagerUtil.getDaysHistoryList(historyModel));
     }
 
     /**
      * Sets new data.
      */
-    private void setDates(@Nullable ArrayList<Date> dates) {
-        this.dates.clear();
+    private void setTimestamps(@Nullable ArrayList<Timestamp> timestamps) {
+        this.timestamps.clear();
 
-        if (dates != null) {
-            this.dates.addAll(dates);
+        if (timestamps != null) {
+            this.timestamps.addAll(timestamps);
         }
 
         notifyDataSetChanged();
@@ -50,13 +50,13 @@ final class DayViewPagerPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Date date = dates.get(position);
-        return DayFragment.newInstance(date);
+        Timestamp timestamp = timestamps.get(position);
+        return DayFragment.newInstance(timestamp);
     }
 
     @Override
     public int getCount() {
-        return dates.size();
+        return timestamps.size();
     }
 
     @Override

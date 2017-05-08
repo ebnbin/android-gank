@@ -4,37 +4,34 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.ebnbin.eb.base.EBRuntimeException;
-import com.ebnbin.eb.util.Date;
+import com.ebnbin.eb.util.Timestamp;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Locale;
 
 /**
  * Utility class.
  */
 final class DayViewPagerUtil {
     /**
-     * 根据 {@link HistoryModel} 返回一个用于 {@link DayViewPagerPagerAdapter} 的 {@link Date} {@link ArrayList}.
+     * 根据 {@link HistoryModel} 返回一个用于 {@link DayViewPagerPagerAdapter} 的 {@link Timestamp} {@link ArrayList}.
      *
      * @return 从小到大排序的日期 {@link ArrayList}.
      */
     @NonNull
-    public static ArrayList<Date> getDaysHistoryList(@NonNull HistoryModel historyModel) {
-        ArrayList<Date> historyList = new ArrayList<>();
+    public static ArrayList<Timestamp> getDaysHistoryList(@NonNull HistoryModel historyModel) {
+        ArrayList<Timestamp> historyList = new ArrayList<>();
 
         String[] results = historyModel.getResults();
         Arrays.sort(results, String::compareTo);
 
         for (String result : results) {
-            Date date = getDate(result);
-            if (date == null) {
+            Timestamp timestamp = getTimestamp(result);
+            if (timestamp == null) {
                 continue;
             }
 
-            historyList.add(date);
+            historyList.add(timestamp);
         }
 
         return historyList;
@@ -48,16 +45,14 @@ final class DayViewPagerUtil {
      * @return 如果数据异常则返回 {@code null}, 否则返回日期.
      */
     @Nullable
-    private static Date getDate(@Nullable String dateString) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    private static Timestamp getTimestamp(@Nullable String dateString) {
+        if (dateString == null) {
+            return null;
+        }
+
         try {
-            java.util.Date date = simpleDateFormat.parse(dateString);
-            try {
-                return new Date(date);
-            } catch (EBRuntimeException e) {
-                return null;
-            }
-        } catch (ParseException e) {
+            return Timestamp.newInstance(dateString, "yyyy-MM-dd", true);
+        } catch (EBRuntimeException e) {
             return null;
         }
     }

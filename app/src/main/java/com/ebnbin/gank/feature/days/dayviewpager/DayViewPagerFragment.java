@@ -9,8 +9,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.view.View;
 
-import com.ebnbin.eb.util.Date;
 import com.ebnbin.eb.util.EBUtil;
+import com.ebnbin.eb.util.Timestamp;
 import com.ebnbin.ebapplication.context.ui.EBActionBarFragment;
 import com.ebnbin.ebapplication.context.ui.EBFragment;
 import com.ebnbin.ebapplication.net.NetModelCallback;
@@ -117,12 +117,12 @@ public final class DayViewPagerFragment extends EBFragment {
             return;
         }
 
-        Date date = mDayViewPagerPagerAdapter.dates.get(position);
-        if (date == null) {
+        Timestamp timestamp = mDayViewPagerPagerAdapter.timestamps.get(position);
+        if (timestamp == null) {
             return;
         }
 
-        String title = getString(R.string.days_title, date.year, date.month, date.day);
+        String title = getString(R.string.days_title, timestamp.year, timestamp.month, timestamp.day);
         actionBar.setTitle(title);
     }
 
