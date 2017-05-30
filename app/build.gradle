@@ -1,11 +1,9 @@
-buildscript {
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.1'
-    }
-}
-
 repositories {
     jcenter()
+
+    maven {
+        url 'https://maven.google.com'
+    }
 
     maven {
         url 'https://jitpack.io'
@@ -13,6 +11,7 @@ repositories {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 def localPropertiesFile = rootProject.file('local.properties')
 def localProperties = new Properties()
@@ -20,24 +19,24 @@ def localProperties = new Properties()
 localProperties.load(new FileInputStream(localPropertiesFile))
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    compileSdkVersion 'android-O'
+    buildToolsVersion '26.0.0 rc2'
 
     defaultConfig {
         minSdkVersion 23
-        targetSdkVersion 25
+        targetSdkVersion 'O'
         applicationId 'com.ebnbin.gank'
         versionCode 2
         versionName '0.2.0'
-
-        jackOptions {
-            enabled true
-        }
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
 
     signingConfigs {
@@ -61,6 +60,8 @@ android {
 }
 
 dependencies {
-//    compile 'com.ebnbin:eb-application:0.2.1'
-    compile project(':..:android-eb-application:eb-application')
+//    implementation project(':..:android-eb-application:eb-application')
+
+    implementation 'com.ebnbin:eb-application:0.2.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 }
