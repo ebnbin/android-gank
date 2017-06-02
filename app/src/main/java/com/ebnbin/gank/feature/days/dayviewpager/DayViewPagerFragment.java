@@ -51,7 +51,7 @@ public final class DayViewPagerFragment extends EBFragment {
         int marginPixels = getResources().getDimensionPixelSize(R.dimen.days_page_margin);
         mDaysViewPager.setPageMargin(marginPixels);
 
-        Drawable d = new ColorDrawable(EBUtil.getColorAttr(getContext(), R.attr.ebColorPlaceholder));
+        Drawable d = new ColorDrawable(EBUtil.INSTANCE.getColorAttr(getContext(), R.attr.ebColorPlaceholder));
         mDaysViewPager.setPageMarginDrawable(d);
 
         mDaysViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -122,7 +122,7 @@ public final class DayViewPagerFragment extends EBFragment {
             return;
         }
 
-        String title = getString(R.string.days_title, timestamp.year, timestamp.month, timestamp.day);
+        String title = getString(R.string.days_title, timestamp.getYear(), timestamp.getMonth(), timestamp.getDay());
         actionBar.setTitle(title);
     }
 

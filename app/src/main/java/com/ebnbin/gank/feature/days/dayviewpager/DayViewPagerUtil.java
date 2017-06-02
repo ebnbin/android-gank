@@ -3,9 +3,9 @@ package com.ebnbin.gank.feature.days.dayviewpager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.ebnbin.eb.base.EBRuntimeException;
 import com.ebnbin.eb.util.Timestamp;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -51,8 +51,8 @@ final class DayViewPagerUtil {
         }
 
         try {
-            return Timestamp.newInstance(dateString, "yyyy-MM-dd", true);
-        } catch (EBRuntimeException e) {
+            return Timestamp.Companion.newInstance(dateString, "yyyy-MM-dd", true);
+        } catch (ParseException e) {
             return null;
         }
     }

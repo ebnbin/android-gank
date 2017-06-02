@@ -235,6 +235,7 @@ public final class DayFragment extends EBFragment {
         assert mTimestamp != null;
 
         String dayFormat = "http://gank.io/api/day/%04d/%02d/%02d";
-        return String.format(Locale.getDefault(), dayFormat, mTimestamp.year, mTimestamp.month, mTimestamp.day);
+        return String.format(Locale.getDefault(), dayFormat, mTimestamp.getYear(), mTimestamp.getMonth(),
+                mTimestamp.getDay());
     }
 }
