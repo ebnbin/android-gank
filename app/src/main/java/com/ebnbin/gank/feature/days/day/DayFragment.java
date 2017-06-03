@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.ebnbin.eb.util.Timestamp;
@@ -209,10 +210,12 @@ public final class DayFragment extends EBFragment {
                 mAdapter.setDay(mDayModel);
 
                 // Preload 福利 image.
-                Picasso
-                        .with(getContext())
-                        .load(mDayModel.getResults().getValidFuliUrl())
-                        .fetch();
+                if (!TextUtils.isEmpty(mDayModel.getResults().getValidFuliUrl())) {
+                    Picasso
+                            .with(getContext())
+                            .load(mDayModel.getResults().getValidFuliUrl())
+                            .fetch();
+                }
             }
         });
     }

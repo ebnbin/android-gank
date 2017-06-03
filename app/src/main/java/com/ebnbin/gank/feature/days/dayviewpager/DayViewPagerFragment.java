@@ -46,7 +46,7 @@ public final class DayViewPagerFragment extends EBFragment {
         mDayViewPagerPagerAdapter = new DayViewPagerPagerAdapter(getChildFragmentManager());
         mDaysViewPager.setAdapter(mDayViewPagerPagerAdapter);
 
-        mDaysViewPager.setOffscreenPageLimit(3);
+        mDaysViewPager.setOffscreenPageLimit(1);
 
         int marginPixels = getResources().getDimensionPixelSize(R.dimen.days_page_margin);
         mDaysViewPager.setPageMargin(marginPixels);
