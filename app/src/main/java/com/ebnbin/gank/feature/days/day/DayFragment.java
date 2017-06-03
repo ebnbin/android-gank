@@ -203,6 +203,7 @@ public final class DayFragment extends EBFragment {
 
                 mDayModel = model;
 
+                // TODO java.util.ConcurrentModificationException
                 for (DayModelCallback dayModelCallback : mDayModelCallbackArrayList) {
                     dayModelCallback.onGetDayModel(mDayModel);
 
