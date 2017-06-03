@@ -18,6 +18,7 @@ import com.ebnbin.gank.R;
 import com.ebnbin.gank.feature.days.day.DayFragment;
 
 import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * 用 {@link ViewPager} 展示多个 {@link com.ebnbin.gank.feature.days.day.DayFragment}.
@@ -191,8 +192,9 @@ public final class DayViewPagerFragment extends EBFragment {
         String url = "http://gank.io/api/day/history";
         netGet(url, new NetModelCallback<HistoryModel>() {
             @Override
-            public void onSuccess(@NonNull Call call, @NonNull HistoryModel model) {
-                super.onSuccess(call, model);
+            public void onSuccess(@NonNull Call call, @NonNull HistoryModel model, @NonNull Response response,
+                    @NonNull byte[] byteArray) {
+                super.onSuccess(call, model, response, byteArray);
 
                 mHistoryModel = model;
                 mDayViewPagerPagerAdapter.setHistoryModel(mHistoryModel);

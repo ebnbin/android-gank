@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * 用 {@link RecyclerView} 展示某日期的数据.
@@ -188,8 +189,9 @@ public final class DayFragment extends EBFragment {
         String url = getDayUrl();
         netGet(url, new NetModelCallback<DayModel>() {
             @Override
-            public void onSuccess(@NonNull Call call, @NonNull DayModel model) {
-                super.onSuccess(call, model);
+            public void onSuccess(@NonNull Call call, @NonNull DayModel model, @NonNull Response response,
+                    @NonNull byte[] byteArray) {
+                super.onSuccess(call, model, response, byteArray);
 
                 if (getUserVisibleHint()) {
                     EBActionBarFragment actionBarFragment = getActionBarParentFragment();
