@@ -11,6 +11,6 @@ import com.ebnbin.gank.R;
  */
 final class DayItemDecoration extends SpacingItemDecoration {
     DayItemDecoration(@NonNull Context context) {
-        addSpacingType(DayEntity.DATA, context, 0, R.dimen.day_item_offset, 0);
+        addSpacingType(DayEntity.DATA, 0, context.getResources().getDimensionPixelSize(R.dimen.day_item_offset), 0);
     }
 }

@@ -19,12 +19,12 @@ def localProperties = new Properties()
 localProperties.load(new FileInputStream(localPropertiesFile))
 
 android {
-    compileSdkVersion 'android-O'
-    buildToolsVersion '26.0.0 rc2'
+    compileSdkVersion compile_sdk_version
+    buildToolsVersion build_tools_version
 
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 'O'
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
         applicationId 'com.ebnbin.gank'
         versionCode 2
         versionName '0.2.0'

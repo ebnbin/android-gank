@@ -24,7 +24,8 @@ public final class DaysFragment extends EBActionBarFragment {
             FragmentTransaction ft = getChildFragmentManager().beginTransaction();
             getFragmentHelper()
                     .beginTransaction(ft)
-                    .add(COORDINATOR_LAYOUT_CONTENT_CONTAINER_ID, dayViewPagerFragment);
+                    .add(COORDINATOR_LAYOUT_CONTENT_CONTAINER_ID, dayViewPagerFragment)
+                    .endTransaction();
             ft.commit();
         }
     }
@@ -47,7 +48,7 @@ public final class DaysFragment extends EBActionBarFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.about: {
-                AboutDialogFragment.showDialog(getChildFragmentManager());
+                AboutDialogFragment.Companion.showDialog(getChildFragmentManager());
 
                 return true;
             }
