@@ -3,7 +3,6 @@ package com.ebnbin.gank.feature.days;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,14 +19,7 @@ public final class DaysFragment extends EBActionBarFragment {
         super.onViewCreated(view, savedInstanceState);
 
         DayViewPagerFragment dayViewPagerFragment = new DayViewPagerFragment();
-        if (getFragmentHelper().canAdd(dayViewPagerFragment)) {
-            FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-            getFragmentHelper()
-                    .beginTransaction(ft)
-                    .add(COORDINATOR_LAYOUT_CONTENT_CONTAINER_ID, dayViewPagerFragment)
-                    .endTransaction();
-            ft.commit();
-        }
+        getFragmentHelper().set(dayViewPagerFragment);
     }
 
     @Override
