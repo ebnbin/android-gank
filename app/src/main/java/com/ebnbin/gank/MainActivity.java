@@ -1,8 +1,8 @@
 package com.ebnbin.gank;
 
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 
 import com.ebnbin.ebapplication.context.ui.EBActivity;
 import com.ebnbin.gank.feature.days.DaysFragment;
@@ -14,7 +14,7 @@ public final class MainActivity extends EBActivity {
 
         DaysFragment daysFragment = new DaysFragment();
         if (getFragmentHelper().canAdd(daysFragment)) {
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             getFragmentHelper()
                     .beginTransaction(ft)
                     .add(daysFragment)
