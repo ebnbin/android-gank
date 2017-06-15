@@ -64,12 +64,12 @@ public final class DayViewPagerFragment extends EBFragment {
 
             @Override
             public void onPageSelected(int position) {
-                handler.post(new Runnable() {
+                EBUtil.INSTANCE.getHANDLER().post(new Runnable() {
                     @Override
                     public void run() {
                         DayFragment dayFragment = mDayViewPagerPagerAdapter.getDayFragment(position);
                         if (dayFragment == null) {
-                            handler.postDelayed(this, 16L);
+                            EBUtil.INSTANCE.getHANDLER().postDelayed(this, 16L);
 
                             return;
                         }

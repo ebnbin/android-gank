@@ -82,7 +82,7 @@ public final class DayFragment extends EBFragment {
             void onDataClick(@NonNull DayEntity.Data data) {
                 super.onDataClick(data);
 
-                webViewLoadUrl(data.url);
+                loadUrl(data.url);
             }
         });
         mDayRecyclerView.setAdapter(mAdapter);
