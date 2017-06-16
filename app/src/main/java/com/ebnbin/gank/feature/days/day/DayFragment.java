@@ -191,8 +191,7 @@ public final class DayFragment extends EBFragment {
                 if (getUserVisibleHint()) {
                     EBActionBarFragment actionBarFragment = getActionBarParentFragment();
                     if (actionBarFragment != null) {
-                        actionBarFragment.setActionBarMode(EBActionBarFragment.ACTION_BAR_MODE_SCROLL,
-                                true, true, true);
+                        actionBarFragment.setActionBarMode(EBActionBarFragment.ActionBarMode.SCROLL, true, true, true);
                     }
                 }
 
@@ -224,8 +223,7 @@ public final class DayFragment extends EBFragment {
 
         EBActionBarFragment actionBarFragment = getActionBarParentFragment();
         if (actionBarFragment != null) {
-            actionBarFragment.setActionBarMode(EBActionBarFragment.ACTION_BAR_MODE_SCROLL,
-                    false, null, false);
+            actionBarFragment.setActionBarMode(EBActionBarFragment.ActionBarMode.SCROLL, false, null, false);
         }
     }
 
