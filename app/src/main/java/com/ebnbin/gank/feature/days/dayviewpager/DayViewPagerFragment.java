@@ -31,18 +31,13 @@ public final class DayViewPagerFragment extends EBFragment {
         return R.layout.days_day_view_pager_fragment;
     }
 
-    @Override
-    protected void onInitContentView(@NonNull View contentView) {
-        super.onInitContentView(contentView);
-
-        mDaysViewPager = (ViewPager) contentView.findViewById(R.id.days);
-    }
-
     private DayViewPagerPagerAdapter mDayViewPagerPagerAdapter;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mDaysViewPager = view.findViewById(R.id.days);
 
         mDayViewPagerPagerAdapter = new DayViewPagerPagerAdapter(getChildFragmentManager());
         mDaysViewPager.setAdapter(mDayViewPagerPagerAdapter);

@@ -58,13 +58,6 @@ public final class DayFragment extends EBFragment {
         return R.layout.days_day_fragment;
     }
 
-    @Override
-    protected void onInitContentView(@NonNull View contentView) {
-        super.onInitContentView(contentView);
-
-        mDayRecyclerView = (RecyclerView) contentView.findViewById(R.id.day);
-    }
-
     private DayLayoutManager mLayoutManager;
     private DayAdapter mAdapter;
     private DayItemDecoration mItemDecoration;
@@ -72,6 +65,8 @@ public final class DayFragment extends EBFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        mDayRecyclerView = view.findViewById(R.id.day);
 
         mLayoutManager = new DayLayoutManager(getContext());
         mDayRecyclerView.setLayoutManager(mLayoutManager);
