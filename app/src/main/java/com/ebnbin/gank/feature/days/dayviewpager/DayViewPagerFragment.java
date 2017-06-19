@@ -15,7 +15,6 @@ import com.ebnbin.ebapplication.context.ui.EBActionBarFragment;
 import com.ebnbin.ebapplication.context.ui.EBFragment;
 import com.ebnbin.ebapplication.net.NetModelCallback;
 import com.ebnbin.gank.R;
-import com.ebnbin.gank.feature.days.day.DayFragment;
 
 import okhttp3.Call;
 import okhttp3.Response;
@@ -59,23 +58,6 @@ public final class DayViewPagerFragment extends EBFragment {
 
             @Override
             public void onPageSelected(int position) {
-                EBUtil.INSTANCE.getHandler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        DayFragment dayFragment = mDayViewPagerPagerAdapter.getDayFragment(position);
-                        if (dayFragment == null) {
-                            EBUtil.INSTANCE.getHandler().postDelayed(this, 16L);
-
-                            return;
-                        }
-
-                        EBActionBarFragment actionBarFragment = getActionBarParentFragment();
-                        if (actionBarFragment != null) {
-                            actionBarFragment.addNestedScrollingView(dayFragment.getDayRecyclerView());
-                        }
-                    }
-                });
-
                 setTitle(position);
 
                 EBActionBarFragment actionBarFragment = getActionBarParentFragment();

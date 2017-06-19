@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.ebnbin.eb.util.EBUtil;
 import com.ebnbin.eb.util.Timestamp;
 import com.ebnbin.ebapplication.context.ui.EBActionBarFragment;
 import com.ebnbin.ebapplication.context.ui.EBFragment;
@@ -86,25 +87,10 @@ public final class DayFragment extends EBFragment {
         mDayRecyclerView.addItemDecoration(mItemDecoration);
 
         mDayRecyclerView.setItemViewCacheSize(32);
-
-        EBActionBarFragment actionBarFragment = getActionBarParentFragment();
-        if (actionBarFragment != null) {
-            actionBarFragment.addNestedScrollingView(mDayRecyclerView);
-        }
     }
 
     public RecyclerView getDayRecyclerView() {
         return mDayRecyclerView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        EBActionBarFragment actionBarFragment = getActionBarParentFragment();
-        if (actionBarFragment != null) {
-            actionBarFragment.removeNestedScrollingView(mDayRecyclerView);
-        }
-
-        super.onDestroyView();
     }
 
     //*****************************************************************************************************************
@@ -221,10 +207,22 @@ public final class DayFragment extends EBFragment {
     protected void onChangeShared() {
         super.onChangeShared();
 
-        EBActionBarFragment actionBarFragment = getActionBarParentFragment();
-        if (actionBarFragment != null) {
-            actionBarFragment.setActionBarMode(EBActionBarFragment.ActionBarMode.SCROLL, false, null, false);
-        }
+        EBUtil.INSTANCE.getHandler().post(new Runnable() {
+            @Override
+            public void run() {
+                if (mDayRecyclerView == null) {
+                    EBUtil.INSTANCE.getHandler().postDelayed(this, 16L);
+
+                    return;
+                }
+
+                EBActionBarFragment actionBarFragment = getActionBarParentFragment();
+                if (actionBarFragment != null) {
+                    actionBarFragment.setNestedScrollingChild(mDayRecyclerView);
+                    actionBarFragment.setActionBarMode(EBActionBarFragment.ActionBarMode.SCROLL, false, null, false);
+                }
+            }
+        });
     }
 
     /**
