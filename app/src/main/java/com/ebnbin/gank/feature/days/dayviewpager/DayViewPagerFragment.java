@@ -90,7 +90,7 @@ public final class DayViewPagerFragment extends EBFragment {
      * Sets title of {@link ActionBar}.
      */
     private void setTitle(int position) {
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getEbActivity().getSupportActionBar();
         if (actionBar == null) {
             return;
         }

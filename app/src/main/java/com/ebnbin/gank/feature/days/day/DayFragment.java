@@ -1,6 +1,7 @@
 package com.ebnbin.gank.feature.days.day;
 
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -78,7 +79,7 @@ public final class DayFragment extends EBFragment {
             void onDataClick(@NonNull DayEntity.Data data) {
                 super.onDataClick(data);
 
-                loadUrl(data.url);
+                getEbActivity().loadUrl(data.url);
             }
         });
         mDayRecyclerView.setAdapter(mAdapter);
@@ -203,9 +204,10 @@ public final class DayFragment extends EBFragment {
         });
     }
 
+    @CallSuper
     @Override
-    protected void onChangeShared() {
-        super.onChangeShared();
+    protected void onFront() {
+        super.onFront();
 
         EBUtil.INSTANCE.getHandler().post(new Runnable() {
             @Override
