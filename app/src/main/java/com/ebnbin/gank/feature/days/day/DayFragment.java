@@ -77,8 +77,8 @@ public final class DayFragment extends EBFragment {
             void onDataClick(@NonNull DayEntity.Data data) {
                 super.onDataClick(data);
 
-                if (data.dataModel.getValidUrl() != null) {
-                    getEbActivity().loadUrl(data.dataModel.getValidUrl());
+                if (data.getDataModel().getValidUrl() != null) {
+                    getEbActivity().loadUrl(data.getDataModel().getValidUrl());
                 } else {
                     // TODO
                 }

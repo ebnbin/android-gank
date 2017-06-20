@@ -24,40 +24,34 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
     DayAdapter() {
         super(null);
 
-        addItemType(DayEntity.CATEGORY, R.layout.days_day_item_category);
-        addItemType(DayEntity.DATA, R.layout.days_day_item_data);
+        addItemType(DayEntity.Companion.getCATEGORY(), R.layout.days_day_item_category);
+        addItemType(DayEntity.Companion.getDATA(), R.layout.days_day_item_data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, DayEntity item) {
-        switch (helper.getItemViewType()) {
-            case DayEntity.CATEGORY: {
-                DayEntity.Category category = (DayEntity.Category) item;
+        // TODO Use switch.
+        if (helper.getItemViewType() == DayEntity.Companion.getCATEGORY()) {
+            DayEntity.Category category = (DayEntity.Category) item;
 
-                helper.setText(R.id.category, category.category);
+            helper.setText(R.id.category, category.getCategory());
+        } else if (helper.getItemViewType() == DayEntity.Companion.getDATA()) {
+            DayEntity.Data data = (DayEntity.Data) item;
 
-                break;
-            }
-            case DayEntity.DATA: {
-                DayEntity.Data data = (DayEntity.Data) item;
+            helper.getView(R.id.data).setOnClickListener(v -> {
+                for (Listener listener : listeners) {
+                    listener.onDataClick(data);
+                }
+            });
 
-                helper.getView(R.id.data).setOnClickListener(v -> {
-                    for (Listener listener : listeners) {
-                        listener.onDataClick(data);
-                    }
-                });
+            loadImage(helper.getView(R.id.fuli), data.getDataModel().getValidFuli(), true);
 
-                loadImage(helper.getView(R.id.fuli), data.dataModel.getValidFuli(), true);
+            // TODO Null check.
+            helper.setText(R.id.desc, data.getDataModel().getValidDesc());
 
-                // TODO Null check.
-                helper.setText(R.id.desc, data.dataModel.getValidDesc());
-
-                loadImage(helper.getView(R.id.imageA), data.dataModel.getValidImageA(), false);
-                loadImage(helper.getView(R.id.imageB), data.dataModel.getValidImageB(), false);
-                loadImage(helper.getView(R.id.imageC), data.dataModel.getValidImageC(), false);
-
-                break;
-            }
+            loadImage(helper.getView(R.id.imageA), data.getDataModel().getValidImageA(), false);
+            loadImage(helper.getView(R.id.imageB), data.getDataModel().getValidImageB(), false);
+            loadImage(helper.getView(R.id.imageC), data.getDataModel().getValidImageC(), false);
         }
     }
 
@@ -116,7 +110,7 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
      * Sets {@link DayModel} data.
      */
     public void setDay(@Nullable DayModel dayModel) {
-        ArrayList<DayEntity> dayEntities = DayEntity.newDayEntities(dayModel);
+        ArrayList<DayEntity> dayEntities = DayEntity.Companion.newDayEntities(dayModel);
         setNewData(dayEntities);
     }
 
