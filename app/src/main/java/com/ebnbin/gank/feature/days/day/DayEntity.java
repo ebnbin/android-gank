@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Day entity.
@@ -27,7 +28,7 @@ abstract class DayEntity implements MultiItemEntity {
     public static ArrayList<DayEntity> newDayEntities(@Nullable DayModel dayModel) {
         ArrayList<DayEntity> dayEntities = new ArrayList<>();
 
-        if (dayModel == null || dayModel.isError()) {
+        if (dayModel == null) {
             return dayEntities;
         }
 
@@ -37,7 +38,7 @@ abstract class DayEntity implements MultiItemEntity {
         }
 
         addTypeEntities(dayEntities, DayModel.ResultsModel.DataModel.FULI, resultsModel.getFuli());
-        addTypeEntities(dayEntities, DayModel.ResultsModel.DataModel.IOS, resultsModel.getIOS());
+        addTypeEntities(dayEntities, DayModel.ResultsModel.DataModel.IOS, resultsModel.getIos());
         addTypeEntities(dayEntities, DayModel.ResultsModel.DataModel.ANDROID, resultsModel.getAndroid());
         addTypeEntities(dayEntities, DayModel.ResultsModel.DataModel.QIANDUAN, resultsModel.getQianduan());
         addTypeEntities(dayEntities, DayModel.ResultsModel.DataModel.XIATUIJIAN, resultsModel.getXiatuijian());
@@ -59,8 +60,8 @@ abstract class DayEntity implements MultiItemEntity {
      *         该类型的数据.
      */
     private static void addTypeEntities(@NonNull ArrayList<DayEntity> dayEntities, @NonNull String category,
-            @Nullable DayModel.ResultsModel.DataModel[] dataModels) {
-        if (dataModels == null || dataModels.length <= 0) {
+            @Nullable List<DayModel.ResultsModel.DataModel> dataModels) {
+        if (dataModels == null || dataModels.size() <= 0) {
             return;
         }
 
@@ -95,25 +96,10 @@ abstract class DayEntity implements MultiItemEntity {
      */
     static final class Data extends DayEntity {
         @NonNull
-        public final String fuli;
-        @NonNull
-        public final String desc;
-        @NonNull
-        public final String imageA;
-        @NonNull
-        public final String imageB;
-        @NonNull
-        public final String imageC;
-        @NonNull
-        public final String url;
+        public final DayModel.ResultsModel.DataModel dataModel;
 
         private Data(@NonNull DayModel.ResultsModel.DataModel dataModel) {
-            fuli = dataModel.getValidFuli();
-            desc = dataModel.getValidDesc();
-            imageA = dataModel.getValidImageA();
-            imageB = dataModel.getValidImageB();
-            imageC = dataModel.getValidImageC();
-            url = dataModel.getValidUrl();
+            this.dataModel = dataModel;
         }
 
         @Override

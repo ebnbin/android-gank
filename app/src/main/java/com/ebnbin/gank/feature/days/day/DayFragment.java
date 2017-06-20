@@ -5,7 +5,6 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 
 import com.ebnbin.eb.util.EBUtil;
@@ -14,7 +13,6 @@ import com.ebnbin.ebapplication.context.EBActionBarFragment;
 import com.ebnbin.ebapplication.context.EBFragment;
 import com.ebnbin.ebapplication.net.NetModelCallback;
 import com.ebnbin.gank.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -79,7 +77,11 @@ public final class DayFragment extends EBFragment {
             void onDataClick(@NonNull DayEntity.Data data) {
                 super.onDataClick(data);
 
-                getEbActivity().loadUrl(data.url);
+                if (data.dataModel.getValidUrl() != null) {
+                    getEbActivity().loadUrl(data.dataModel.getValidUrl());
+                } else {
+                    // TODO
+                }
             }
         });
         mDayRecyclerView.setAdapter(mAdapter);
@@ -192,14 +194,14 @@ public final class DayFragment extends EBFragment {
                 }
 
                 mAdapter.setDay(mDayModel);
-
-                // Preload 福利 image.
-                if (!TextUtils.isEmpty(mDayModel.getResults().getValidFuliUrl())) {
-                    Picasso
-                            .with(getContext())
-                            .load(mDayModel.getResults().getValidFuliUrl())
-                            .fetch();
-                }
+//
+//                // Preload 福利 image.
+//                if (!TextUtils.isEmpty(mDayModel.getResults().getValidFuliUrl())) {
+//                    Picasso
+//                            .with(getContext())
+//                            .load(mDayModel.getResults().getValidFuliUrl())
+//                            .fetch();
+//                }
             }
         });
     }

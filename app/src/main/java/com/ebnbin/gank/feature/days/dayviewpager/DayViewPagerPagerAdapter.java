@@ -101,7 +101,8 @@ final class DayViewPagerPagerAdapter extends FragmentStatePagerAdapter {
                     public void onGetDayModel(@NonNull DayModel dayModel) {
                         super.onGetDayModel(dayModel);
 
-                        String fuliUrl = dayModel.getResults().getValidFuliUrl();
+                        // TODO: NPE.
+                        String fuliUrl = dayModel.getResults().getValidFirstFuli();
                         callback.onGetFuliUrl(fuliUrl);
                     }
                 });

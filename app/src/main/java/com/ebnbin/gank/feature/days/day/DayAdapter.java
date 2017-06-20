@@ -47,13 +47,14 @@ final class DayAdapter extends BaseMultiItemQuickAdapter<DayEntity, BaseViewHold
                     }
                 });
 
-                loadImage(helper.getView(R.id.fuli), data.fuli, true);
+                loadImage(helper.getView(R.id.fuli), data.dataModel.getValidFuli(), true);
 
-                helper.setText(R.id.desc, data.desc);
+                // TODO Null check.
+                helper.setText(R.id.desc, data.dataModel.getValidDesc());
 
-                loadImage(helper.getView(R.id.imageA), data.imageA, false);
-                loadImage(helper.getView(R.id.imageB), data.imageB, false);
-                loadImage(helper.getView(R.id.imageC), data.imageC, false);
+                loadImage(helper.getView(R.id.imageA), data.dataModel.getValidImageA(), false);
+                loadImage(helper.getView(R.id.imageB), data.dataModel.getValidImageB(), false);
+                loadImage(helper.getView(R.id.imageC), data.dataModel.getValidImageC(), false);
 
                 break;
             }
