@@ -15,6 +15,7 @@ import com.ebnbin.gank.feature.days.day.DayFragment;
 import com.ebnbin.gank.feature.days.day.DayModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Days {@link android.support.v4.view.PagerAdapter}.
@@ -31,14 +32,7 @@ final class DayViewPagerPagerAdapter extends FragmentStatePagerAdapter {
     /**
      * Sets new data.
      */
-    public void setHistoryModel(@NonNull HistoryModel historyModel) {
-        setTimestamps(DayViewPagerUtil.getDaysHistoryList(historyModel));
-    }
-
-    /**
-     * Sets new data.
-     */
-    private void setTimestamps(@Nullable ArrayList<Timestamp> timestamps) {
+    public void setData(@Nullable List<Timestamp> timestamps) {
         this.timestamps.clear();
 
         if (timestamps != null) {

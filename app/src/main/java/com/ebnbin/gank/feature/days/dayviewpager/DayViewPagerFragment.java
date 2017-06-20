@@ -15,6 +15,7 @@ import com.ebnbin.ebapplication.context.EBActionBarFragment;
 import com.ebnbin.ebapplication.context.EBFragment;
 import com.ebnbin.ebapplication.net.NetModelCallback;
 import com.ebnbin.gank.R;
+import com.ebnbin.gank.feature.days.HistoryModel;
 
 import okhttp3.Call;
 import okhttp3.Response;
@@ -134,7 +135,7 @@ public final class DayViewPagerFragment extends EBFragment {
             return false;
         }
 
-        mDayViewPagerPagerAdapter.setHistoryModel(mHistoryModel);
+        mDayViewPagerPagerAdapter.setData(mHistoryModel.getTimestamps());
 
         int defaultCurrentItem = mDayViewPagerPagerAdapter.getCount() - 1;
         int currentItem = savedInstanceState.getInt(STATE_CURRENT_ITEM, defaultCurrentItem);
@@ -174,7 +175,7 @@ public final class DayViewPagerFragment extends EBFragment {
                 super.onSuccess(call, model, response, byteArray);
 
                 mHistoryModel = model;
-                mDayViewPagerPagerAdapter.setHistoryModel(mHistoryModel);
+                mDayViewPagerPagerAdapter.setData(mHistoryModel.getTimestamps());
 
                 int item = mDayViewPagerPagerAdapter.getCount() - 1;
                 if (item >= 0 && item < mDayViewPagerPagerAdapter.getCount()) {
