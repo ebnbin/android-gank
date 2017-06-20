@@ -30,6 +30,11 @@ public final class DaysFragment extends EBActionBarFragment {
     }
 
     @Override
+    protected boolean overrideHasOptionsMenu() {
+        return true;
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
