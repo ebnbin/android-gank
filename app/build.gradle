@@ -60,8 +60,8 @@ android {
 }
 
 dependencies {
-    implementation project(':..:android-eb-application:eb-application')
+//    implementation project(':..:android-eb-application:eb-application')
+    implementation 'com.ebnbin:eb-application:0.2.5'
 
-//    implementation 'com.ebnbin:eb-application:0.2.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 }
