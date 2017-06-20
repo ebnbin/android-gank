@@ -3,7 +3,7 @@ package com.ebnbin.gank;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.ebnbin.ebapplication.context.ui.EBActivity;
+import com.ebnbin.ebapplication.context.EBActivity;
 import com.ebnbin.gank.feature.days.DaysFragment;
 
 public final class MainActivity extends EBActivity {

@@ -8,8 +8,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.ebnbin.ebapplication.context.ui.EBActionBarFragment;
-import com.ebnbin.ebapplication.fragment.about.AboutDialogFragment;
+import com.ebnbin.ebapplication.context.EBActionBarFragment;
+import com.ebnbin.ebapplication.feature.about.AboutDialogFragment;
 import com.ebnbin.gank.R;
 import com.ebnbin.gank.feature.days.dayviewpager.DayViewPagerFragment;
 

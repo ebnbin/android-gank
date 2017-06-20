@@ -11,8 +11,8 @@ import android.view.View;
 
 import com.ebnbin.eb.util.EBUtil;
 import com.ebnbin.eb.util.Timestamp;
-import com.ebnbin.ebapplication.context.ui.EBActionBarFragment;
-import com.ebnbin.ebapplication.context.ui.EBFragment;
+import com.ebnbin.ebapplication.context.EBActionBarFragment;
+import com.ebnbin.ebapplication.context.EBFragment;
 import com.ebnbin.ebapplication.net.NetModelCallback;
 import com.ebnbin.gank.R;
 
