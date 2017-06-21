@@ -45,7 +45,7 @@ final class DayViewPagerPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Timestamp timestamp = timestamps.get(position);
-        return DayFragment.newInstance(timestamp);
+        return DayFragment.Companion.newInstance(timestamp);
     }
 
     @Override
