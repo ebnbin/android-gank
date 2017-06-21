@@ -2,6 +2,23 @@
 
 [http://gank.io](http://gank.io)
 
+### 0.3.0
+
+##### Add
+
+* Android O adaptive launcher icons.
+* New About.
+* Auto-collapsed ActionBar.
+
+##### Optimize
+
+* Use Kotlin language.
+* Improve built-in browser.
+
+##### Fix
+
+* Crash in Android O.
+
 ### 0.2.0
 
 Add: 一个内置浏览器.
