@@ -68,10 +68,10 @@ public final class DayViewPagerFragment extends EBFragment {
                     actionBarFragment.getAppBarLayout().setExpanded(true, true);
                 }
 
-                mDayViewPagerPagerAdapter.getFuliUrl(position, new DayViewPagerPagerAdapter.FuliUrlCallback() {
+                mDayViewPagerPagerAdapter.getFirstFuli(position, new DayViewPagerPagerAdapter.FirstFuliCallback() {
                     @Override
-                    public void onGetFuliUrl(@Nullable String fuliUrl) {
-                        super.onGetFuliUrl(fuliUrl);
+                    public void onGetFirstFuli(@Nullable String url) {
+                        super.onGetFirstFuli(url);
 
                         // TODO: 福利 image.
                     }
@@ -96,7 +96,7 @@ public final class DayViewPagerFragment extends EBFragment {
             return;
         }
 
-        Timestamp timestamp = mDayViewPagerPagerAdapter.timestamps.get(position);
+        Timestamp timestamp = mDayViewPagerPagerAdapter.getTimestamps().get(position);
         if (timestamp == null) {
             return;
         }
