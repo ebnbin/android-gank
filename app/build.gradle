@@ -61,8 +61,8 @@ android {
 
 dependencies {
 //    implementation project(':..:android-eb-application:eb-application')
-    implementation 'com.ebnbin:eb-application:0.3.0'
+    implementation 'com.ebnbin:eb-application:0.3.1'
 
-    implementation 'com.ebnbin:recyclercalendarview:0.1.1'
+    implementation 'com.ebnbin:recyclercalendarview:0.1.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 }

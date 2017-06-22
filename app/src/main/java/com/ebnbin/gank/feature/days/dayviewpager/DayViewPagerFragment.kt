@@ -4,8 +4,13 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBar
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.ebnbin.eb.util.EBUtil
+import com.ebnbin.eb.util.Timestamp
 import com.ebnbin.ebapplication.context.EBFragment
 import com.ebnbin.ebapplication.net.NetModelCallback
 import com.ebnbin.gank.R
@@ -16,7 +21,7 @@ import okhttp3.Response
 /**
  * 用 [ViewPager] 展示多个 [com.ebnbin.gank.feature.days.day.DayFragment].
  */
-class DayViewPagerFragment : EBFragment() {
+class DayViewPagerFragment : EBFragment(), DayViewPagerHistoryDialogFragment.Callback {
     override fun overrideContentViewLayout(): Int {
         return R.layout.days_day_view_pager_fragment
     }
@@ -141,6 +146,10 @@ class DayViewPagerFragment : EBFragment() {
                 historyModel = model
                 pagerAdapter.setData(historyModel!!.timestamps)
 
+                if (calendarMenuItem != null) {
+                    calendarMenuItem!!.isVisible = true
+                }
+
                 val item = pagerAdapter.count - 1
                 if (item >= 0 && item < pagerAdapter.count) {
                     daysViewPager.setCurrentItem(item, false)
@@ -149,8 +158,47 @@ class DayViewPagerFragment : EBFragment() {
         })
     }
 
+    //*****************************************************************************************************************
+
+    private var calendarMenuItem: MenuItem? = null
+
+    override fun overrideHasOptionsMenu(): Boolean {
+        return true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        inflater.inflate(R.menu.fragment_days_day_view_pager, menu)
+
+        calendarMenuItem = menu.findItem(R.id.calendar)
+        calendarMenuItem!!.isVisible = historyModel != null
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.calendar -> {
+                DayViewPagerHistoryDialogFragment.showDialog(childFragmentManager, historyModel!!.timestamps,
+                        pagerAdapter.timestamps[daysViewPager.currentItem])
+
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onSelected(date: Timestamp) {
+        val position = pagerAdapter.timestamps.indexOf(date)
+        if (position == -1) {
+            Toast.makeText(context, R.string.days_day_view_pager_no_data, Toast.LENGTH_SHORT).show();
+        } else {
+            daysViewPager.setCurrentItem(position, true)
+        }
+    }
+
     companion object {
-        //*****************************************************************************************************************
+        //*************************************************************************************************************
         // Instance state.
 
         private val STATE_HISTORY_MODEL = "history_model"

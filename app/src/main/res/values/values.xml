@@ -14,6 +14,8 @@
     <string name="app_slogan">每日分享妹子图 和 技术干货，\n还有供大家中午休息的休闲视频</string>
     <string name="app_links">http://gank.io</string>
     <string name="days_title">%1$04d-%2$02d-%3$02d</string>
+    <string name="days_day_view_pager_calendar">历史</string>
+    <string name="days_day_view_pager_no_data">没有数据</string>
 
     <style name="DayItem">
         <item name="android:layout_width">match_parent</item>

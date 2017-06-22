@@ -65,12 +65,12 @@ internal class DayAdapter : BaseMultiItemQuickAdapter<DayEntity, BaseViewHolder>
                 requestCreator.resize(imageView.width, 0)
             }
 
-            val placeholderDrawable = mContext.getDrawable(R.drawable.day_placeholder)
+            val placeholderDrawable = mContext.getDrawable(R.drawable.days_day_placeholder)
             if (placeholderDrawable != null) {
                 requestCreator.placeholder(placeholderDrawable)
             }
 
-            val errorDrawable = mContext.getDrawable(R.drawable.day_error)
+            val errorDrawable = mContext.getDrawable(R.drawable.days_day_error)
             if (errorDrawable != null) {
                 requestCreator.error(errorDrawable)
             }
