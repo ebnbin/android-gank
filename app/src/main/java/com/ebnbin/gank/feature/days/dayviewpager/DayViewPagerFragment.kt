@@ -8,7 +8,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import com.ebnbin.eb.util.EBUtil
 import com.ebnbin.eb.util.Timestamp
 import com.ebnbin.ebapplication.context.EBFragment
@@ -190,9 +189,7 @@ class DayViewPagerFragment : EBFragment(), DayViewPagerHistoryDialogFragment.Cal
 
     override fun onSelected(date: Timestamp) {
         val position = pagerAdapter.timestamps.indexOf(date)
-        if (position == -1) {
-            Toast.makeText(context, R.string.days_day_view_pager_no_data, Toast.LENGTH_SHORT).show();
-        } else {
+        if (position != -1) {
             daysViewPager.setCurrentItem(position, true)
         }
     }

@@ -41,7 +41,7 @@ internal class DayViewPagerHistoryDialogFragment : DialogFragment() {
 
         val rootView = View.inflate(context, R.layout.days_day_view_pager_dialog_fragment_calendar, null) as ViewGroup
         val recyclerCalendarView = rootView.findViewById<RecyclerCalendarView>(R.id.recycler_calendar_view)
-        recyclerCalendarView.setRange(timestamps.first(), timestamps.last())
+        recyclerCalendarView.setRange(timestamps)
         recyclerCalendarView.selectDate(selectedTimestamp, true)
         recyclerCalendarView.listeners.add(object : RecyclerCalendarView.Listener {
             override fun onSelected(date: Timestamp) {

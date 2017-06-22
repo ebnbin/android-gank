@@ -1,1 +1,1 @@
-include ':app'//, ':..:android-eb:eb', ':..:android-eb-application:eb-application'
+include ':app', ':..:android-eb:eb', ':..:android-eb-application:eb-application', ':..:android-recyclercalendarview:recyclercalendarview'
