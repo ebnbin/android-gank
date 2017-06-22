@@ -1,6 +1,15 @@
 # android-gank
 
-[http://gank.io](http://gank.io)
+> [http://gank.io](http://gank.io)
+
+![0.4.0-a.png](png/0.4.0-a.png)
+
+## Download
+
+* [GitHub](https://github.com/ebnbin/android-gank/releases/download/0.4.0/com.ebnbin.gank-0.4.0.apk)
+* [Google Play](https://play.google.com/store/apps/details?id=com.ebnbin.gank)
+
+## Changelog
 
 ### 0.4.0
 
@@ -40,5 +49,3 @@ Fix: 某些情况下闪退的问题.
 ### 0.1.0
 
 First release.
-
-![0.4.0-a.png](png/0.4.0-a.png)
