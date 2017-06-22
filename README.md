@@ -2,6 +2,16 @@
 
 [http://gank.io](http://gank.io)
 
+### 0.4.0
+
+##### Add
+
+* A pretty date picker to show history.
+
+##### Fix
+
+* Crash on App start-up.
+
 ### 0.3.0
 
 ##### Add
@@ -31,4 +41,4 @@ Fix: 某些情况下闪退的问题.
 
 First release.
 
-![0.1.0-a.png](png/0.1.0-a.png)
+![0.4.0-a.png](png/0.4.0-a.png)
