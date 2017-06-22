@@ -14,13 +14,14 @@ import com.ebnbin.ebapplication.context.EBFragment
 import com.ebnbin.ebapplication.net.NetModelCallback
 import com.ebnbin.gank.R
 import com.ebnbin.gank.feature.days.HistoryModel
+import com.ebnbin.recyclercalendarview.recyclerdatepicker.RecyclerDatePickerSupportDialogFragment
 import okhttp3.Call
 import okhttp3.Response
 
 /**
  * 用 [ViewPager] 展示多个 [com.ebnbin.gank.feature.days.day.DayFragment].
  */
-class DayViewPagerFragment : EBFragment(), DayViewPagerHistoryDialogFragment.Callback {
+class DayViewPagerFragment : EBFragment(), RecyclerDatePickerSupportDialogFragment.Callback {
     override fun overrideContentViewLayout(): Int {
         return R.layout.days_day_view_pager_fragment
     }
@@ -100,7 +101,7 @@ class DayViewPagerFragment : EBFragment(), DayViewPagerHistoryDialogFragment.Cal
             return false
         }
 
-        historyModel = savedInstanceState.getSerializable(STATE_HISTORY_MODEL) as HistoryModel
+        historyModel = savedInstanceState.getSerializable(STATE_HISTORY_MODEL) as HistoryModel?
         if (historyModel == null) {
             return false
         }
@@ -177,7 +178,7 @@ class DayViewPagerFragment : EBFragment(), DayViewPagerHistoryDialogFragment.Cal
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.calendar -> {
-                DayViewPagerHistoryDialogFragment.showDialog(childFragmentManager, historyModel!!.timestamps,
+                RecyclerDatePickerSupportDialogFragment.showDialog(childFragmentManager, historyModel!!.timestamps,
                         pagerAdapter.timestamps[daysViewPager.currentItem])
 
                 return true
