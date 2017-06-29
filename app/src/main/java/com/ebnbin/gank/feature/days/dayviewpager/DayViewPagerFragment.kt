@@ -27,7 +27,7 @@ class DayViewPagerFragment : EBFragment(), RecyclerDatePickerSupportDialogFragme
     }
 
     private val daysViewPager: ViewPager by lazy {
-        stateView.findViewById<ViewPager>(R.id.days)
+        stateView.findViewById(R.id.days) as ViewPager
     }
 
     private val pagerAdapter: DayViewPagerPagerAdapter by lazy {

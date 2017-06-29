@@ -29,7 +29,7 @@ class DayFragment : EBFragment() {
     }
 
     private val dayRecyclerView: RecyclerView by lazy {
-        stateView.findViewById<RecyclerView>(R.id.day)
+        stateView.findViewById(R.id.day) as RecyclerView
     }
 
     private val layoutManager: DayLayoutManager by lazy {
