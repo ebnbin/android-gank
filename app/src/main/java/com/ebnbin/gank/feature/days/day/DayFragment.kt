@@ -10,6 +10,10 @@ import com.ebnbin.ebapplication.context.EBActionBarFragment
 import com.ebnbin.ebapplication.context.EBFragment
 import com.ebnbin.ebapplication.net.NetModelCallback
 import com.ebnbin.gank.R
+import com.ebnbin.gank.feature.data.DataAdapter
+import com.ebnbin.gank.feature.data.DataEntity
+import com.ebnbin.gank.feature.data.DataItemDecoration
+import com.ebnbin.gank.feature.data.DataLayoutManager
 import okhttp3.Call
 import okhttp3.Response
 import java.util.*
@@ -32,24 +36,24 @@ class DayFragment : EBFragment() {
         stateView.findViewById(R.id.day) as RecyclerView
     }
 
-    private val layoutManager: DayLayoutManager by lazy {
-        DayLayoutManager(context)
+    private val layoutManager: DataLayoutManager by lazy {
+        DataLayoutManager(context)
     }
 
-    private val adapter: DayAdapter by lazy {
-        DayAdapter()
+    private val adapter: DataAdapter by lazy {
+        DataAdapter()
     }
 
-    private val itemDecoration: DayItemDecoration by lazy {
-        DayItemDecoration(context)
+    private val itemDecoration: DataItemDecoration by lazy {
+        DataItemDecoration(context)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         dayRecyclerView.layoutManager = layoutManager
-        adapter.listeners.add(object : DayAdapter.Listener() {
-            override fun onDataClick(data: DayEntity.Data) {
+        adapter.listeners.add(object : DataAdapter.Listener() {
+            override fun onDataClick(data: DataEntity.Data) {
                 super.onDataClick(data)
 
                 if (data.dataModel.validUrl != null) {

@@ -1,42 +1,43 @@
-package com.ebnbin.gank.feature.days.day
+package com.ebnbin.gank.feature.data
 
 import android.view.View
 import android.widget.ImageView
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.ebnbin.gank.R
+import com.ebnbin.gank.feature.category.CategoryModel
+import com.ebnbin.gank.feature.days.day.DayModel
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
-import java.util.*
 
 /**
  * Day [android.support.v7.widget.RecyclerView.Adapter].
  */
-internal class DayAdapter : BaseMultiItemQuickAdapter<DayEntity, BaseViewHolder>(null) {
+internal class DataAdapter : BaseMultiItemQuickAdapter<DataEntity, BaseViewHolder>(null) {
     init {
-        addItemType(DayEntity.CATEGORY, R.layout.days_day_item_category)
-        addItemType(DayEntity.DATA, R.layout.days_day_item_data)
+        addItemType(DataEntity.CATEGORY, R.layout.days_day_item_category)
+        addItemType(DataEntity.DATA, R.layout.days_day_item_data)
     }
 
-    override fun convert(helper: BaseViewHolder, item: DayEntity) {
+    override fun convert(helper: BaseViewHolder, item: DataEntity) {
         when (helper.itemViewType) {
-            DayEntity.CATEGORY -> {
-                val category = item as DayEntity.Category
+            DataEntity.CATEGORY -> {
+                val category = item as DataEntity.Category
 
-                helper.setText(R.id.category, category.category)
+                helper.setText(R.id.category, category.category.title)
             }
-            DayEntity.DATA -> {
-                val data = item as DayEntity.Data
+            DataEntity.DATA -> {
+                val data = item as DataEntity.Data
 
-                helper.getView<View>(R.id.data).setOnClickListener {
+                helper.getView<android.view.View>(R.id.data).setOnClickListener {
                     for (listener in listeners) {
                         listener.onDataClick(data)
                     }
                 }
 
-                loadImage(helper.getView<ImageView>(R.id.fuli), data.dataModel.validFuli, true)
+                loadImage(helper.getView<android.widget.ImageView>(R.id.fuli), data.dataModel.validFuli, true)
 
-                helper.setText(R.id.desc, data.dataModel.validDesc)
+                helper.setText(com.ebnbin.gank.R.id.desc, data.dataModel.validDesc)
 
                 loadImage(helper.getView<ImageView>(R.id.imageA), data.dataModel.validImageA, false)
                 loadImage(helper.getView<ImageView>(R.id.imageB), data.dataModel.validImageB, false)
@@ -86,7 +87,11 @@ internal class DayAdapter : BaseMultiItemQuickAdapter<DayEntity, BaseViewHolder>
     }
 
     fun setNewData(dayModel: DayModel?) {
-        setNewData(DayEntity.newDayEntities(dayModel))
+        setNewData(DataEntity.newDayEntities(dayModel))
+    }
+
+    fun setNewData(categoryModel: CategoryModel?) {
+        setNewData(DataEntity.newCategoryEntities(categoryModel))
     }
 
     //*****************************************************************************************************************
@@ -95,6 +100,6 @@ internal class DayAdapter : BaseMultiItemQuickAdapter<DayEntity, BaseViewHolder>
     val listeners = ArrayList<Listener>()
 
     internal abstract class Listener {
-        internal open fun onDataClick(data: DayEntity.Data) {}
+        internal open fun onDataClick(data: DataEntity.Data) {}
     }
 }

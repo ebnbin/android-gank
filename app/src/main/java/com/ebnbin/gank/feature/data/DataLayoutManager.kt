@@ -1,4 +1,4 @@
-package com.ebnbin.gank.feature.days.day
+package com.ebnbin.gank.feature.data
 
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
@@ -6,4 +6,4 @@ import android.support.v7.widget.LinearLayoutManager
 /**
  * Day [android.support.v7.widget.RecyclerView.LayoutManager].
  */
-internal class DayLayoutManager(context: Context) : LinearLayoutManager(context)
+internal class DataLayoutManager(context: Context) : LinearLayoutManager(context)
