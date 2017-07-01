@@ -33,5 +33,9 @@ class CategoryFragment : EBActionBarFragment() {
         viewPager.adapter = pagerAdapter
         tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         tabLayout.setupWithViewPager(viewPager)
+
+        if (bottomNavigationParentFragment != null) {
+            appBarLayout.stateListAnimator = null
+        }
     }
 }

@@ -64,18 +64,6 @@ class DayFragment : EBFragment() {
         dayRecyclerView.adapter = adapter
         dayRecyclerView.addItemDecoration(itemDecoration)
         dayRecyclerView.setItemViewCacheSize(32)
-
-        if (bottomNavigationParentFragment != null) {
-            bottomNavigationParentFragment!!.addScrollableView(dayRecyclerView)
-        }
-    }
-
-    override fun onDestroyView() {
-        if (bottomNavigationParentFragment != null) {
-            bottomNavigationParentFragment!!.removeScrollableView(dayRecyclerView)
-        }
-
-        super.onDestroyView()
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {

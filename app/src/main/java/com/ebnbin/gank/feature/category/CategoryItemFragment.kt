@@ -55,18 +55,6 @@ class CategoryItemFragment : EBFragment() {
         listRecyclerView.adapter = adapter
         listRecyclerView.addItemDecoration(itemDecoration)
         listRecyclerView.setItemViewCacheSize(32)
-
-        if (bottomNavigationParentFragment != null) {
-            bottomNavigationParentFragment!!.addScrollableView(listRecyclerView)
-        }
-    }
-
-    override fun onDestroyView() {
-        if (bottomNavigationParentFragment != null) {
-            bottomNavigationParentFragment!!.removeScrollableView(listRecyclerView)
-        }
-
-        super.onDestroyView()
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
