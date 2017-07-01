@@ -1,21 +1,9 @@
-repositories {
-    jcenter()
-
-    maven {
-        url 'https://maven.google.com'
-    }
-
-    maven {
-        url 'https://jitpack.io'
-    }
-}
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 def localPropertiesFile = rootProject.file('local.properties')
 def localProperties = new Properties()
-
 localProperties.load(new FileInputStream(localPropertiesFile))
 
 android {
@@ -28,15 +16,6 @@ android {
         applicationId 'com.ebnbin.gank'
         versionCode 4
         versionName '0.4.0'
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
     }
 
     signingConfigs {
@@ -60,8 +39,8 @@ android {
 }
 
 dependencies {
-    implementation project(':..:android-eb-application:eb-application')
-//    implementation 'com.ebnbin:eb-application:0.3.3'
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    implementation is_release ? "com.ebnbin:eb-application:$version_eb"
+            : project(':..:android-eb-application:eb-application')
+    implementation is_release ? "com.ebnbin:recyclercalendarview:$version_eb"
+            : project(':..:android-recyclercalendarview:recyclercalendarview')
 }
