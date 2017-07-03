@@ -4,8 +4,6 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBar
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import com.ebnbin.eb.util.EBUtil
@@ -74,13 +72,16 @@ class DayViewPagerFragment : EBFragment(), RecyclerDatePickerSupportDialogFragme
              * Sets title of [ActionBar].
              */
             private fun setTitle(position: Int) {
-                val actionBar = ebActivity.supportActionBar ?: return
+                val toolbar = actionBarParentFragment?.toolbar ?: return
+
                 val timestamp = pagerAdapter.timestamps[position]
                 val title = getString(R.string.days_title, timestamp.year, timestamp.month, timestamp.day)
 
-                actionBar.title = title
+                toolbar.title = title
             }
         })
+
+        initActionBar()
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -159,34 +160,24 @@ class DayViewPagerFragment : EBFragment(), RecyclerDatePickerSupportDialogFragme
     }
 
     //*****************************************************************************************************************
+    // ActionBar.
 
     private var calendarMenuItem: MenuItem? = null
 
-    override fun overrideHasOptionsMenu(): Boolean {
-        return true
-    }
+    private fun initActionBar() {
+        val toolbar = actionBarParentFragment?.toolbar ?: return
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-
-        inflater.inflate(R.menu.fragment_days_day_view_pager, menu)
-
-        calendarMenuItem = menu.findItem(R.id.calendar)
+        toolbar.inflateMenu(R.menu.fragment_days_day_view_pager)
+        calendarMenuItem = toolbar.menu.findItem(R.id.calendar)
         calendarMenuItem!!.isVisible = historyModel != null
+        toolbar.menu.findItem(R.id.calendar).setOnMenuItemClickListener({
+            RecyclerDatePickerSupportDialogFragment.showDialog(childFragmentManager, historyModel!!.timestamps,
+                    pagerAdapter.timestamps[daysViewPager.currentItem])
+            true
+        })
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.calendar -> {
-                RecyclerDatePickerSupportDialogFragment.showDialog(childFragmentManager, historyModel!!.timestamps,
-                        pagerAdapter.timestamps[daysViewPager.currentItem])
-
-                return true
-            }
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
+    //*****************************************************************************************************************
 
     override fun onSelected(date: Timestamp) {
         val position = pagerAdapter.timestamps.indexOf(date)

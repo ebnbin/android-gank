@@ -1,9 +1,6 @@
 package com.ebnbin.gank.feature.days
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import com.ebnbin.ebapplication.context.EBActionBarFragment
 import com.ebnbin.ebapplication.feature.about.AboutDialogFragment
@@ -19,27 +16,19 @@ class DaysFragment : EBActionBarFragment() {
 
         val dayViewPagerFragment = DayViewPagerFragment()
         fragmentHelper.set(dayViewPagerFragment)
+
+        initActionBar()
     }
 
-    override fun overrideHasOptionsMenu(): Boolean {
-        return true
-    }
+    private fun initActionBar() {
+        val toolbar = actionBarParentFragment?.toolbar ?: return
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-
-        inflater.inflate(R.menu.fragment_days, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.about -> {
-                AboutDialogFragment.showDialog(childFragmentManager)
-
-                return true
-            }
-        }
-
-        return super.onOptionsItemSelected(item)
+        // TODO Redundant？
+        toolbar.setTitle(R.string.app_label)
+        toolbar.inflateMenu(R.menu.fragment_days)
+        toolbar.menu.findItem(R.id.about).setOnMenuItemClickListener({
+            AboutDialogFragment.showDialog(childFragmentManager)
+            true
+        })
     }
 }
