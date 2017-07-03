@@ -90,6 +90,10 @@ class DayFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragme
         if (!restoreHistory(savedInstanceState)) {
             netGetHistory()
         }
+
+        if (savedInstanceState != null) {
+            calendarMenuItem?.isVisible = savedInstanceState.getBoolean(STATE_CALENDAR_MENU_ITEM_VISIBLE)
+        }
     }
 
     /**
@@ -127,6 +131,7 @@ class DayFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragme
 
         outState.putSerializable(STATE_HISTORY_MODEL, historyModel)
         outState.putInt(STATE_CURRENT_ITEM, daysViewPager.currentItem)
+        outState.putBoolean(STATE_CALENDAR_MENU_ITEM_VISIBLE, calendarMenuItem?.isVisible ?: false)
     }
 
     //*****************************************************************************************************************
@@ -199,5 +204,6 @@ class DayFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragme
 
         private val STATE_HISTORY_MODEL = "history_model"
         private val STATE_CURRENT_ITEM = "current_item"
+        private val STATE_CALENDAR_MENU_ITEM_VISIBLE = "calendar_menu_item_visible"
     }
 }
