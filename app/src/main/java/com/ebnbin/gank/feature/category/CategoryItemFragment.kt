@@ -1,60 +1,17 @@
 package com.ebnbin.gank.feature.category
 
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.v7.widget.RecyclerView
-import android.view.View
-import com.ebnbin.eb.util.EBUtil
-import com.ebnbin.ebapplication.context.EBActionBarFragment
-import com.ebnbin.ebapplication.context.EBFragment
 import com.ebnbin.ebapplication.net.NetModelCallback
-import com.ebnbin.gank.R
-import com.ebnbin.gank.feature.data.*
+import com.ebnbin.gank.feature.data.Category
+import com.ebnbin.gank.feature.data.DataEntity
+import com.ebnbin.gank.feature.data.DataFragment
 import com.ebnbin.gank.feature.days.day.DayModel
 import okhttp3.Call
 import okhttp3.Response
 
-class CategoryItemFragment : EBFragment() {
+class CategoryItemFragment : DataFragment() {
     private val category: Category by lazy {
         arguments.getSerializable(ARG_CATEGORY) as Category
-    }
-
-    override fun overrideContentViewLayout(): Int {
-        return R.layout.category_item_fragment
-    }
-
-    private val listRecyclerView: RecyclerView by lazy {
-        stateView.findViewById(R.id.list) as RecyclerView
-    }
-
-    private val layoutManager: DataLayoutManager by lazy {
-        DataLayoutManager(context)
-    }
-
-    private val adapter: DataAdapter by lazy {
-        DataAdapter()
-    }
-
-    private val itemDecoration: DataItemDecoration by lazy {
-        DataItemDecoration(context)
-    }
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        listRecyclerView.layoutManager = layoutManager
-        adapter.listeners.add(object : DataAdapter.Listener() {
-            override fun onDataClick(data: DataEntity.Data) {
-                super.onDataClick(data)
-
-                if (data.dataModel.validUrl != null) {
-                    ebActivity.loadUrl(data.dataModel.validUrl!!)
-                }
-            }
-        })
-        listRecyclerView.adapter = adapter
-        listRecyclerView.addItemDecoration(itemDecoration)
-        listRecyclerView.setItemViewCacheSize(32)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -80,7 +37,7 @@ class CategoryItemFragment : EBFragment() {
             return false
         }
 
-        adapter.setNewData(categoryModel)
+        setNewData(convertData(categoryModel!!))
 
         return true
     }
@@ -115,21 +72,21 @@ class CategoryItemFragment : EBFragment() {
 
                 categoryModel = model
 
-                adapter.setNewData(categoryModel)
+                setNewData(convertData(this@CategoryItemFragment.categoryModel!!))
             }
         })
     }
 
-    @CallSuper override fun onFront() {
-        super.onFront()
+    private fun convertData(model: CategoryModel): List<DataEntity> {
+        val entities = ArrayList<DataEntity>()
 
-        EBUtil.handler.post {
-            if (actionBarParentFragment != null) {
-                actionBarParentFragment!!.setNestedScrollingChild(listRecyclerView)
-                actionBarParentFragment!!.setActionBarMode(EBActionBarFragment.ActionBarMode.SCROLL, false, null,
-                        false)
-            }
+        if (model.results == null) {
+            return entities
         }
+
+        model.results!!.mapTo(entities) { DataEntity.Data(it) }
+
+        return entities
     }
 
     companion object {

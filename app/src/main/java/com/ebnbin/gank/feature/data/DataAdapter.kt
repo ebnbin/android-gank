@@ -5,8 +5,6 @@ import android.widget.ImageView
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.ebnbin.gank.R
-import com.ebnbin.gank.feature.category.CategoryModel
-import com.ebnbin.gank.feature.days.day.DayModel
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
@@ -84,14 +82,6 @@ internal class DataAdapter : BaseMultiItemQuickAdapter<DataEntity, BaseViewHolde
                 }
             })
         }
-    }
-
-    fun setNewData(dayModel: DayModel?) {
-        setNewData(DataEntity.newDayEntities(dayModel))
-    }
-
-    fun setNewData(categoryModel: CategoryModel?) {
-        setNewData(DataEntity.newCategoryEntities(categoryModel))
     }
 
     //*****************************************************************************************************************

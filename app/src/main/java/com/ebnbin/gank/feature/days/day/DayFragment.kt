@@ -1,69 +1,24 @@
 package com.ebnbin.gank.feature.days.day
 
 import android.os.Bundle
-import android.support.annotation.CallSuper
 import android.support.v7.widget.RecyclerView
-import android.view.View
-import com.ebnbin.eb.util.EBUtil
 import com.ebnbin.eb.util.Timestamp
 import com.ebnbin.ebapplication.context.EBActionBarFragment
-import com.ebnbin.ebapplication.context.EBFragment
 import com.ebnbin.ebapplication.net.NetModelCallback
-import com.ebnbin.gank.R
-import com.ebnbin.gank.feature.data.DataAdapter
+import com.ebnbin.gank.feature.data.Category
 import com.ebnbin.gank.feature.data.DataEntity
-import com.ebnbin.gank.feature.data.DataItemDecoration
-import com.ebnbin.gank.feature.data.DataLayoutManager
+import com.ebnbin.gank.feature.data.DataFragment
+import com.ebnbin.gank.feature.data.DataModel
 import okhttp3.Call
 import okhttp3.Response
-import java.util.*
+import java.util.ArrayList
 
 /**
  * 用 [RecyclerView] 展示某日期的数据.
  */
-class DayFragment : EBFragment() {
+class DayFragment : DataFragment() {
     private val timestamp: Timestamp by lazy {
         arguments.getParcelable<Timestamp>(ARG_TIMESTAMP)
-    }
-
-    //*****************************************************************************************************************
-
-    override fun overrideContentViewLayout(): Int {
-        return R.layout.days_day_fragment
-    }
-
-    private val dayRecyclerView: RecyclerView by lazy {
-        stateView.findViewById(R.id.day) as RecyclerView
-    }
-
-    private val layoutManager: DataLayoutManager by lazy {
-        DataLayoutManager(context)
-    }
-
-    private val adapter: DataAdapter by lazy {
-        DataAdapter()
-    }
-
-    private val itemDecoration: DataItemDecoration by lazy {
-        DataItemDecoration(context)
-    }
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        dayRecyclerView.layoutManager = layoutManager
-        adapter.listeners.add(object : DataAdapter.Listener() {
-            override fun onDataClick(data: DataEntity.Data) {
-                super.onDataClick(data)
-
-                if (data.dataModel.validUrl != null) {
-                    ebActivity.loadUrl(data.dataModel.validUrl!!)
-                }
-            }
-        })
-        dayRecyclerView.adapter = adapter
-        dayRecyclerView.addItemDecoration(itemDecoration)
-        dayRecyclerView.setItemViewCacheSize(32)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -89,9 +44,44 @@ class DayFragment : EBFragment() {
             return false
         }
 
-        adapter.setNewData(dayModel)
+        setNewData(convertData(dayModel!!))
 
         return true
+    }
+
+    // TODO Allow to be null.
+    private fun convertData(dayModel: DayModel): List<DataEntity> {
+        val entities = ArrayList<DataEntity>()
+
+        addTypeEntities(entities, Category.FULI, dayModel.results!!.fuli)
+        addTypeEntities(entities, Category.IOS, dayModel.results!!.ios)
+        addTypeEntities(entities, Category.ANDROID, dayModel.results!!.android)
+        addTypeEntities(entities, Category.QIANDUAN, dayModel.results!!.qianduan)
+        addTypeEntities(entities, Category.XIATUIJIAN, dayModel.results!!.xiatuijian)
+        addTypeEntities(entities, Category.TUOZHANZIYUAN, dayModel.results!!.tuozhanziyuan)
+        addTypeEntities(entities, Category.APP, dayModel.results!!.app)
+        addTypeEntities(entities, Category.XIUXISHIPIN, dayModel.results!!.xiuxishipin)
+
+        return entities
+    }
+
+    /**
+     * 添加某类型的数据.
+     *
+     * @param entities 要添加到的 [ArrayList].
+     * @param category 类型.
+     * @param dataModels 该类型的数据.
+     */
+    private fun addTypeEntities(entities: ArrayList<DataEntity>, category: com.ebnbin.gank.feature.data.Category,
+            dataModels: List<DataModel>?) {
+        if (dataModels == null || dataModels.isEmpty()) {
+            return
+        }
+
+        val categoryEntity = DataEntity.Category(category)
+        entities.add(categoryEntity)
+
+        dataModels.mapTo(entities) { DataEntity.Data(it) }
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
@@ -149,23 +139,11 @@ class DayFragment : EBFragment() {
                 }
                 dayModelCallbacks.clear()
 
-                adapter.setNewData(dayModel)
+                setNewData(convertData(dayModel!!))
 
                 // TODO Preload 福利 image.
             }
         })
-    }
-
-    @CallSuper override fun onFront() {
-        super.onFront()
-
-        EBUtil.handler.post {
-            if (actionBarParentFragment != null) {
-                actionBarParentFragment!!.setNestedScrollingChild(dayRecyclerView)
-                actionBarParentFragment!!.setActionBarMode(EBActionBarFragment.ActionBarMode.SCROLL, false, null,
-                        false)
-            }
-        }
     }
 
     companion object {
