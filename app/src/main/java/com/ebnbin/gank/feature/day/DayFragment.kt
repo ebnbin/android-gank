@@ -21,7 +21,7 @@ import okhttp3.Response
  */
 class DayFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragment.Callback {
     override fun overrideContentViewLayout(): Int {
-        return R.layout.days_day_view_pager_fragment
+        return R.layout.day_fragment
     }
 
     private val daysViewPager: ViewPager by lazy {
@@ -169,13 +169,12 @@ class DayFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragme
 
         // TODO Redundant？
         toolbar.setTitle(R.string.app_label)
-        toolbar.inflateMenu(R.menu.fragment_days)
+        toolbar.inflateMenu(R.menu.day_fragment)
         toolbar.menu.findItem(R.id.about).setOnMenuItemClickListener({
             AboutDialogFragment.showDialog(childFragmentManager)
             true
         })
 
-        toolbar.inflateMenu(R.menu.fragment_days_day_view_pager)
         calendarMenuItem = toolbar.menu.findItem(R.id.calendar)
         calendarMenuItem!!.isVisible = historyModel != null
         toolbar.menu.findItem(R.id.calendar).setOnMenuItemClickListener({

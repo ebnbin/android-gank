@@ -21,7 +21,7 @@ internal class CategoryPagerAdapter(fm: FragmentManager) : FragmentStatePagerAda
     }
 
     override fun getItem(position: Int): Fragment {
-        return CategoryItemFragment.newInstance(data[position])
+        return CategoryPageFragment.newInstance(data[position])
     }
 
     override fun getCount(): Int {

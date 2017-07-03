@@ -8,7 +8,7 @@ import com.ebnbin.gank.feature.data.DataFragment
 import okhttp3.Call
 import okhttp3.Response
 
-class CategoryItemFragment : DataFragment() {
+class CategoryPageFragment : DataFragment() {
     private val category: Category by lazy {
         arguments.getSerializable(ARG_CATEGORY) as Category
     }
@@ -71,7 +71,7 @@ class CategoryItemFragment : DataFragment() {
 
                 categoryModel = model
 
-                setNewData(convertData(this@CategoryItemFragment.categoryModel!!))
+                setNewData(convertData(this@CategoryPageFragment.categoryModel!!))
             }
         })
     }
@@ -91,8 +91,8 @@ class CategoryItemFragment : DataFragment() {
     companion object {
         private const val ARG_CATEGORY = "category"
 
-        fun newInstance(category: Category): CategoryItemFragment {
-            val fragment = CategoryItemFragment()
+        fun newInstance(category: Category): CategoryPageFragment {
+            val fragment = CategoryPageFragment()
             val arguments = Bundle()
             arguments.putSerializable(ARG_CATEGORY, category)
             fragment.arguments = arguments

@@ -13,8 +13,8 @@ import com.squareup.picasso.Picasso
  */
 internal class DataAdapter : BaseMultiItemQuickAdapter<DataEntity, BaseViewHolder>(null) {
     init {
-        addItemType(DataEntity.CATEGORY, R.layout.days_day_item_category)
-        addItemType(DataEntity.DATA, R.layout.days_day_item_data)
+        addItemType(DataEntity.CATEGORY, R.layout.day_item_category)
+        addItemType(DataEntity.DATA, R.layout.day_item_data)
     }
 
     override fun convert(helper: BaseViewHolder, item: DataEntity) {
