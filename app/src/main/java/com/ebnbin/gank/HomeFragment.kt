@@ -19,7 +19,31 @@ class HomeFragment : EBBottomNavigationFragment() {
         val webViewActionBarFragment = WebViewFragment.newInstance("http://ebnbin.com")
         bottomNavigation.addItem(EBBottomNavigationItem(getString(R.string.eb_ebnbin), R.drawable.home_person,
                 webViewActionBarFragment))
+    }
 
-        bottomNavigation.setCurrentItem(1, true)
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        if (savedInstanceState == null) {
+            bottomNavigation.setCurrentItem(1, true)
+
+            return
+        }
+
+        bottomNavigation.setCurrentItem(savedInstanceState.getInt(STATE_CURRENT_ITEM), true)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+
+        if (outState == null) {
+            return
+        }
+
+        outState.putInt(STATE_CURRENT_ITEM, bottomNavigation.currentItem)
+    }
+
+    companion object {
+        private const val STATE_CURRENT_ITEM = "current_item"
     }
 }
