@@ -10,4 +10,8 @@ class MainActivity : EBActivity() {
         val homeFragment = HomeFragment()
         fragmentHelper.set(homeFragment)
     }
+
+    override fun enableDoubleBackFinish(): Boolean {
+        return true
+    }
 }
