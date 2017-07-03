@@ -1,4 +1,4 @@
-package com.ebnbin.gank.feature.days
+package com.ebnbin.gank.feature.day
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -12,7 +12,6 @@ import com.ebnbin.ebapplication.context.EBActionBarFragment
 import com.ebnbin.ebapplication.feature.about.AboutDialogFragment
 import com.ebnbin.ebapplication.net.NetModelCallback
 import com.ebnbin.gank.R
-import com.ebnbin.gank.feature.days.dayviewpager.DayViewPagerPagerAdapter
 import com.ebnbin.recyclercalendarview.recyclerdatepicker.RecyclerDatePickerSupportDialogFragment
 import okhttp3.Call
 import okhttp3.Response
@@ -20,7 +19,7 @@ import okhttp3.Response
 /**
  * 显示每日内容.
  */
-class DaysFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragment.Callback {
+class DayFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragment.Callback {
     override fun overrideContentViewLayout(): Int {
         return R.layout.days_day_view_pager_fragment
     }
@@ -29,8 +28,8 @@ class DaysFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragm
         stateView.findViewById(R.id.days) as ViewPager
     }
 
-    private val pagerAdapter: DayViewPagerPagerAdapter by lazy {
-        DayViewPagerPagerAdapter(childFragmentManager)
+    private val pagerAdapter: DayPagerAdapter by lazy {
+        DayPagerAdapter(childFragmentManager)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -56,7 +55,7 @@ class DaysFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragm
                     actionBarParentFragment!!.appBarLayout.setExpanded(true, true)
                 }
 
-                pagerAdapter.getFirstFuli(position, object : DayViewPagerPagerAdapter.FirstFuliCallback() {
+                pagerAdapter.getFirstFuli(position, object : DayPagerAdapter.FirstFuliCallback() {
                     override fun onGetFirstFuli(url: String?) {
                         super.onGetFirstFuli(url)
 
@@ -136,7 +135,7 @@ class DaysFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragm
     private var historyModel: HistoryModel? = null
 
     /**
-     * Gets history and sets data to [DayViewPagerPagerAdapter].
+     * Gets history and sets data to [DayPagerAdapter].
      */
     private fun netGetHistory() {
         val url = "http://gank.io/api/day/history"

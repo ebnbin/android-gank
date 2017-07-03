@@ -1,4 +1,4 @@
-package com.ebnbin.gank.feature.days
+package com.ebnbin.gank.feature.day
 
 import com.ebnbin.eb.util.Timestamp
 import com.ebnbin.ebapplication.model.EBModel

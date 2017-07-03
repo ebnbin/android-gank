@@ -1,4 +1,4 @@
-package com.ebnbin.gank.feature.days.dayviewpager
+package com.ebnbin.gank.feature.day
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -8,17 +8,15 @@ import android.util.SparseArray
 import android.view.ViewGroup
 import com.ebnbin.eb.util.EBUtil
 import com.ebnbin.eb.util.Timestamp
-import com.ebnbin.gank.feature.days.day.DayFragment
-import com.ebnbin.gank.feature.days.day.DayModel
-import java.util.*
+import java.util.ArrayList
 
 /**
  * Days [PagerAdapter].
  */
-internal class DayViewPagerPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+internal class DayPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     val timestamps = ArrayList<Timestamp>()
 
-    private val dayFragments = SparseArray<DayFragment>()
+    private val dayFragments = SparseArray<DayPageFragment>()
 
     /**
      * Sets new data.
@@ -31,7 +29,7 @@ internal class DayViewPagerPagerAdapter(fm: FragmentManager) : FragmentStatePage
     }
 
     override fun getItem(position: Int): Fragment {
-        return DayFragment.newInstance(timestamps[position])
+        return DayPageFragment.newInstance(timestamps[position])
     }
 
     override fun getCount(): Int {
@@ -43,7 +41,7 @@ internal class DayViewPagerPagerAdapter(fm: FragmentManager) : FragmentStatePage
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val dayFragment = super.instantiateItem(container, position) as DayFragment
+        val dayFragment = super.instantiateItem(container, position) as DayPageFragment
         dayFragments.put(position, dayFragment)
 
         return dayFragment
@@ -55,7 +53,7 @@ internal class DayViewPagerPagerAdapter(fm: FragmentManager) : FragmentStatePage
         super.destroyItem(container, position, any)
     }
 
-    fun getDayFragment(position: Int): DayFragment? {
+    fun getDayFragment(position: Int): DayPageFragment? {
         return dayFragments.get(position)
     }
 
@@ -72,7 +70,7 @@ internal class DayViewPagerPagerAdapter(fm: FragmentManager) : FragmentStatePage
                 return@Runnable
             }
 
-            dayFragment.getDayModel(object : DayFragment.DayModelCallback() {
+            dayFragment.getDayModel(object : DayPageFragment.DayModelCallback() {
                 override fun onGetDayModel(dayModel: DayModel) {
                     super.onGetDayModel(dayModel)
 

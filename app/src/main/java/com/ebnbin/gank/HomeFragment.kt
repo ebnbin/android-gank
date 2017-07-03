@@ -6,13 +6,13 @@ import com.ebnbin.ebapplication.context.EBBottomNavigationFragment
 import com.ebnbin.ebapplication.context.EBBottomNavigationItem
 import com.ebnbin.ebapplication.feature.webview.WebViewFragment
 import com.ebnbin.gank.feature.category.CategoryFragment
-import com.ebnbin.gank.feature.days.DaysFragment
+import com.ebnbin.gank.feature.day.DayFragment
 
 class HomeFragment : EBBottomNavigationFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val daysFragment = DaysFragment()
+        val daysFragment = DayFragment()
         bottomNavigation.addItem(EBBottomNavigationItem(getString(R.string.home), R.drawable.home, daysFragment))
         val categoryFragment = CategoryFragment()
         bottomNavigation.addItem(EBBottomNavigationItem("Category", R.drawable.home_subject, categoryFragment))

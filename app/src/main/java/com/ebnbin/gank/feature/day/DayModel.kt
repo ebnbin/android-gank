@@ -1,4 +1,4 @@
-package com.ebnbin.gank.feature.days.day
+package com.ebnbin.gank.feature.day
 
 import android.text.TextUtils
 

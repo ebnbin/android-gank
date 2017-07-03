@@ -5,7 +5,6 @@ import com.ebnbin.ebapplication.net.NetModelCallback
 import com.ebnbin.gank.feature.data.Category
 import com.ebnbin.gank.feature.data.DataEntity
 import com.ebnbin.gank.feature.data.DataFragment
-import com.ebnbin.gank.feature.days.day.DayModel
 import okhttp3.Call
 import okhttp3.Response
 
@@ -62,7 +61,7 @@ class CategoryItemFragment : DataFragment() {
     }
 
     /**
-     * Gets [DayModel] model and sets data.
+     * Gets [CategoryModel] model and sets data.
      */
     private fun netGetCategory() {
         netGet(categoryUrl, object : NetModelCallback<CategoryModel>() {

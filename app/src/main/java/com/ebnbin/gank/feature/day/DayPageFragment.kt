@@ -1,4 +1,4 @@
-package com.ebnbin.gank.feature.days.day
+package com.ebnbin.gank.feature.day
 
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
@@ -16,7 +16,7 @@ import java.util.ArrayList
 /**
  * 用 [RecyclerView] 展示某日期的数据.
  */
-class DayFragment : DataFragment() {
+class DayPageFragment : DataFragment() {
     private val timestamp: Timestamp by lazy {
         arguments.getParcelable<Timestamp>(ARG_TIMESTAMP)
     }
@@ -152,11 +152,11 @@ class DayFragment : DataFragment() {
 
         private val ARG_TIMESTAMP = "timestamp"
 
-        fun newInstance(timestamp: Timestamp): DayFragment {
+        fun newInstance(timestamp: Timestamp): DayPageFragment {
             val args = Bundle()
             args.putParcelable(ARG_TIMESTAMP, timestamp)
 
-            val dayFragment = DayFragment()
+            val dayFragment = DayPageFragment()
             dayFragment.arguments = args
 
             return dayFragment
