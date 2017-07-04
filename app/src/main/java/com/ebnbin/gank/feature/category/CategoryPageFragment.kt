@@ -36,7 +36,8 @@ class CategoryPageFragment : DataFragment() {
                 netGetCategory(false)
             }
         }, listRecyclerView)
-        if (!restoreCategory(savedInstanceState) && !loadMoreEnd) {
+        // TODO Saves and restores state of StateView.
+        if (!restoreCategory(savedInstanceState) && !loadMoreEnd || adapter.data.size == 0) {
             netGetCategory()
         }
     }
