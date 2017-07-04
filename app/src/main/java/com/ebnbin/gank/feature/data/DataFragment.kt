@@ -45,7 +45,7 @@ abstract class DataFragment : EBFragment() {
         })
         listRecyclerView.adapter = adapter
         listRecyclerView.addItemDecoration(itemDecoration)
-        listRecyclerView.setItemViewCacheSize(32)
+        listRecyclerView.setItemViewCacheSize(16)
     }
 
     protected fun setNewData(data: List<DataEntity>) {
