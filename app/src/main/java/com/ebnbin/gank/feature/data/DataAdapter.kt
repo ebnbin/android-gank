@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 /**
  * Day [android.support.v7.widget.RecyclerView.Adapter].
  */
-internal class DataAdapter : BaseMultiItemQuickAdapter<DataEntity, BaseViewHolder>(null) {
+class DataAdapter : BaseMultiItemQuickAdapter<DataEntity, BaseViewHolder>(null) {
     init {
         addItemType(DataEntity.CATEGORY, R.layout.day_item_category)
         addItemType(DataEntity.DATA, R.layout.day_item_data)
@@ -89,7 +89,7 @@ internal class DataAdapter : BaseMultiItemQuickAdapter<DataEntity, BaseViewHolde
 
     val listeners = ArrayList<Listener>()
 
-    internal abstract class Listener {
+    abstract class Listener {
         internal open fun onDataClick(data: DataEntity.Data) {}
     }
 }

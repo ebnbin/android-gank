@@ -14,7 +14,7 @@ abstract class DataFragment : EBFragment() {
         return R.layout.data_fragment
     }
 
-    private val listRecyclerView: RecyclerView by lazy {
+    protected val listRecyclerView: RecyclerView by lazy {
         stateView.findViewById(R.id.data) as RecyclerView
     }
 
@@ -22,7 +22,7 @@ abstract class DataFragment : EBFragment() {
         DataLayoutManager(context)
     }
 
-    private val adapter: DataAdapter by lazy {
+    protected val adapter: DataAdapter by lazy {
         DataAdapter()
     }
 
@@ -46,10 +46,7 @@ abstract class DataFragment : EBFragment() {
         listRecyclerView.adapter = adapter
         listRecyclerView.addItemDecoration(itemDecoration)
         listRecyclerView.setItemViewCacheSize(16)
-    }
-
-    protected fun setNewData(data: List<DataEntity>) {
-        adapter.setNewData(data)
+        adapter.bindToRecyclerView(listRecyclerView)
     }
 
     @CallSuper override fun onFront() {

@@ -39,12 +39,12 @@ class DayPageFragment : DataFragment() {
             return false
         }
 
-        dayModel = savedInstanceState.getSerializable(STATE_DAY_MODEL) as DayModel
+        dayModel = savedInstanceState.getSerializable(STATE_DAY_MODEL) as DayModel?
         if (dayModel == null) {
             return false
         }
 
-        setNewData(convertData(dayModel!!))
+        adapter.setNewData(convertData(dayModel!!))
 
         return true
     }
@@ -139,7 +139,7 @@ class DayPageFragment : DataFragment() {
                 }
                 dayModelCallbacks.clear()
 
-                setNewData(convertData(dayModel!!))
+                adapter.setNewData(convertData(dayModel!!))
 
                 // TODO Preload 福利 image.
             }
