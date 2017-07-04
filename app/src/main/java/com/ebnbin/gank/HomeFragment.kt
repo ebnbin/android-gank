@@ -13,11 +13,13 @@ class HomeFragment : EBBottomNavigationFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val categoryFragment = CategoryFragment()
-        bottomNavigation.addItem(EBBottomNavigationItem("Category", R.drawable.home_subject, categoryFragment))
+        bottomNavigation.addItem(EBBottomNavigationItem(getString(R.string.home_category), R.drawable.home_category,
+                categoryFragment))
         val daysFragment = DayFragment()
-        bottomNavigation.addItem(EBBottomNavigationItem(getString(R.string.home), R.drawable.home, daysFragment))
-        val webViewActionBarFragment = WebViewFragment.newInstance("http://ebnbin.com")
-        bottomNavigation.addItem(EBBottomNavigationItem(getString(R.string.eb_ebnbin), R.drawable.home_person,
+        bottomNavigation.addItem(EBBottomNavigationItem(getString(R.string.home_day), R.drawable.home_day,
+                daysFragment))
+        val webViewActionBarFragment = WebViewFragment.newInstance("http://gank.io/", false)
+        bottomNavigation.addItem(EBBottomNavigationItem(getString(R.string.home_website), R.drawable.home_website,
                 webViewActionBarFragment))
     }
 

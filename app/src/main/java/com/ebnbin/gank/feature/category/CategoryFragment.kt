@@ -43,6 +43,10 @@ class CategoryFragment : EBActionBarFragment() {
         if (bottomNavigationParentFragment != null) {
             appBarLayout.stateListAnimator = null
         }
+
+        if (actionBarParentFragment != null) {
+            actionBarParentFragment!!.toolbar.setTitle(R.string.home_category)
+        }
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
