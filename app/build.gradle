@@ -2,9 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-def localPropertiesFile = rootProject.file('local.properties')
 def localProperties = new Properties()
-localProperties.load(new FileInputStream(localPropertiesFile))
+localProperties.load(new FileInputStream(rootProject.file('local.properties')))
 
 android {
     compileSdkVersion compile_sdk_version
