@@ -39,8 +39,6 @@ android {
 }
 
 dependencies {
-    implementation is_release ? "com.ebnbin:eb-application:$version_eb"
-            : project(':..:android-eb-application:eb-application')
-    implementation is_release ? "com.ebnbin:recyclercalendarview:$version_eb"
-            : project(':..:android-recyclercalendarview:recyclercalendarview')
+    implementation is_release ? "com.ebnbin:eb-application:$version_eb" : project(':..:android-eb-application:eb-application')
+    implementation is_release ? "com.ebnbin:recyclercalendarview:$version_eb" : project(':..:android-recyclercalendarview:recyclercalendarview')
 }
