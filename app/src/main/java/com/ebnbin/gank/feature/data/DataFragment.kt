@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.support.annotation.CallSuper
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.ebnbin.eb.context.EBActionBarFragment
+import com.ebnbin.eb.context.EBFragment
 import com.ebnbin.eb.util.EBUtil
-import com.ebnbin.ebapplication.context.EBActionBarFragment
-import com.ebnbin.ebapplication.context.EBFragment
 import com.ebnbin.gank.R
 
 abstract class DataFragment : EBFragment() {

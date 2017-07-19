@@ -1,7 +1,7 @@
 package com.ebnbin.gank.feature.data
 
 import android.text.TextUtils
-import com.ebnbin.ebapplication.model.EBModel
+import com.ebnbin.eb.model.EBModel
 import com.google.gson.annotations.SerializedName
 
 class DataModel private constructor() : EBModel() {

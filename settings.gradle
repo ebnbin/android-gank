@@ -1,4 +1,2 @@
 include ':..:android-eb:eb',
-        ':..:android-eb-application:eb-application',
-        ':..:android-recyclercalendarview:recyclercalendarview',
         ':app'

@@ -1,6 +1,6 @@
 package com.ebnbin.gank.feature.category
 
-import com.ebnbin.ebapplication.model.EBModel
+import com.ebnbin.eb.model.EBModel
 import com.ebnbin.gank.feature.data.DataModel
 
 class CategoryModel : EBModel() {

@@ -2,7 +2,7 @@ package com.ebnbin.gank.feature.category
 
 import android.os.Bundle
 import android.view.View
-import com.ebnbin.ebapplication.net.NetModelCallback
+import com.ebnbin.eb.net.NetModelCallback
 import com.ebnbin.gank.feature.data.Category
 import com.ebnbin.gank.feature.data.DataEntity
 import com.ebnbin.gank.feature.data.DataFragment

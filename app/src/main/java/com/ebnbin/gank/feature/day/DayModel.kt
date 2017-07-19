@@ -2,7 +2,7 @@ package com.ebnbin.gank.feature.day
 
 import android.text.TextUtils
 
-import com.ebnbin.ebapplication.model.EBModel
+import com.ebnbin.eb.model.EBModel
 import com.ebnbin.gank.feature.data.DataModel
 import com.google.gson.annotations.SerializedName
 

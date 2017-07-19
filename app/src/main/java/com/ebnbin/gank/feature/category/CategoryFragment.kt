@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.view.View
+import com.ebnbin.eb.context.EBActionBarFragment
 import com.ebnbin.eb.util.EBUtil
-import com.ebnbin.ebapplication.context.EBActionBarFragment
 import com.ebnbin.gank.R
 
 class CategoryFragment : EBActionBarFragment() {

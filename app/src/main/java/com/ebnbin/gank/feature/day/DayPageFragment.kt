@@ -2,9 +2,9 @@ package com.ebnbin.gank.feature.day
 
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
+import com.ebnbin.eb.context.EBActionBarFragment
+import com.ebnbin.eb.net.NetModelCallback
 import com.ebnbin.eb.util.Timestamp
-import com.ebnbin.ebapplication.context.EBActionBarFragment
-import com.ebnbin.ebapplication.net.NetModelCallback
 import com.ebnbin.gank.feature.data.Category
 import com.ebnbin.gank.feature.data.DataEntity
 import com.ebnbin.gank.feature.data.DataFragment

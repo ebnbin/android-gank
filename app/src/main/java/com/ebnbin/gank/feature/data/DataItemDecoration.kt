@@ -1,7 +1,7 @@
 package com.ebnbin.gank.feature.data
 
 import android.content.Context
-import com.ebnbin.ebapplication.view.SpacingItemDecoration
+import com.ebnbin.eb.view.SpacingItemDecoration
 import com.ebnbin.gank.R
 
 /**

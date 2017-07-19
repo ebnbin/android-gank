@@ -1,7 +1,7 @@
 package com.ebnbin.gank
 
 import android.os.Bundle
-import com.ebnbin.ebapplication.context.EBActivity
+import com.ebnbin.eb.context.EBActivity
 
 class MainActivity : EBActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,7 +1,7 @@
 package com.ebnbin.gank.feature.day
 
+import com.ebnbin.eb.model.EBModel
 import com.ebnbin.eb.util.Timestamp
-import com.ebnbin.ebapplication.model.EBModel
 import java.text.ParseException
 
 /**
