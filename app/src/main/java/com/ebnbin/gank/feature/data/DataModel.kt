@@ -1,10 +1,10 @@
 package com.ebnbin.gank.feature.data
 
 import android.text.TextUtils
-import com.ebnbin.eb.model.EBModel
+import com.ebnbin.eb.net.NetModel
 import com.google.gson.annotations.SerializedName
 
-class DataModel private constructor() : EBModel() {
+class DataModel private constructor() : NetModel() {
     @SerializedName("_id") private var id: String? = null
     private var createdAt: String? = null
     private var desc: String? = null

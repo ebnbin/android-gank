@@ -2,14 +2,14 @@ package com.ebnbin.gank.feature.day
 
 import android.text.TextUtils
 
-import com.ebnbin.eb.model.EBModel
+import com.ebnbin.eb.net.NetModel
 import com.ebnbin.gank.feature.data.DataModel
 import com.google.gson.annotations.SerializedName
 
 /**
  * "http://gank.io/api/day/2015/08/07".
  */
-class DayModel private constructor() : EBModel() {
+class DayModel private constructor() : NetModel() {
     private var category: Array<String>? = null
     private var error: Boolean = false
     var results: ResultsModel? = null
@@ -23,7 +23,7 @@ class DayModel private constructor() : EBModel() {
 
     //*****************************************************************************************************************
 
-    class ResultsModel private constructor() : EBModel() {
+    class ResultsModel private constructor() : NetModel() {
         @SerializedName(DataModel.ANDROID) var android: List<DataModel>? = null
             private set
         @SerializedName(DataModel.APP) var app: List<DataModel>? = null

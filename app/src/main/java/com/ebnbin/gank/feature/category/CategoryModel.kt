@@ -1,9 +1,9 @@
 package com.ebnbin.gank.feature.category
 
-import com.ebnbin.eb.model.EBModel
+import com.ebnbin.eb.net.NetModel
 import com.ebnbin.gank.feature.data.DataModel
 
-class CategoryModel : EBModel() {
+class CategoryModel : NetModel() {
     private var error: Boolean = false
     var results: List<DataModel>? = null
         private set

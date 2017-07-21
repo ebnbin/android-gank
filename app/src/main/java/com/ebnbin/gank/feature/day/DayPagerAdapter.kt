@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.PagerAdapter
 import android.util.SparseArray
 import android.view.ViewGroup
-import com.ebnbin.eb.util.EBUtil
+import com.ebnbin.eb.util.AppUtil
 import com.ebnbin.eb.util.Timestamp
 import java.util.ArrayList
 
@@ -62,7 +62,7 @@ internal class DayPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(
     }
 
     fun getFirstFuli(position: Int, callback: FirstFuliCallback) {
-        EBUtil.handler.post(Runnable {
+        AppUtil.handler.post(Runnable {
             val dayFragment = getDayFragment(position)
             if (dayFragment == null) {
                 callback.onGetFirstFuli(null)

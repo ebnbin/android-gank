@@ -1,13 +1,13 @@
 package com.ebnbin.gank.feature.day
 
-import com.ebnbin.eb.model.EBModel
+import com.ebnbin.eb.net.NetModel
 import com.ebnbin.eb.util.Timestamp
 import java.text.ParseException
 
 /**
  * "http://gank.io/api/day/history".
  */
-class HistoryModel private constructor() : EBModel() {
+class HistoryModel private constructor() : NetModel() {
     private var error: Boolean = false
     private var results: List<String>? = null
 
@@ -19,7 +19,7 @@ class HistoryModel private constructor() : EBModel() {
         if (results != null) {
             for (dateString in results!!.reversed()) {
                 try {
-                    val timestamp = Timestamp.newInstance(dateString, "yyyy-MM-dd", true)
+                    val timestamp = Timestamp.newInstance("yyyy-MM-dd", dateString)
                     timestamps.add(timestamp)
                 } catch (e: ParseException) {
                     e.printStackTrace()
