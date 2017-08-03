@@ -15,7 +15,7 @@ abstract class DataFragment : EBFragment() {
     }
 
     protected val listRecyclerView: RecyclerView by lazy {
-        stateView.findViewById(R.id.data) as RecyclerView
+        stateView.findViewById<RecyclerView>(R.id.data)
     }
 
     private val layoutManager: DataLayoutManager by lazy {

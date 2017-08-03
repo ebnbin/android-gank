@@ -15,11 +15,11 @@ class CategoryFragment : EBActionBarFragment() {
     }
 
     private val tabLayout: TabLayout by lazy {
-        stateView.findViewById(R.id.tab_layout) as TabLayout
+        stateView.findViewById<TabLayout>(R.id.tab_layout)
     }
 
     private val viewPager: ViewPager by lazy {
-        stateView.findViewById(R.id.view_pager) as ViewPager
+        stateView.findViewById<ViewPager>(R.id.view_pager)
     }
 
     private val pagerAdapter: CategoryPagerAdapter by lazy {
