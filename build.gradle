@@ -27,7 +27,7 @@ allprojects {
         version_picasso = '2.5.2' // https://github.com/square/picasso
         version_support = '26.0.1' // https://developer.android.com/topic/libraries/support-library/revisions.html
 
-        version_eb = '0.6.0'
+        version_eb = '0.7.0'
         is_release = false
     }
 
