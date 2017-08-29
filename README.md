@@ -6,10 +6,14 @@
 
 ## Download
 
-* [GitHub](https://github.com/ebnbin/android-gank/releases/download/0.4.0/com.ebnbin.gank-0.4.0.apk)
+* [GitHub](https://github.com/ebnbin/android-gank/releases/download/0.5.0/com.ebnbin.gank-0.5.0.apk)
 * [Google Play](https://play.google.com/store/apps/details?id=com.ebnbin.gank)
 
 ## Changelog
+
+### 0.5.0
+
+* 按 分类 查看干货。
 
 ### 0.4.0
 
