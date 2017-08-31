@@ -9,7 +9,7 @@ import android.view.View
 import com.ebnbin.eb.context.EBActionBarFragment
 import com.ebnbin.eb.feature.about.AboutDialogFragment
 import com.ebnbin.eb.net.NetModelCallback
-import com.ebnbin.eb.util.ResUtil
+import com.ebnbin.eb.util.EBUtil
 import com.ebnbin.eb.util.time.EBDate
 import com.ebnbin.eb.view.recyclercalendarview.recyclerdatepicker.RecyclerDatePickerSupportDialogFragment
 import com.ebnbin.gank.R
@@ -40,7 +40,7 @@ class DayFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragme
         daysViewPager.adapter = pagerAdapter
         daysViewPager.offscreenPageLimit = 1
         daysViewPager.pageMargin = resources.getDimensionPixelSize(R.dimen.days_page_margin)
-        daysViewPager.setPageMarginDrawable(ColorDrawable(ResUtil.colorAttr(context, R.attr.ebColorPlaceholder)))
+        daysViewPager.setPageMarginDrawable(ColorDrawable(EBUtil.getColorAttr(context, R.attr.ebColorPlaceholder)))
         daysViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             private var dragged = false
 

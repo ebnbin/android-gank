@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.ebnbin.eb.context.EBActionBarFragment
 import com.ebnbin.eb.context.EBFragment
-import com.ebnbin.eb.util.AppUtil
+import com.ebnbin.eb.util.EBUtil
 import com.ebnbin.gank.R
 
 abstract class DataFragment : EBFragment() {
@@ -52,7 +52,7 @@ abstract class DataFragment : EBFragment() {
     @CallSuper override fun onFront() {
         super.onFront()
 
-        AppUtil.handler.post {
+        EBUtil.handler.post {
             if (actionBarParentFragment != null) {
                 actionBarParentFragment!!.setNestedScrollingChild(listRecyclerView)
                 actionBarParentFragment!!.setActionBarMode(EBActionBarFragment.ActionBarMode.SCROLL, false, null,

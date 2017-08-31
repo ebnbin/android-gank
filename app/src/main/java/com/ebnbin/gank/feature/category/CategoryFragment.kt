@@ -6,7 +6,7 @@ import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.view.View
 import com.ebnbin.eb.context.EBActionBarFragment
-import com.ebnbin.eb.util.ResUtil
+import com.ebnbin.eb.util.EBUtil
 import com.ebnbin.gank.R
 
 class CategoryFragment : EBActionBarFragment() {
@@ -38,7 +38,7 @@ class CategoryFragment : EBActionBarFragment() {
 
         viewPager.offscreenPageLimit = 1
         viewPager.pageMargin = resources.getDimensionPixelSize(R.dimen.days_page_margin)
-        viewPager.setPageMarginDrawable(ColorDrawable(ResUtil.colorAttr(context, R.attr.ebColorPlaceholder)))
+        viewPager.setPageMarginDrawable(ColorDrawable(EBUtil.getColorAttr(context, R.attr.ebColorPlaceholder)))
 
         if (bottomNavigationParentFragment != null) {
             appBarLayout.stateListAnimator = null
