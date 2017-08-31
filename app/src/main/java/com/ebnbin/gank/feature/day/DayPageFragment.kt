@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import com.ebnbin.eb.context.EBActionBarFragment
 import com.ebnbin.eb.net.NetModelCallback
-import com.ebnbin.eb.util.Timestamp
+import com.ebnbin.eb.util.time.EBDate
 import com.ebnbin.gank.feature.data.Category
 import com.ebnbin.gank.feature.data.DataEntity
 import com.ebnbin.gank.feature.data.DataFragment
@@ -17,8 +17,8 @@ import java.util.ArrayList
  * 用 [RecyclerView] 展示某日期的数据.
  */
 class DayPageFragment : DataFragment() {
-    private val timestamp: Timestamp by lazy {
-        arguments.getParcelable<Timestamp>(ARG_TIMESTAMP)
+    private val timestamp: EBDate by lazy {
+        arguments.getParcelable<EBDate>(ARG_TIMESTAMP)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -152,7 +152,7 @@ class DayPageFragment : DataFragment() {
 
         private val ARG_TIMESTAMP = "timestamp"
 
-        fun newInstance(timestamp: Timestamp): DayPageFragment {
+        fun newInstance(timestamp: EBDate): DayPageFragment {
             val args = Bundle()
             args.putParcelable(ARG_TIMESTAMP, timestamp)
 

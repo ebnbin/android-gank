@@ -7,21 +7,21 @@ import android.support.v4.view.PagerAdapter
 import android.util.SparseArray
 import android.view.ViewGroup
 import com.ebnbin.eb.util.AppUtil
-import com.ebnbin.eb.util.Timestamp
+import com.ebnbin.eb.util.time.EBDate
 import java.util.ArrayList
 
 /**
  * Days [PagerAdapter].
  */
 internal class DayPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
-    val timestamps = ArrayList<Timestamp>()
+    val timestamps = ArrayList<EBDate>()
 
     private val dayFragments = SparseArray<DayPageFragment>()
 
     /**
      * Sets new data.
      */
-    fun setData(timestamps: List<Timestamp>) {
+    fun setData(timestamps: List<EBDate>) {
         this.timestamps.clear()
         this.timestamps.addAll(timestamps)
 

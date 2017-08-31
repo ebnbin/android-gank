@@ -10,7 +10,7 @@ import com.ebnbin.eb.context.EBActionBarFragment
 import com.ebnbin.eb.feature.about.AboutDialogFragment
 import com.ebnbin.eb.net.NetModelCallback
 import com.ebnbin.eb.util.ResUtil
-import com.ebnbin.eb.util.Timestamp
+import com.ebnbin.eb.util.time.EBDate
 import com.ebnbin.eb.view.recyclercalendarview.recyclerdatepicker.RecyclerDatePickerSupportDialogFragment
 import com.ebnbin.gank.R
 import okhttp3.Call
@@ -191,7 +191,7 @@ class DayFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragme
 
     //*****************************************************************************************************************
 
-    override fun onSelected(date: Timestamp) {
+    override fun onSelected(date: EBDate) {
         val position = pagerAdapter.timestamps.indexOf(date)
         if (position != -1) {
             daysViewPager.setCurrentItem(position, true)
