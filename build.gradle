@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta2'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
     }
 }
@@ -19,15 +19,15 @@ allprojects {
         min_sdk_version = 23
         target_sdk_version = 26
 
-        version_ahbottomnavigation = '2.0.6' // https://github.com/aurelhubert/ahbottomnavigation
+        version_ahbottomnavigation = '2.1.0' // https://github.com/aurelhubert/ahbottomnavigation
         version_android_advanced_web_view = 'v3.0.0' // https://github.com/delight-im/Android-AdvancedWebView
-        version_base_recycler_view_adapter_helper = '2.9.27' // https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+        version_base_recycler_view_adapter_helper = '2.9.28' // https://github.com/CymChad/BaseRecyclerViewAdapterHelper
         version_gson = '2.8.1' // https://github.com/google/gson
         version_okhttp = '3.8.1' // https://github.com/square/okhttp
         version_picasso = '2.5.2' // https://github.com/square/picasso
-        version_support = '26.0.1' // https://developer.android.com/topic/libraries/support-library/revisions.html
+        version_support = '26.0.2' // https://developer.android.com/topic/libraries/support-library/revisions.html
 
-        version_eb = '0.7.0'
+        version_eb = '0.7.3'
         is_release = false
     }
 
