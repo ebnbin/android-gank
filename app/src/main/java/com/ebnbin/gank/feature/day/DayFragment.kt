@@ -8,10 +8,10 @@ import android.view.MenuItem
 import android.view.View
 import com.ebnbin.eb.context.EBActionBarFragment
 import com.ebnbin.eb.feature.about.AboutDialogFragment
+import com.ebnbin.eb.feature.recyclerdatepicker.RecyclerDatePickerDialogFragment
 import com.ebnbin.eb.net.NetModelCallback
 import com.ebnbin.eb.util.EBUtil
 import com.ebnbin.eb.util.time.EBDate
-import com.ebnbin.eb.view.recyclercalendarview.recyclerdatepicker.RecyclerDatePickerSupportDialogFragment
 import com.ebnbin.gank.R
 import okhttp3.Call
 import okhttp3.Response
@@ -19,7 +19,7 @@ import okhttp3.Response
 /**
  * 显示每日内容.
  */
-class DayFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragment.Callback {
+class DayFragment : EBActionBarFragment(), RecyclerDatePickerDialogFragment.Callback {
     override fun overrideContentViewLayout(): Int {
         return R.layout.day_fragment
     }
@@ -183,7 +183,7 @@ class DayFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragme
         calendarMenuItem = toolbar.menu.findItem(R.id.calendar)
         calendarMenuItem!!.isVisible = historyModel != null
         toolbar.menu.findItem(R.id.calendar).setOnMenuItemClickListener({
-            RecyclerDatePickerSupportDialogFragment.showDialog(childFragmentManager, historyModel!!.timestamps,
+            RecyclerDatePickerDialogFragment.showDialog(childFragmentManager, historyModel!!.timestamps,
                     pagerAdapter.timestamps[daysViewPager.currentItem])
             true
         })
@@ -191,7 +191,7 @@ class DayFragment : EBActionBarFragment(), RecyclerDatePickerSupportDialogFragme
 
     //*****************************************************************************************************************
 
-    override fun onSelected(date: EBDate) {
+    override fun onDateSelected(date: EBDate) {
         val position = pagerAdapter.timestamps.indexOf(date)
         if (position != -1) {
             daysViewPager.setCurrentItem(position, true)
