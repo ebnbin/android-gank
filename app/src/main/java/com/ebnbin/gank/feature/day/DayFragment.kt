@@ -145,9 +145,8 @@ class DayFragment : EBActionBarFragment(), RecyclerDatePickerDialogFragment.Call
     private fun netGetHistory() {
         val url = "http://gank.io/api/day/history"
         netGet(url, object : NetModelCallback<HistoryModel>() {
-            override fun onSuccess(call: Call, model: HistoryModel, response: Response,
-                    byteArray: ByteArray) {
-                super.onSuccess(call, model, response, byteArray)
+            override fun onSuccess(call: Call, model: HistoryModel, json: String, response: Response) {
+                super.onSuccess(call, model, json, response)
 
                 historyModel = model
                 pagerAdapter.setData(historyModel!!.timestamps)

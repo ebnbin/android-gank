@@ -82,9 +82,8 @@ class CategoryPageFragment : DataFragment() {
      */
     private fun netGetCategory(stateViewEnabled: Boolean = true) {
         netGet(getCategoryUrl(), object : NetModelCallback<CategoryModel>() {
-            override fun onSuccess(call: Call, model: CategoryModel, response: Response,
-                    byteArray: ByteArray) {
-                super.onSuccess(call, model, response, byteArray)
+            override fun onSuccess(call: Call, model: CategoryModel, json: String, response: Response) {
+                super.onSuccess(call, model, json, response)
 
                 adapter.addData(convertData(model))
 

@@ -123,9 +123,8 @@ class DayPageFragment : DataFragment() {
     private fun netGetDay() {
         val url = dayUrl
         netGet(url, object : NetModelCallback<DayModel>() {
-            override fun onSuccess(call: Call, model: DayModel, response: Response,
-                    byteArray: ByteArray) {
-                super.onSuccess(call, model, response, byteArray)
+            override fun onSuccess(call: Call, model: DayModel, json: String, response: Response) {
+                super.onSuccess(call, model, json, response)
 
                 if (userVisibleHint) {
                     actionBarParentFragment?.setActionBarMode(EBActionBarFragment.ActionBarMode.SCROLL, true, true,
