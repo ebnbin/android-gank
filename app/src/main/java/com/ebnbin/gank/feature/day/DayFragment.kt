@@ -7,7 +7,7 @@ import android.support.v7.app.ActionBar
 import android.view.MenuItem
 import android.view.View
 import com.ebnbin.eb.context.EBActionBarFragment
-import com.ebnbin.eb.feature.about.AboutDialogFragment
+import com.ebnbin.eb.feature.about.AboutFragment
 import com.ebnbin.eb.feature.recyclerdatepicker.RecyclerDatePickerDialogFragment
 import com.ebnbin.eb.net.NetModelCallback
 import com.ebnbin.eb.util.EBUtil
@@ -178,7 +178,7 @@ class DayFragment : EBActionBarFragment(), RecyclerDatePickerDialogFragment.Call
         toolbar.setTitle(R.string.app_label)
         toolbar.inflateMenu(R.menu.day_fragment)
         toolbar.menu.findItem(R.id.about).setOnMenuItemClickListener({
-            AboutDialogFragment.showDialog(childFragmentManager)
+            AboutFragment.show(ebActivity)
             true
         })
 
