@@ -41,7 +41,6 @@ class CategoryFragment : EBActionBarFragment() {
         viewPager
 
         viewPager.adapter = pagerAdapter
-        tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         tabLayout.setupWithViewPager(viewPager)
 
         viewPager.offscreenPageLimit = 1
