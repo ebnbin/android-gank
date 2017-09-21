@@ -1,7 +1,7 @@
 package com.ebnbin.gank
 
 import android.os.Bundle
-import com.ebnbin.eb.context.EBActivity
+import com.ebnbin.eb.app.EBActivity
 
 class MainActivity : EBActivity() {
     private val homeFragment: HomeFragment by lazy { HomeFragment() }
@@ -20,7 +20,5 @@ class MainActivity : EBActivity() {
         fragmentHelper.set(homeFragment)
     }
 
-    override fun enableDoubleBackFinish(): Boolean {
-        return true
-    }
+    override val enableDoubleBackFinish = true
 }
