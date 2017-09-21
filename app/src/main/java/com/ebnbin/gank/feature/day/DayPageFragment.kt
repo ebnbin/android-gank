@@ -117,6 +117,10 @@ class DayPageFragment : DataFragment() {
         "http://gank.io/api/day/%04d/%02d/%02d".format(timestamp.year, timestamp.month, timestamp.day)
     }
 
+    private val actionBarParentFragment: EBActionBarFragment? by lazy {
+        getTParentEBFragment(EBActionBarFragment::class)
+    }
+
     /**
      * Gets [DayModel] model and sets data.
      */

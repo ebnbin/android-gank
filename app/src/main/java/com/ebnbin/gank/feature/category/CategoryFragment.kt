@@ -6,24 +6,32 @@ import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.view.View
 import com.ebnbin.eb.context.EBActionBarFragment
+import com.ebnbin.eb.context.EBBottomNavigationFragment
 import com.ebnbin.eb.util.EBUtil
 import com.ebnbin.gank.R
 
 class CategoryFragment : EBActionBarFragment() {
-    override fun overrideContentViewLayout(): Int {
-        return R.layout.category_fragment
-    }
+    override val contentView: Any?
+        get() = R.layout.category_fragment
 
     private val tabLayout: TabLayout by lazy {
-        stateView.findViewById<TabLayout>(R.id.tab_layout)
+        findViewById<TabLayout>(R.id.tab_layout)
     }
 
     private val viewPager: ViewPager by lazy {
-        stateView.findViewById<ViewPager>(R.id.view_pager)
+        findViewById<ViewPager>(R.id.view_pager)
     }
 
     private val pagerAdapter: CategoryPagerAdapter by lazy {
         CategoryPagerAdapter(childFragmentManager)
+    }
+
+    private val actionBarParentFragment: EBActionBarFragment? by lazy {
+        getTParentEBFragment(EBActionBarFragment::class)
+    }
+
+    private val bottomNavigationParentFragment: EBBottomNavigationFragment? by lazy {
+        getTParentEBFragment(EBBottomNavigationFragment::class)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

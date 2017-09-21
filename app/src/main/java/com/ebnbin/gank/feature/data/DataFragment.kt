@@ -1,21 +1,19 @@
 package com.ebnbin.gank.feature.data
 
 import android.os.Bundle
-import android.support.annotation.CallSuper
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.ebnbin.eb.app.EBFragment
 import com.ebnbin.eb.context.EBActionBarFragment
-import com.ebnbin.eb.context.EBFragment
 import com.ebnbin.eb.util.EBUtil
 import com.ebnbin.gank.R
 
 abstract class DataFragment : EBFragment() {
-    override fun overrideContentViewLayout(): Int {
-        return R.layout.data_fragment
-    }
+    override val contentView: Any?
+        get() = R.layout.data_fragment
 
     protected val listRecyclerView: RecyclerView by lazy {
-        stateView.findViewById<RecyclerView>(R.id.data)
+        findViewById<RecyclerView>(R.id.data)
     }
 
     private val layoutManager: DataLayoutManager by lazy {
@@ -49,14 +47,34 @@ abstract class DataFragment : EBFragment() {
         adapter.bindToRecyclerView(listRecyclerView)
     }
 
-    @CallSuper override fun onFront() {
-        super.onFront()
+    private val actionBarParentFragment: EBActionBarFragment? by lazy {
+        getTParentEBFragment(EBActionBarFragment::class)
+    }
 
-        EBUtil.handler.post {
-            if (actionBarParentFragment != null) {
-                actionBarParentFragment!!.setNestedScrollingChild(listRecyclerView)
-                actionBarParentFragment!!.setActionBarMode(EBActionBarFragment.ActionBarMode.SCROLL, false, null,
-                        false)
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+
+        if (!hidden) {
+            EBUtil.handler.post {
+                if (actionBarParentFragment != null) {
+                    actionBarParentFragment!!.setNestedScrollingChild(listRecyclerView)
+                    actionBarParentFragment!!.setActionBarMode(EBActionBarFragment.ActionBarMode.SCROLL, false, null,
+                            false)
+                }
+            }
+        }
+    }
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+
+        if (isVisibleToUser) {
+            EBUtil.handler.post {
+                if (actionBarParentFragment != null) {
+                    actionBarParentFragment!!.setNestedScrollingChild(listRecyclerView)
+                    actionBarParentFragment!!.setActionBarMode(EBActionBarFragment.ActionBarMode.SCROLL, false, null,
+                            false)
+                }
             }
         }
     }

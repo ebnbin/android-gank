@@ -20,16 +20,19 @@ import okhttp3.Response
  * 显示每日内容.
  */
 class DayFragment : EBActionBarFragment(), RecyclerDatePickerDialogFragment.Callback {
-    override fun overrideContentViewLayout(): Int {
-        return R.layout.day_fragment
-    }
+    override val contentView: Any?
+        get() = R.layout.day_fragment
 
     private val daysViewPager: ViewPager by lazy {
-        stateView.findViewById<ViewPager>(R.id.days)
+        findViewById<ViewPager>(R.id.days)
     }
 
     private val pagerAdapter: DayPagerAdapter by lazy {
         DayPagerAdapter(childFragmentManager)
+    }
+
+    private val actionBarParentFragment: EBActionBarFragment? by lazy {
+        getTParentEBFragment(EBActionBarFragment::class)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
