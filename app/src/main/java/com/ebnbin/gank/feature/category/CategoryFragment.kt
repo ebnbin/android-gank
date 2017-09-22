@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.view.View
-import com.ebnbin.eb.context.EBActionBarFragment
-import com.ebnbin.eb.context.EBBottomNavigationFragment
 import com.ebnbin.eb.util.EBUtil
 import com.ebnbin.gank.R
+import com.ebnbin.gank.base.EBActionBarFragment
+import com.ebnbin.gank.base.EBBottomNavigationFragment
 
 class CategoryFragment : EBActionBarFragment() {
     override val contentView: Any?

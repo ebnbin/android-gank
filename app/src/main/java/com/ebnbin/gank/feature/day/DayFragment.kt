@@ -6,13 +6,13 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBar
 import android.view.MenuItem
 import android.view.View
-import com.ebnbin.eb.context.EBActionBarFragment
 import com.ebnbin.eb.feature.about.AboutFragment
 import com.ebnbin.eb.feature.recyclerdatepicker.RecyclerDatePickerDialogFragment
 import com.ebnbin.eb.net.NetModelCallback
 import com.ebnbin.eb.util.EBUtil
 import com.ebnbin.eb.util.time.EBDate
 import com.ebnbin.gank.R
+import com.ebnbin.gank.base.EBActionBarFragment
 import okhttp3.Call
 import okhttp3.Response
 

@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.ebnbin.eb.app.EBFragment
-import com.ebnbin.eb.context.EBActionBarFragment
 import com.ebnbin.eb.feature.webview.WebViewFragment
 import com.ebnbin.eb.util.EBUtil
 import com.ebnbin.gank.R
+import com.ebnbin.gank.base.EBActionBarFragment
 
 abstract class DataFragment : EBFragment() {
     override val contentView: Any?

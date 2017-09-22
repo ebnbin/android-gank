@@ -2,8 +2,8 @@ package com.ebnbin.gank
 
 import android.os.Bundle
 import android.view.View
-import com.ebnbin.eb.context.EBBottomNavigationFragment
-import com.ebnbin.eb.context.EBBottomNavigationItem
+import com.ebnbin.gank.base.EBBottomNavigationFragment
+import com.ebnbin.gank.base.EBBottomNavigationItem
 import com.ebnbin.gank.feature.category.CategoryFragment
 import com.ebnbin.gank.feature.day.DayFragment
 
