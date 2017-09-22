@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import com.ebnbin.eb.context.EBBottomNavigationFragment
 import com.ebnbin.eb.context.EBBottomNavigationItem
-import com.ebnbin.eb.feature.webview.WebViewFragment
 import com.ebnbin.gank.feature.category.CategoryFragment
 import com.ebnbin.gank.feature.day.DayFragment
 
@@ -18,9 +17,9 @@ class HomeFragment : EBBottomNavigationFragment() {
         val daysFragment = DayFragment()
         bottomNavigation.addItem(EBBottomNavigationItem(getString(R.string.home_day), R.drawable.home_day,
                 daysFragment))
-        val webViewActionBarFragment = WebViewFragment.newInstance("http://gank.io/", false)
-        bottomNavigation.addItem(EBBottomNavigationItem(getString(R.string.home_website), R.drawable.home_website,
-                webViewActionBarFragment))
+//        val webViewActionBarFragment = WebViewFragment2.newInstance("http://gank.io/", false)
+//        bottomNavigation.addItem(EBBottomNavigationItem(getString(R.string.home_website), R.drawable.home_website,
+//                webViewActionBarFragment))
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {

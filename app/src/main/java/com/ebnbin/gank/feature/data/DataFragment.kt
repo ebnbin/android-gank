@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.ebnbin.eb.app.EBFragment
 import com.ebnbin.eb.context.EBActionBarFragment
+import com.ebnbin.eb.feature.webview.WebViewFragment
 import com.ebnbin.eb.util.EBUtil
 import com.ebnbin.gank.R
 
@@ -37,7 +38,7 @@ abstract class DataFragment : EBFragment() {
                 super.onDataClick(data)
 
                 if (data.dataModel.validUrl != null) {
-                    ebActivity.loadUrl(data.dataModel.validUrl!!)
+                    WebViewFragment.show(ebActivity, data.dataModel.validUrl!!)
                 }
             }
         })
