@@ -1,1 +1,1 @@
-include ':..:android-eb:eb', ':app'
+include /*':..:android-eb:eb', */':app'

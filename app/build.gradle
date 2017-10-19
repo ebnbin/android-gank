@@ -38,5 +38,5 @@ android {
 }
 
 dependencies {
-    implementation is_release ? "com.ebnbin:eb:$version_eb" : project(':..:android-eb:eb')
+    implementation /*is_release ? */"com.ebnbin:eb:$version_eb"/* : project(':..:android-eb:eb')*/
 }
